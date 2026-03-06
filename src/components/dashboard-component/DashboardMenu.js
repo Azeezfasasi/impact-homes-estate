@@ -60,6 +60,19 @@ export default function DashboardMenu({ collapsed, mobileOpen = false, onClose =
   const items = [
     { href: '/dashboard', label: 'Dashboard', icon: 'dashboard', roles: ['admin', 'client', 'staff-member'] },
     {
+      href: '/dashboard/properties',
+      label: 'Properties',
+      icon: 'projects',
+      roles: ['admin', 'staff-member'],
+      children: [
+        { href: '/dashboard/all-property', label: 'All Property', roles: ['admin', 'staff-member'] },
+        { href: '/dashboard/add-property', label: 'Add Properties', roles: ['admin', 'staff-member'] },
+        { href: '/dashboard/property-categories', label: 'Property Category', roles: ['admin', 'staff-member'] },
+        { href: '/dashboard/property-statuses', label: 'Property Statuses', roles: ['admin', 'staff-member'] },
+        { href: '/dashboard/property-features', label: 'Property Features', roles: ['admin', 'staff-member'] }
+      ]
+    },
+    {
       href: '/dashboard/projects',
       label: 'Projects',
       icon: 'projects',
@@ -69,7 +82,6 @@ export default function DashboardMenu({ collapsed, mobileOpen = false, onClose =
         { href: '/dashboard/all-projects', label: 'All Projects', roles: ['admin', 'staff-member'] }
       ]
     },
-    { href: '/projects', label: 'Completed Projects', icon: 'projects', roles: ['client'] },
     {
       href: '/dashboard/blog',
       label: 'Blog',
@@ -116,6 +128,16 @@ export default function DashboardMenu({ collapsed, mobileOpen = false, onClose =
         { href: '/dashboard/all-gallery', label: 'All Gallery', roles: ['admin', 'staff-member'] },
       ]
     },
+    {
+      href: '/dashboard/gallery',
+      label: 'Media Library',
+      icon: 'Gallery',
+      roles: ['admin', 'staff-member'],
+      children: [
+        { href: '/dashboard/all-media', label: 'All Media', roles: ['admin', 'staff-member'] },
+        { href: '/dashboard/add-media', label: 'Add Media', roles: ['admin', 'staff-member'] },
+      ]
+    },
     { href: '/gallery', label: 'Our Gallery', icon: 'projects', roles: ['client'] },
     { href: '/dashboard/my-profile', label: 'Profile', icon: 'dashboard', roles: ['admin', 'client', 'staff-member'] },
     {
@@ -159,7 +181,7 @@ export default function DashboardMenu({ collapsed, mobileOpen = false, onClose =
 
   // Desktop / large screens: persistent sidebar
   const desktopNav = (
-    <nav className={`hidden md:flex h-full bg-blue-900 border-r border-gray-100 ${collapsed ? 'w-16' : 'w-75'} transition-width duration-200`} aria-label="Dashboard navigation">
+    <nav className={`hidden md:flex h-full bg-yellow-800 border-r border-gray-100 ${collapsed ? 'w-16' : 'w-75'} transition-width duration-200`} aria-label="Dashboard navigation">
       <div className="h-full overflow-y-auto py-6 px-2">
         <ul className="space-y-1">
           {items.map(i => {
