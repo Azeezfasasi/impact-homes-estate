@@ -5,10 +5,10 @@ import { Toaster } from 'react-hot-toast';
 // import MainNav from '@/components/home-component/MainNav';
 
 export const metadata = {
-  title: 'Rayob Engineering & Mgt. Co. Ltd',
-  description: 'Innovative Engineering Solutions for Modern Projects.',
+  title: 'Impact Homes Real Estate - Your Trusted Partner in Property Investment',
+  description: 'Discover exceptional real estate investment opportunities with Impact Homes Real Estate. We provide expert guidance, personalized service, and a wide range of properties to help you achieve your investment goals. Whether you are a first-time buyer or an experienced investor, we are here to support you every step of the way.',
   icons: {
-    icon: '/rayob1.jpg',
+    icon: '/impact2.png',
     apple: '/apple-icon.png',
   },
 }

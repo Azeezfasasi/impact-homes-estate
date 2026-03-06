@@ -3,6 +3,7 @@
 import React, { useState } from 'react'
 import Link from 'next/link'
 import { Search, Menu, X } from 'lucide-react'
+import Image from 'next/image'
 
 export default function MainNav() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
@@ -22,8 +23,7 @@ export default function MainNav() {
             <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-sm py-10">
                 {/* Logo */}
                 <Link href="/" className="flex items-center gap-2 text-2xl font-bold">
-                    <span className="text-white">Impact</span>
-                    <span className="text-impact-gold">Home Estate</span>
+                    <Image src="/img/impactlogotrans.png" alt="Impact Homes Logo" width={30} height={30} className="ml-2 w-full h-[100px]" />
                 </Link>
                 
             <div className='gap-10 hidden lg:flex'>
