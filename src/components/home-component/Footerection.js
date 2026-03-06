@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import React, { useState, useEffect } from 'react'
 
 export default function FooterSection() {
@@ -24,7 +25,7 @@ export default function FooterSection() {
       {showScrollButton && (
         <button
           onClick={scrollToTop}
-          className="fixed bottom-8 right-8 z-50 bg-purple-600 hover:bg-purple-700 text-white p-4 rounded-full shadow-lg transition-all duration-300 transform hover:scale-110"
+          className="fixed bottom-8 right-8 z-50 bg-impact-gold hover:bg-purple-700 text-white p-4 rounded-full shadow-lg transition-all duration-300 transform hover:scale-110"
           aria-label="Scroll to top"
         >
           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -34,7 +35,7 @@ export default function FooterSection() {
       )}
 
       {/* Footer */}
-      <footer className="relative bg-gray-900 text-white pt-10">
+      <footer className="relative bg-gray-900 text-white pt-0 md:pt-6 lg:pt-6">
         {/* Background Image Overlay */}
         <div className="absolute inset-0 opacity-10" style={{
           backgroundImage: 'url("https://images.unsplash.com/photo-1449844908441-8829872d2607?w=1200&h=600&fit=crop")',
@@ -43,18 +44,14 @@ export default function FooterSection() {
         }} />
 
         {/* Main Footer Content */}
-        <div className="relative z-10 px-5 md:px-8 lg:px-10 py-16 md:py-0">
+        <div className="relative z-10 px-5 md:px-8 lg:px-10 py-6 lg:py-6 md:py-0">
           <div className="max-w-6xl mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 md:gap-2 mb-12">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-6 mb-12 mx-auto">
               
               {/* Logo & Business Hours Section */}
               <div className="flex flex-col">
                 <div className="mb-8">
-                  <h2 className="text-4xl md:text-3xl font-bold mb-1">
-                    <span className="text-purple-500">HALL</span>
-                    <span className="text-purple-500"> 7</span>
-                  </h2>
-                  <p className="text-gray-300 text-sm tracking-widest">R E A L E S T A T E</p>
+                  <Image src="/img/logowhite.png" alt="Impact Homes Logo" width={120} height={50} className="ml-2 w-[70%] lg:h-[100px]" />
                 </div>
 
                 <div>
@@ -64,78 +61,74 @@ export default function FooterSection() {
               </div>
 
               {/* Quick Links */}
-              <div>
-                <h3 className="text-xl md:text-lg font-bold mb-6">Quick Links</h3>
-                <ul className="space-y-4">
-                  <li>
-                    <a href="/projects" className="text-gray-400 hover:text-purple-400 transition-colors flex items-center group">
-                      <span className="mr-2 group-hover:translate-x-1 transition-transform">›</span>
-                      <span>Projects</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="/blog" className="text-gray-400 hover:text-purple-400 transition-colors flex items-center group">
-                      <span className="mr-2 group-hover:translate-x-1 transition-transform">›</span>
-                      <span>Blog</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="/contact" className="text-gray-400 hover:text-purple-400 transition-colors flex items-center group">
-                      <span className="mr-2 group-hover:translate-x-1 transition-transform">›</span>
-                      <span>Contact us</span>
-                    </a>
-                  </li>
-                </ul>
-              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <h3 className="text-xl md:text-lg font-bold mb-6">Quick Links</h3>
+                  <ul className="space-y-4">
+                    <li>
+                      <a href="/projects" className="text-gray-400 hover:text-impact-gold transition-colors flex items-center group">
+                        <span className="mr-2 group-hover:translate-x-1 transition-transform">›</span>
+                        <span>Projects</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="/blog" className="text-gray-400 hover:text-impact-gold transition-colors flex items-center group">
+                        <span className="mr-2 group-hover:translate-x-1 transition-transform">›</span>
+                        <span>Blog</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="/contact" className="text-gray-400 hover:text-impact-gold transition-colors flex items-center group">
+                        <span className="mr-2 group-hover:translate-x-1 transition-transform">›</span>
+                        <span>Contact us</span>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
 
-              {/* More Links */}
-              <div>
-                <h3 className="text-xl md:text-lg font-bold mb-6 opacity-0 md:opacity-100">‌</h3>
-                <ul className="space-y-4">
-                  <li>
-                    <a href="/about" className="text-gray-400 hover:text-purple-400 transition-colors flex items-center group">
-                      <span className="mr-2 group-hover:translate-x-1 transition-transform">›</span>
-                      <span>About us</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="/gallery" className="text-gray-400 hover:text-purple-400 transition-colors flex items-center group">
-                      <span className="mr-2 group-hover:translate-x-1 transition-transform">›</span>
-                      <span>Our Gallery</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="/sitemap" className="text-gray-400 hover:text-purple-400 transition-colors flex items-center group">
-                      <span className="mr-2 group-hover:translate-x-1 transition-transform">›</span>
-                      <span>Sitemap</span>
-                    </a>
-                  </li>
-                </ul>
+                {/* More Links */}
+                <div>
+                  <h3 className="text-xl md:text-lg font-bold mb-6 opacity-0 md:opacity-100">‌</h3>
+                  <ul className="space-y-4">
+                    <li>
+                      <a href="/about" className="text-gray-400 hover:text-impact-gold transition-colors flex items-center group">
+                        <span className="mr-2 group-hover:translate-x-1 transition-transform">›</span>
+                        <span>About us</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="/gallery" className="text-gray-400 hover:text-impact-gold transition-colors flex items-center group">
+                        <span className="mr-2 group-hover:translate-x-1 transition-transform">›</span>
+                        <span>Our Gallery</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="/sitemap" className="text-gray-400 hover:text-impact-gold transition-colors flex items-center group">
+                        <span className="mr-2 group-hover:translate-x-1 transition-transform">›</span>
+                        <span>Sitemap</span>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
               </div>
 
               {/* Head Office */}
-              <div>
+              <div className=''>
                 <h3 className="text-xl md:text-lg font-bold mb-6">Head Office</h3>
                 <div className="space-y-4 text-sm md:text-base">
                   <div>
-                    <p className="text-gray-400">8c Buzi Close, Amazon Street, Maitama, Abuja.</p>
-                  </div>
-                  <div>
-                    <p className="font-semibold mb-1">Sales & Inspection:</p>
-                    <a href="tel:+234704800107" className="text-gray-400 hover:text-purple-400 transition-colors">
-                      +234 704-800-1075
-                    </a>
+                    <p className="text-gray-400">Flat I, House 8, Wing 2 Federal housing Authority Guzape, Abuja</p>
                   </div>
                   <div>
                     <p className="font-semibold mb-1">Enquiries:</p>
-                    <a href="tel:+234704800106" className="text-gray-400 hover:text-purple-400 transition-colors">
-                      +234 704-800-1076
+                    <a href="tel:+2347040999508" className="text-gray-400 hover:text-impact-gold transition-colors">
+                      (+234) 0704 099 9508
                     </a>
                   </div>
                   <div>
                     <p className="font-semibold mb-1">Email:</p>
-                    <a href="mailto:info@hall7projects.com" className="text-gray-400 hover:text-purple-400 transition-colors break-all">
-                      info@hall7projects.com
+                    <a href="mailto:info@impacthomes.ng" className="text-gray-400 hover:text-impact-gold transition-colors break-all">
+                      info@impacthomes.ng
                     </a>
                   </div>
                 </div>
@@ -145,7 +138,7 @@ export default function FooterSection() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="relative z-10 bg-purple-600 border-t-4 border-purple-700 px-5 md:px-8 lg:px-10 py-6">
+        <div className="relative z-10 bg-impact-purple border-t-4 border-impact-gold px-5 md:px-8 lg:px-10 py-6">
           <div className="max-w-7xl mx-auto">
             <div className="flex flex-col md:flex-row items-center justify-between gap-4">
               <p className="text-center md:text-left text-sm md:text-base text-gray-100">

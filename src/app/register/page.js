@@ -3,6 +3,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/context/AuthContext";
+import MainNav from "@/components/home-component/MainNav";
 
 export default function Register() {
   const router = useRouter();
@@ -55,7 +56,17 @@ export default function Register() {
     }
   };
 
+  const breadcrumbs = [
+    { label: 'Home', href: '/' },
+    { label: 'Register' }
+  ]
+
   return (
+    <>
+    <MainNav
+      title="Register for an Account"
+      breadcrumbs={breadcrumbs}
+    />
     <div className="min-h-screen flex items-center justify-center bg-gray-50 px-6 my-12">
       <div className="max-w-md w-full bg-white p-8 rounded-2xl shadow-lg">
         <h2 className="text-3xl font-bold text-gray-800 mb-6 text-center">Create Account</h2>
@@ -156,5 +167,6 @@ export default function Register() {
         </p>
       </div>
     </div>
+    </>
   );
 }

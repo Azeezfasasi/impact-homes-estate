@@ -1,11 +1,20 @@
 import OurServices from '@/components/home-component/OurServices'
-import PageTitle from '@/components/home-component/PageTitle'
+import MainNav from '@/components/home-component/MainNav'
 import React from 'react'
 
 export default function page() {
+  const breadcrumbs = [
+    { label: 'Home', href: '/' },
+    { label: 'Services' }
+  ]
+
   return (
     <>
-    <PageTitle title="Our Services" subtitle="Welcome to our services page" />
+    <MainNav
+      title="Our Services"
+      subtitle="Welcome to our services page"
+      breadcrumbs={breadcrumbs}
+    />
     <OurServices />
     </>
   )

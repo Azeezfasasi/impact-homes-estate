@@ -1,11 +1,20 @@
 import BlogNews from '@/components/home-component/BlogNews'
-import PageTitle from '@/components/home-component/PageTitle'
+import MainNav from '@/components/home-component/MainNav'
 import React from 'react'
 
 export default function page() {
+  const breadcrumbs = [
+    { label: 'Home', href: '/' },
+    { label: 'Blog' }
+  ]
+
   return (
     <>
-    <PageTitle title="Engineering Insights & News" subtitle="Stay updated with the latest trends, insights, and news in engineering and construction." />
+    <MainNav
+      title="Real Estate Insights & News"
+      subtitle="Stay updated with the latest trends, insights, and news in real estate."
+      breadcrumbs={breadcrumbs}
+    />
     <BlogNews />
     </>
   )

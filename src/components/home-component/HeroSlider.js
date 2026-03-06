@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { ChevronRight } from 'lucide-react'
 import MainNav from './MainNav'
+import WelcomeCta from './WelcomeCta'
 
 export default function HeroSlider() {
   const [currentSlide, setCurrentSlide] = useState(0)
@@ -58,7 +59,7 @@ export default function HeroSlider() {
                 backgroundImage: `url(${slide.image})`,
               }}
             />
-            <MainNav />
+            <MainNav hideBackgroundImage={true} />
 
             {/* Dark Overlay */}
             <div className="absolute inset-0 bg-black/30" />

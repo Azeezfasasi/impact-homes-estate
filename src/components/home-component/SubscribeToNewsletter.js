@@ -77,7 +77,7 @@ export default function SubscribeToNewsletter() {
   };
 
   return (
-    <div className="w-full py-16 bg-gradient-to-r from-blue-50 via-white to-blue-50">
+    <div className="w-full py-16 bg-gradient-to-r from-impact-gold/20 via-white to-impact-gold/20">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Main Container */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
@@ -95,8 +95,8 @@ export default function SubscribeToNewsletter() {
             {/* Benefits */}
             <div className="space-y-4">
               <div className="flex items-start space-x-3">
-                <div className="w-6 h-6 rounded-full bg-blue-100 flex items-center justify-center shrink-0 mt-1">
-                  <span className="text-blue-900 font-bold text-sm">✓</span>
+                <div className="w-6 h-6 rounded-full bg-impact-gold/20 flex items-center justify-center shrink-0 mt-1">
+                  <span className="text-impact-gold font-bold text-sm">✓</span>
                 </div>
                 <div>
                   <h3 className="font-semibold text-gray-900">Latest Updates</h3>
@@ -105,8 +105,8 @@ export default function SubscribeToNewsletter() {
               </div>
 
               <div className="flex items-start space-x-3">
-                <div className="w-6 h-6 rounded-full bg-blue-100 flex items-center justify-center shrink-0 mt-1">
-                  <span className="text-blue-900 font-bold text-sm">✓</span>
+                <div className="w-6 h-6 rounded-full bg-impact-gold/20 flex items-center justify-center shrink-0 mt-1">
+                  <span className="text-impact-gold font-bold text-sm">✓</span>
                 </div>
                 <div>
                   <h3 className="font-semibold text-gray-900">Exclusive Deals</h3>
@@ -115,8 +115,8 @@ export default function SubscribeToNewsletter() {
               </div>
 
               <div className="flex items-start space-x-3">
-                <div className="w-6 h-6 rounded-full bg-blue-100 flex items-center justify-center shrink-0 mt-1">
-                  <span className="text-blue-900 font-bold text-sm">✓</span>
+                <div className="w-6 h-6 rounded-full bg-impact-gold/20 flex items-center justify-center shrink-0 mt-1">
+                  <span className="text-impact-gold font-bold text-sm">✓</span>
                 </div>
                 <div>
                   <h3 className="font-semibold text-gray-900">No Spam</h3>
@@ -129,7 +129,7 @@ export default function SubscribeToNewsletter() {
           {/* Right Side - Form */}
           <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-100">
             <div className="flex items-center space-x-2 mb-6">
-              <Mail className="w-6 h-6 text-blue-900" />
+              <Mail className="w-6 h-6 text-impact-gold" />
               <h3 className="text-xl font-bold text-gray-900">Subscribe Now</h3>
             </div>
 
@@ -146,7 +146,7 @@ export default function SubscribeToNewsletter() {
                   onChange={(e) => setFirstName(e.target.value)}
                   placeholder="John"
                   disabled={isLoading}
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-900 focus:border-transparent transition-all disabled:bg-gray-50 disabled:cursor-not-allowed text-gray-900 placeholder-gray-500"
+                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-impact-gold focus:border-transparent transition-all disabled:bg-gray-50 disabled:cursor-not-allowed text-gray-900 placeholder-gray-500"
                 />
               </div>
 
@@ -162,7 +162,7 @@ export default function SubscribeToNewsletter() {
                   onChange={(e) => setLastName(e.target.value)}
                   placeholder="Doe"
                   disabled={isLoading}
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-900 focus:border-transparent transition-all disabled:bg-gray-50 disabled:cursor-not-allowed text-gray-900 placeholder-gray-500"
+                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-impact-gold focus:border-transparent transition-all disabled:bg-gray-50 disabled:cursor-not-allowed text-gray-900 placeholder-gray-500"
                 />
               </div>
 
@@ -178,7 +178,7 @@ export default function SubscribeToNewsletter() {
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="your@email.com"
                   disabled={isLoading}
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-900 focus:border-transparent transition-all disabled:bg-gray-50 disabled:cursor-not-allowed text-gray-900 placeholder-gray-500"
+                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-impact-gold focus:border-transparent transition-all disabled:bg-gray-50 disabled:cursor-not-allowed text-gray-900 placeholder-gray-500"
                 />
               </div>
 
@@ -205,7 +205,7 @@ export default function SubscribeToNewsletter() {
               <button
                 type="submit"
                 disabled={isLoading || status === 'success'}
-                className="w-full px-6 py-3 bg-gradient-to-r from-blue-600 to-blue-900 text-white font-semibold rounded-lg hover:from-blue-700 hover:to-blue-800 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2 group"
+                className="w-full px-6 py-3 bg-gradient-to-r from-impact-gold to-impact-gold/90 text-white font-semibold rounded-lg hover:from-impact-gold hover:to-impact-gold/90 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2 group"
               >
                 {isLoading ? (
                   <>

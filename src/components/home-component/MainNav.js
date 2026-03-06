@@ -2,10 +2,10 @@
 
 import React, { useState } from 'react'
 import Link from 'next/link'
-import { Search, Menu, X } from 'lucide-react'
+import { Search, Menu, X, LogIn } from 'lucide-react'
 import Image from 'next/image'
 
-export default function MainNav() {
+export default function MainNav({ hideBackgroundImage = false, title, subtitle, breadcrumbs }) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
   const toggleMobileMenu = () => {
@@ -14,16 +14,27 @@ export default function MainNav() {
 
   return (
     <div className="w-full text-white relative shadow-lg pb-6">
+      {/* Background Image for non-homepage pages */}
+      {!hideBackgroundImage && (
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage: `url('/img/real4.jpg')`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+          }}
+        />
+      )}
       <div className="absolute inset-0 bg-black/50" />
       
       {/* Top Info Bar */}
       <div className="text-white py-3 px-4 z-10 relative">
         {/* add black overlay only to the top info bar */}
         <div className="relative">
-            <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-sm py-10">
+            <div className="max-w-7xl mx-auto flex flex-col lg:flex-row justify-between items-center gap-4 text-sm pb-4">
                 {/* Logo */}
                 <Link href="/" className="flex items-center gap-2 text-2xl font-bold">
-                    <Image src="/img/impactlogotrans.png" alt="Impact Homes Logo" width={30} height={30} className="ml-2 w-full h-[100px]" />
+                    <Image src="/img/logowhite.png" alt="Impact Homes Logo" width={170} height={50} className="ml-2 w-full lg:h-[100px]" />
                 </Link>
                 
             <div className='gap-10 hidden lg:flex'>
@@ -34,7 +45,7 @@ export default function MainNav() {
                     </div>
                     <div>
                     <p className="text-impact-gold text-xs">Call Us</p>
-                    <p className="font-semibold text-white">+234 704-800-1075</p>
+                    <p className="font-semibold text-white">(+234) 0704 099 9508</p>
                     </div>
                 </div>
 
@@ -45,7 +56,7 @@ export default function MainNav() {
                     </div>
                     <div>
                     <p className="text-impact-gold text-xs">Send us an email</p>
-                    <p className="font-semibold text-white">Info@Hall7projects.Com</p>
+                    <p className="font-semibold text-white">Info@impacthomes.ng</p>
                     </div>
                 </div>
 
@@ -56,7 +67,7 @@ export default function MainNav() {
                     </div>
                     <div>
                     <p className="text-impact-gold text-xs">Address</p>
-                    <p className="font-semibold text-white">8c Buzi Close, Amazon Street, Maitama</p>
+                    <p className="font-semibold text-white">Flat I, House 8, Wing 2 Federal housing Authority Guzape, Abuja</p>
                     </div>
                 </div>
             </div>
@@ -70,37 +81,37 @@ export default function MainNav() {
           <div className="flex items-center justify-between h-20">
 
             {/* Desktop Navigation Menu */}
-            <div className="hidden md:flex items-center gap-8 z-10 relative">
+            <div className="hidden lg:flex items-center gap-8 z-10 relative">
               <Link
                 href="/"
                 className="text-white font-semibold hover:text-impact-gold transition"
               >
                 HOME
               </Link>
-              <div className="group relative">
-                <button className="flex items-center gap-1 hover:text-impact-gold transition">
-                  ABOUT
-                  <span>▼</span>
-                </button>
-              </div>
-              <div className="group relative">
-                <button className="flex items-center gap-1 hover:text-impact-gold transition">
-                  PROJECTS
-                  <span>▼</span>
-                </button>
-              </div>
+              <Link
+                href="/about-us"
+                className="text-white font-semibold hover:text-impact-gold transition"
+              >
+                ABOUT
+              </Link>
+              <Link
+                href="/projects"
+                className="text-white font-semibold hover:text-impact-gold transition"
+              >
+                PROJECTS
+              </Link>
               <Link
                 href="/blog"
                 className="hover:text-impact-gold transition"
               >
                 BLOG
               </Link>
-              <div className="group relative">
-                <button className="flex items-center gap-1 hover:text-impact-gold transition">
-                  BECOME A SALES PARTNER
-                  <span>▼</span>
-                </button>
-              </div>
+              <Link
+                href="#"
+                className="text-white font-semibold hover:text-impact-gold transition"
+              >
+                BECOME A SALES PARTNER
+              </Link>
               <Link
                 href="#"
                 className="hover:text-impact-gold transition"
@@ -110,10 +121,10 @@ export default function MainNav() {
             </div>
 
             {/* Right Side Icons and Button */}
-            <div className="hidden md:flex items-center gap-6 z-10 relative">
-              <button className="hover:text-impact-gold transition">
-                <Search size={20} />
-              </button>
+            <div className="hidden lg:flex items-center gap-6 z-10 relative">
+              <Link href="/login" className="hover:text-impact-gold transition">
+                <LogIn size={20} />
+              </Link>
               <Link
                 href="#"
                 className="bg-impact-gold hover:bg-impact-gold/90 text-white px-6 py-3 rounded font-semibold transition whitespace-nowrap"
@@ -124,17 +135,18 @@ export default function MainNav() {
 
             {/* Mobile Menu Button */}
             <button
-              className="md:hidden flex items-center gap-4 z-10 relative"
+              className="lg:hidden flex items-center gap-4 z-10 relative"
               onClick={toggleMobileMenu}
             >
-              <Search size={20} />
+              {/* <Search size={20} /> */}
+              <LogIn size={20} />
               {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
           </div>
 
           {/* Mobile Navigation Menu */}
           {isMobileMenuOpen && (
-            <div className="md:hidden pb-4 border-t border-gray-700 z-10 relative">
+            <div className="lg:hidden pb-4 border-t border-gray-700 z-10 relative">
               <div className="flex flex-col gap-3 py-4">
                 <Link href="/" className="text-impact-gold font-semibold">
                   HOME
@@ -165,6 +177,46 @@ export default function MainNav() {
           )}
         </div>
       </nav>
+
+      {/* Page Title and Breadcrumbs Section */}
+      {(title || breadcrumbs) && (
+        <section className="mt-10 lg:mt-10 relative z-10">
+          <div className="container mx-auto px-6 lg:px-20 text-center">
+            {/* Page Title */}
+            {title && (
+              <h1 className="text-[24px] sm:text-[28px] lg:text-[36px] font-bold text-white mb-4">
+                {title}
+              </h1>
+            )}
+            
+            {/* Breadcrumbs */}
+            {breadcrumbs && (
+              <nav className="text-white/80 text-sm mb-4" aria-label="Breadcrumb">
+                {breadcrumbs.map((crumb, index) => (
+                  <span key={index}>
+                    {index !== 0 && <span className="mx-2">/</span>}
+                    {crumb.href ? (
+                      <a href={crumb.href} className="hover:text-white transition">
+                        {crumb.label}
+                      </a>
+                    ) : (
+                      <span className="text-white font-medium">{crumb.label}</span>
+                    )}
+                  </span>
+                ))}
+              </nav>
+            )}
+
+            {/* Optional Subtitle */}
+            {subtitle && (
+              <p className="text-white/90 max-w-2xl mx-auto text-lg">
+                {subtitle}
+              </p>
+            )}
+          </div>
+        </section>
+      )}
+
     </div>
     </div>
   )

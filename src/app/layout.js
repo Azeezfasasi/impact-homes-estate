@@ -1,5 +1,6 @@
 import '../globals.css'
 import FooterSection from '@/components/home-component/Footerection';
+// import MainNav from '@/components/home-component/MainNav';
 import { AuthProvider } from "@/context/AuthContext";
 import { Toaster } from 'react-hot-toast';
 // import MainNav from '@/components/home-component/MainNav';

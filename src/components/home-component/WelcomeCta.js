@@ -9,7 +9,7 @@ export default function WelcomeCta() {
   ]
 
   return (
-    <div className="max-w-7xl bg-white mx-auto my-4 rounded-lg shadow-lg overflow-hidden lg:mt-[-40px] z-10 relative">
+    <div className="max-w-7xl bg-white mx-auto my-4 lg:rounded-lg shadow-lg overflow-hidden mt-0 md:mt-[0px] lg:mt-[0px] z-10 relative border border-gray-200">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
         {/* Left Section - Purple Background */}
         <div className="bg-gradient-to-br from-impact-gold to-impact-gold/90 flex flex-col justify-center items-start p-8 md:p-12 lg:p-16">

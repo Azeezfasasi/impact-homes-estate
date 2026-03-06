@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/context/AuthContext";
 import { Eye, EyeOff } from "lucide-react";
+import MainNav from "@/components/home-component/MainNav";
 
 
 export default function Login() {
@@ -49,7 +50,17 @@ export default function Login() {
     }
   };
 
+  const breadcrumbs = [
+    { label: 'Home', href: '/' },
+    { label: 'Login' }
+  ]
+
   return (
+    <>
+    <MainNav
+      title="Login to Your Account"
+      breadcrumbs={breadcrumbs}
+    />
     <div className="min-h-screen flex items-center justify-center bg-gray-50 px-6">
       {!mounted || (loading && !user) ? (
         <div className="text-center">
@@ -141,5 +152,6 @@ export default function Login() {
       </div>
       )}
     </div>
+    </>
   );
 }

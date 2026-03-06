@@ -2,6 +2,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import MainNav from "@/components/home-component/MainNav";
 
 export default function ForgotPassword() {
   const router = useRouter();
@@ -60,7 +61,17 @@ export default function ForgotPassword() {
     }
   };
 
+  const breadcrumbs = [
+    { label: 'Home', href: '/' },
+    { label: 'Forgot Password' }
+  ]
+
   return (
+    <>
+    <MainNav
+      title="Forgot Password"
+      breadcrumbs={breadcrumbs}
+    />
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-gray-100 px-4 sm:px-6 lg:px-8 py-12">
       <div className="w-full max-w-md">
         {/* Card Container */}
@@ -269,5 +280,6 @@ export default function ForgotPassword() {
         </div>
       </div>
     </div>
+    </>
   );
 }
