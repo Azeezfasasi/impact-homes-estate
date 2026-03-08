@@ -45,7 +45,7 @@ export default function BlogNews() {
       <div className="container mx-auto px-6 lg:px-20">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Latest Blog Posts</h2>
-          <p className="text-gray-600">Insights and updates from our engineering team</p>
+          <p className="text-gray-600">Insights and updates from real estate experts</p>
         </div>
 
         {/* Categories */}
@@ -101,8 +101,8 @@ export default function BlogNews() {
                     {post.category}
                   </span>
                   <h3 className="text-xl font-bold text-gray-800 mt-2 mb-2">{post.postTitle.split(" ").slice(0, 8).join(" ") + "…"}</h3>
-                  {/* <p className="text-gray-600 mb-3 text-sm line-clamp-2">{post.content.substring(0, 100)}...</p> */}
-                  <p className="text-gray-600 mb-3 text-sm line-clamp-2">{post.content.split(" ").slice(0, 20).join(" ") + "…"}</p>
+                  {/* Strip HTML tags from content for preview */}
+                  <p className="text-gray-600 mb-3 text-sm line-clamp-2">{post.content.replace(/<[^>]*>/g, '').split(" ").slice(0, 20).join(" ") + "…"}</p>
                   <div className="flex items-center justify-between text-xs text-gray-500 mb-4">
                     <span className="font-semibold">{new Date(post.publishDate).toLocaleDateString()}</span>
                     {/* <span className="flex items-center gap-1">❤️ {post.likes || 0}</span> */}

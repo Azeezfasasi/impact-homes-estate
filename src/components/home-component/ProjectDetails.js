@@ -108,11 +108,11 @@ export default function ProjectDetails({ projectId }) {
           <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-200 backdrop-blur-sm bg-opacity-80">
             <div className="flex justify-between items-center mb-3">
               <span className="text-sm font-bold text-gray-700 uppercase tracking-wide">Project Progress</span>
-              <span className="text-[17px] md:text-[22px] font-bold text-blue-900">{project.completion}%</span>
+              <span className="text-[17px] md:text-[22px] font-bold text-impact-gold">{project.completion}%</span>
             </div>
             <div className="w-full bg-gray-300 rounded-full h-4 overflow-hidden shadow-inner">
               <div 
-                className="bg-gradient-to-r from-blue-800 via-blue-900 to-blue-900 h-full rounded-full transition-all duration-700 ease-out shadow-lg"
+                className="bg-impact-gold h-full rounded-full transition-all duration-700 ease-out shadow-lg"
                 style={{ width: `${project.completion}%` }}
               />
             </div>
@@ -145,14 +145,14 @@ export default function ProjectDetails({ projectId }) {
           <div className="mb-12">
             <div className="flex items-center justify-between mb-6">
               <div className="flex items-center gap-3">
-                <div className="p-3 bg-blue-100 rounded-lg">
-                  <svg className="w-6 h-6 text-blue-900" fill="currentColor" viewBox="0 0 20 20">
+                <div className="p-3 bg-impact-gold rounded-lg">
+                  <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
                     <path d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" />
                   </svg>
                 </div>
                 <h2 className="text-[17px] md:text-[24px] font-bold text-gray-900">Project Gallery</h2>
               </div>
-              <span className="text-sm bg-blue-100 text-blue-900 px-4 py-2 rounded-full font-bold">
+              <span className="text-sm bg-impact-gold text-white px-4 py-2 rounded-full font-bold">
                 {project.galleryImages.length} Images
               </span>
             </div>
@@ -267,18 +267,7 @@ export default function ProjectDetails({ projectId }) {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
           {/* Left Column - Key Information */}
           <div className="space-y-4">
-            <div className="group bg-white rounded-xl p-5 shadow-sm border border-gray-200 hover:shadow-lg hover:border-blue-300 transition-all duration-300 transform hover:-translate-y-1">
-              <div className="flex items-center gap-3 mb-2">
-                <div className="p-2 bg-blue-100 rounded-lg group-hover:bg-blue-200 transition-colors">
-                  <svg className="w-5 h-5 text-blue-900" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" />
-                  </svg>
-                </div>
-                <p className="text-xs text-gray-600 font-bold uppercase tracking-widest">Client Name</p>
-              </div>
-              <p className="text-xl font-semibold text-gray-900 ml-9">{project.clientName || 'N/A'}</p>
-            </div>
-
+            {/* Project Status */}
             <div className="group bg-white rounded-xl p-5 shadow-sm border border-gray-200 hover:shadow-lg hover:border-green-300 transition-all duration-300 transform hover:-translate-y-1">
               <div className="flex items-center gap-3 mb-2">
                 <div className="p-2 bg-green-100 rounded-lg group-hover:bg-green-200 transition-colors">
@@ -295,6 +284,7 @@ export default function ProjectDetails({ projectId }) {
               </div>
             </div>
 
+            {/* Category */}
             <div className="group bg-white rounded-xl p-5 shadow-sm border border-gray-200 hover:shadow-lg hover:border-purple-300 transition-all duration-300 transform hover:-translate-y-1">
               <div className="flex items-center gap-3 mb-2">
                 <div className="p-2 bg-purple-100 rounded-lg group-hover:bg-purple-200 transition-colors">
@@ -307,6 +297,7 @@ export default function ProjectDetails({ projectId }) {
               <p className={`text-lg font-semibold capitalize ml-9 ${getCategoryColor(project.category)}`}>{project.category}</p>
             </div>
 
+            {/* Location */}
             <div className="group bg-white rounded-xl p-5 shadow-sm border border-gray-200 hover:shadow-lg hover:border-red-300 transition-all duration-300 transform hover:-translate-y-1">
               <div className="flex items-center gap-3 mb-2">
                 <div className="p-2 bg-red-100 rounded-lg group-hover:bg-red-200 transition-colors">
@@ -321,6 +312,7 @@ export default function ProjectDetails({ projectId }) {
           </div>
 
           {/* Right Column - Timeline & Budget */}
+          {/* Start Date */}
           <div className="space-y-4">
             <div className="group bg-white rounded-xl p-5 shadow-sm border border-gray-200 hover:shadow-lg hover:border-yellow-300 transition-all duration-300 transform hover:-translate-y-1">
               <div className="flex items-center gap-3 mb-2">
@@ -334,6 +326,7 @@ export default function ProjectDetails({ projectId }) {
               <p className="text-lg font-semibold text-gray-900 ml-9">{formatDate(project.startDate)}</p>
             </div>
 
+            {/* Expected End Date */}
             <div className="group bg-white rounded-xl p-5 shadow-sm border border-gray-200 hover:shadow-lg hover:border-indigo-300 transition-all duration-300 transform hover:-translate-y-1">
               <div className="flex items-center gap-3 mb-2">
                 <div className="p-2 bg-indigo-100 rounded-lg group-hover:bg-indigo-200 transition-colors">
@@ -346,56 +339,17 @@ export default function ProjectDetails({ projectId }) {
               <p className="text-lg font-semibold text-gray-900 ml-9">{formatDate(project.expectedEndDate)}</p>
             </div>
 
-            <div className="group bg-white rounded-xl p-5 shadow-sm border border-gray-200 hover:shadow-lg hover:border-pink-300 transition-all duration-300 transform hover:-translate-y-1">
+            {/* Completion */}
+            <div className="group bg-impact-gold/10 rounded-xl p-5 shadow-sm border border-impact-gold/40 hover:shadow-lg hover:border-impact-gold/60 transition-all duration-300 transform hover:-translate-y-1">
               <div className="flex items-center gap-3 mb-2">
-                <div className="p-2 bg-pink-100 rounded-lg group-hover:bg-pink-200 transition-colors">
-                  <svg className="w-5 h-5 text-pink-600" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M4 4a2 2 0 00-2 2v4a1 1 0 001 1h12a1 1 0 001-1V6a2 2 0 00-2-2H4zm12 6H4v4a2 2 0 002 2h8a2 2 0 002-2v-4z" clipRule="evenodd" />
-                  </svg>
-                </div>
-                <p className="text-xs text-gray-600 font-bold uppercase tracking-widest">Budget</p>
-              </div>
-              <p className="text-xl font-semibold text-gray-900 ml-9">₦{project.budget ? project.budget.toLocaleString() : 'N/A'}</p>
-            </div>
-
-            <div className="group bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-5 shadow-sm border border-blue-200 hover:shadow-lg hover:border-blue-400 transition-all duration-300 transform hover:-translate-y-1">
-              <div className="flex items-center gap-3 mb-2">
-                <div className="p-2 bg-blue-200 rounded-lg group-hover:bg-blue-300 transition-colors">
-                  <svg className="w-5 h-5 text-blue-900" fill="currentColor" viewBox="0 0 20 20">
+                <div className="p-2 bg-impact-gold rounded-lg group-hover:bg-impact-gold transition-colors">
+                  <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" clipRule="evenodd" />
                   </svg>
                 </div>
-                <p className="text-xs text-blue-900 font-bold uppercase tracking-widest">Completion</p>
+                <p className="text-xs text-gray-700 font-bold uppercase tracking-widest">Completion</p>
               </div>
-              <p className="text-xl font-semibold text-blue-900 ml-9">{project.completion}%</p>
-            </div>
-          </div>
-        </div>
-
-        {/* Team Section */}
-        <div className="bg-white rounded-2xl p-8 shadow-sm border border-gray-200 mb-8">
-          <h2 className="text-[20px] md:text-[20px] font-bold text-gray-900 mb-6 flex items-center gap-3">
-            <div className="p-3 bg-blue-100 rounded-lg">
-              <svg className="w-7 h-7 text-blue-900" fill="currentColor" viewBox="0 0 20 20">
-                <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM9 12a6 6 0 11-12 0 6 6 0 0112 0zM16.35 5.65a2 2 0 11-2.83-2.83 2 2 0 012.83 2.83zM16.5 10a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0zM20 15v-5h-4v5h4z" />
-              </svg>
-            </div>
-            Project Team
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-5 border border-blue-200 hover:shadow-lg transition-all duration-300 group">
-              <p className="text-xs text-blue-900 font-bold uppercase tracking-widest mb-3">Team Lead</p>
-              <p className="text-[17px] font-semibold text-gray-900 group-hover:text-blue-900 transition-colors">{project.teamLead || 'Not Assigned'}</p>
-            </div>
-            <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-xl p-5 border border-green-200 hover:shadow-lg transition-all duration-300 group">
-              <p className="text-xs text-green-700 font-bold uppercase tracking-widest mb-3">Team Members</p>
-              <p className="text-[17px] text-gray-900 group-hover:text-green-600 transition-colors">{Array.isArray(project.teamMembers) ? project.teamMembers.join(', ') : project.teamMembers || 'None'}</p>
-            </div>
-            <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl p-5 border border-purple-200 hover:shadow-lg transition-all duration-300 group">
-              <p className="text-xs text-purple-700 font-bold uppercase tracking-widest mb-3">Total Team Size</p>
-              <p className="text-[17px] font-semibold text-purple-600 group-hover:scale-110 transition-transform">
-                {Array.isArray(project.teamMembers) ? project.teamMembers.length + 1 : 1}
-              </p>
+              <p className="text-xl font-semibold text-impact-gold ml-9">{project.completion}%</p>
             </div>
           </div>
         </div>
@@ -403,10 +357,10 @@ export default function ProjectDetails({ projectId }) {
         {/* Description & Highlights */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
           {/* Description */}
-          <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-200 hover:shadow-lg hover:border-blue-300 transition-all duration-300 group">
+          <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-200 hover:shadow-lg hover:border-impact-gold/40 transition-all duration-300 group">
             <h3 className="text-[18px] md:text-xl font-bold text-gray-900 mb-4 flex items-center gap-3">
-              <div className="p-2 bg-blue-100 rounded-lg group-hover:bg-blue-200 transition-colors">
-                <svg className="w-6 h-6 text-blue-900" fill="currentColor" viewBox="0 0 20 20">
+              <div className="p-2 bg-impact-gold rounded-lg group-hover:bg-impact-gold transition-colors">
+                <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
                   <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
                 </svg>
               </div>
@@ -414,84 +368,18 @@ export default function ProjectDetails({ projectId }) {
             </h3>
             <p className="text-gray-700 leading-relaxed text-base">{project.projectDescription || 'No description provided.'}</p>
           </div>
-
-          {/* Highlights */}
-          <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-200 hover:shadow-lg hover:border-yellow-300 transition-all duration-300 group">
-            <h3 className="text-[18px] md:text-xl font-bold text-gray-900 mb-4 flex items-center gap-3">
-              <div className="p-2 bg-yellow-100 rounded-lg group-hover:bg-yellow-200 transition-colors">
-                <svg className="w-6 h-6 text-yellow-600" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                </svg>
-              </div>
-              Highlights
-            </h3>
-            <p className="text-gray-700 leading-relaxed text-base">{project.projectHighlights || 'No highlights provided.'}</p>
-          </div>
-        </div>
-
-        {/* Technical Details */}
-        <div className="bg-gradient-to-r from-blue-800 via-blue-800 to-blue-900 rounded-2xl p-8 shadow-xl text-white mb-8 border border-blue-500/30">
-          <h2 className="text-[20px] md:text-[26px] font-bold mb-8 flex items-center gap-3">
-            <div className="p-3 bg-white/20 rounded-lg backdrop-blur-sm">
-              <svg className="w-7 h-7" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M4 4a2 2 0 00-2 2v4a1 1 0 001 1h12a1 1 0 001-1V6a2 2 0 00-2-2H4zm12 6H4v4a2 2 0 002 2h8a2 2 0 002-2v-4z" clipRule="evenodd" />
-              </svg>
-            </div>
-            Technical Details
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div>
-              <h4 className="font-bold text-blue-100 uppercase text-sm mb-4 tracking-widest">📦 Technologies Used</h4>
-              <div className="flex flex-wrap gap-2">
-                {Array.isArray(project.technologies) && project.technologies.length > 0 ? (
-                  project.technologies.map((tech, i) => (
-                    <span key={i} className="bg-white/25 backdrop-blur-sm px-4 py-2 rounded-lg text-sm font-bold hover:bg-white/35 transition-colors border border-white/20">
-                      {tech}
-                    </span>
-                  ))
-                ) : (
-                  <p className="text-blue-100 italic">No technologies listed</p>
-                )}
-              </div>
-            </div>
-            <div>
-              <h4 className="font-bold text-blue-100 uppercase text-sm mb-4 tracking-widest">🛠️ Materials Used</h4>
-              <div className="flex flex-wrap gap-2">
-                {Array.isArray(project.materialsUsed) && project.materialsUsed.length > 0 ? (
-                  project.materialsUsed.map((material, i) => (
-                    <span key={i} className="bg-white/25 backdrop-blur-sm px-4 py-2 rounded-lg text-sm font-bold hover:bg-white/35 transition-colors border border-white/20">
-                      {material}
-                    </span>
-                  ))
-                ) : (
-                  <p className="text-blue-100 italic">No materials listed</p>
-                )}
-              </div>
-            </div>
-          </div>
         </div>
 
         {/* Quick Stats */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           <div className="bg-white rounded-xl p-5 shadow-sm border border-gray-200 text-center hover:shadow-lg hover:border-blue-300 transition-all duration-300 group transform hover:-translate-y-1">
-            <div className="inline-block p-3 bg-blue-100 rounded-lg mb-3 group-hover:bg-blue-200 transition-colors">
-              <svg className="w-5 h-5 text-blue-700" fill="currentColor" viewBox="0 0 20 20">
+            <div className="inline-block p-3 bg-impact-gold rounded-lg mb-3 group-hover:bg-blue-200 transition-colors">
+              <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
                 <path fillRule="evenodd" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" clipRule="evenodd" />
               </svg>
             </div>
-            <p className="text-[24px] md:text-[28px] font-black text-blue-600 mb-1">{project.completion}%</p>
+            <p className="text-[24px] md:text-[28px] font-black text-impact-gold mb-1">{project.completion}%</p>
             <p className="text-xs text-gray-600 font-bold uppercase tracking-widest">Complete</p>
-          </div>
-          <div className="bg-white rounded-xl p-5 shadow-sm border border-gray-200 text-center hover:shadow-lg hover:border-green-300 transition-all duration-300 group transform hover:-translate-y-1">
-            <div className="inline-block p-3 bg-green-100 rounded-lg mb-3 group-hover:bg-green-200 transition-colors">
-              <svg className="w-7 h-7 text-green-600" fill="currentColor" viewBox="0 0 20 20">
-                <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM9 12a6 6 0 11-12 0 6 6 0 0112 0zM16.35 5.65a2 2 0 11-2.83-2.83 2 2 0 012.83 2.83zM16.5 10a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0zM20 15v-5h-4v5h4z" />
-              </svg>
-            </div>
-            <p className="text-[24px] md:text-[28px] font-black text-green-600 mb-1">
-              {Array.isArray(project.teamMembers) ? project.teamMembers.length + 1 : 1}
-            </p>
-            <p className="text-xs text-gray-600 font-bold uppercase tracking-widest">Team Size</p>
           </div>
           <div className="bg-white rounded-xl p-5 shadow-sm border border-gray-200 text-center hover:shadow-lg hover:border-purple-300 transition-all duration-300 group transform hover:-translate-y-1">
             <div className="inline-block p-3 bg-purple-100 rounded-lg mb-3 group-hover:bg-purple-200 transition-colors">
@@ -514,6 +402,17 @@ export default function ProjectDetails({ projectId }) {
               {project.startDate ? new Date(project.startDate).getFullYear() : 'N/A'}
             </p>
             <p className="text-xs text-gray-600 font-bold uppercase tracking-widest">Started</p>
+          </div>
+          <div className="bg-white rounded-xl p-5 shadow-sm border border-gray-200 text-center hover:shadow-lg hover:border-green-300 transition-all duration-300 group transform hover:-translate-y-1">
+            <div className="inline-block p-3 bg-green-100 rounded-lg mb-3 group-hover:bg-green-200 transition-colors">
+              <svg className="w-5 h-5 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M5.5 13a3.5 3.5 0 01-.369-6.98 4 4 0 117.853-1 4.5 4.5 0 11-4.114 6.98zM9 12H5v4h4v-4z" />
+              </svg>
+            </div>
+            <p className="text-[24px] md:text-[28px] font-bold text-green-600 mb-1">
+              {project.expectedEndDate ? new Date(project.expectedEndDate).getFullYear() : 'N/A'}
+            </p>
+            <p className="text-xs text-gray-600 font-bold uppercase tracking-widest">Completed</p>
           </div>
         </div>
       </div>

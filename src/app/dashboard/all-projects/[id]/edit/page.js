@@ -15,21 +15,14 @@ export default function EditProjectPage() {
     projectDescription: '',
     category: '',
     location: '',
-    budget: '',
     startDate: '',
     expectedEndDate: '',
     projectStatus: 'planning',
-    clientName: '',
-    teamLead: '',
-    teamMembers: '',
     featuredImage: null,
     featuredImagePreview: '',
     galleryImages: [],
     galleryImagePreviews: [],
-    technologies: '',
-    materialsUsed: '',
     completion: 0,
-    projectHighlights: ''
   })
 
   const [loading, setLoading] = useState(true)
@@ -51,21 +44,14 @@ export default function EditProjectPage() {
             projectDescription: data.project.projectDescription || '',
             category: data.project.category,
             location: data.project.location,
-            budget: data.project.budget,
             startDate: data.project.startDate ? data.project.startDate.substring(0, 10) : '',
             expectedEndDate: data.project.expectedEndDate ? data.project.expectedEndDate.substring(0, 10) : '',
             projectStatus: data.project.projectStatus,
-            clientName: data.project.clientName || '',
-            teamLead: data.project.teamLead || '',
-            teamMembers: (data.project.teamMembers || []).join(', '),
             featuredImage: null,
             featuredImagePreview: data.project.featuredImage || '',
             galleryImages: [],
             galleryImagePreviews: data.project.galleryImages || [],
-            technologies: (data.project.technologies || []).join(', '),
-            materialsUsed: (data.project.materialsUsed || []).join(', '),
             completion: data.project.completion,
-            projectHighlights: data.project.projectHighlights || ''
           });
           setExistingFeaturedImage(data.project.featuredImage || null);
           setExistingGalleryImages(data.project.galleryImages || []);
@@ -256,10 +242,6 @@ export default function EditProjectPage() {
                 </select>
               </div>
               <div>
-                <label htmlFor="clientName" className="block text-sm font-medium text-gray-700 mb-2">Client Name</label>
-                <input type="text" id="clientName" name="clientName" value={formData.clientName} onChange={handleInputChange} className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none" placeholder="Client name" />
-              </div>
-              <div>
                 <label htmlFor="location" className="block text-sm font-medium text-gray-700 mb-2">Location</label>
                 <input type="text" id="location" name="location" value={formData.location} onChange={handleInputChange} className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none" placeholder="e.g., Lagos, Nigeria" />
               </div>
@@ -274,7 +256,7 @@ export default function EditProjectPage() {
 
           {/* Timeline & Budget */}
           <fieldset>
-            <legend className="text-lg font-semibold text-gray-900 mb-4">Timeline & Budget</legend>
+            <legend className="text-lg font-semibold text-gray-900 mb-4">Timeline</legend>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
                 <label htmlFor="startDate" className="block text-sm font-medium text-gray-700 mb-2">Start Date</label>
@@ -285,62 +267,20 @@ export default function EditProjectPage() {
                 <input type="date" id="expectedEndDate" name="expectedEndDate" value={formData.expectedEndDate} onChange={handleInputChange} className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none" />
               </div>
               <div>
-                <label htmlFor="budget" className="block text-sm font-medium text-gray-700 mb-2">Budget (₦)</label>
-                <input type="number" id="budget" name="budget" value={formData.budget} onChange={handleInputChange} step="1000" className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none" placeholder="0" />
-              </div>
-              <div>
                 <label htmlFor="completion" className="block text-sm font-medium text-gray-700 mb-2">Completion % (0-100)</label>
                 <input type="number" id="completion" name="completion" value={formData.completion} onChange={handleInputChange} min="0" max="100" className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none" />
               </div>
-            </div>
-          </fieldset>
-
-          {/* Status */}
-          <div>
-            <label htmlFor="projectStatus" className="block text-sm font-medium text-gray-700 mb-2">Project Status <span className='text-red-500 font-bold'>*</span></label>
-            <select id="projectStatus" name="projectStatus" value={formData.projectStatus} onChange={handleInputChange} required className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none">
-              <option value="planning">Planning</option>
-              <option value="in-progress">In Progress</option>
-              <option value="completed">Completed</option>
-              <option value="on hold">On Hold</option>
-            </select>
-          </div>
-
-          {/* Team */}
-          <fieldset>
-            <legend className="text-lg font-semibold text-gray-900 mb-4">Team</legend>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <label htmlFor="teamLead" className="block text-sm font-medium text-gray-700 mb-2">Team Lead</label>
-                <input type="text" id="teamLead" name="teamLead" value={formData.teamLead} onChange={handleInputChange} className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none" placeholder="Lead name" />
-              </div>
-              <div>
-                <label htmlFor="teamMembers" className="block text-sm font-medium text-gray-700 mb-2">Team Members</label>
-                <input type="text" id="teamMembers" name="teamMembers" value={formData.teamMembers} onChange={handleInputChange} className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none" placeholder="Separate by comma" />
+                <label htmlFor="projectStatus" className="block text-sm font-medium text-gray-700 mb-2">Project Status <span className='text-red-500 font-bold'>*</span></label>
+                <select id="projectStatus" name="projectStatus" value={formData.projectStatus} onChange={handleInputChange} required className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none">
+                  <option value="planning">Planning</option>
+                  <option value="in-progress">In Progress</option>
+                  <option value="completed">Completed</option>
+                  <option value="on hold">On Hold</option>
+                </select>
               </div>
             </div>
           </fieldset>
-
-          {/* Technologies & Materials */}
-          <fieldset>
-            <legend className="text-lg font-semibold text-gray-900 mb-4">Details</legend>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div>
-                <label htmlFor="technologies" className="block text-sm font-medium text-gray-700 mb-2">Technologies & Methods</label>
-                <textarea id="technologies" name="technologies" value={formData.technologies} onChange={handleInputChange} rows="3" className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none resize-none" placeholder="e.g., BIM, sustainable materials, etc." />
-              </div>
-              <div>
-                <label htmlFor="materialsUsed" className="block text-sm font-medium text-gray-700 mb-2">Materials Used</label>
-                <textarea id="materialsUsed" name="materialsUsed" value={formData.materialsUsed} onChange={handleInputChange} rows="3" className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none resize-none" placeholder="e.g., concrete, steel, etc." />
-              </div>
-            </div>
-          </fieldset>
-
-          {/* Highlights */}
-          <div>
-            <label htmlFor="projectHighlights" className="block text-sm font-medium text-gray-700 mb-2">Project Highlights</label>
-            <textarea id="projectHighlights" name="projectHighlights" value={formData.projectHighlights} onChange={handleInputChange} rows="3" className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none resize-none" placeholder="Key achievements, awards, special features..." />
-          </div>
 
           {/* Images */}
           <fieldset>

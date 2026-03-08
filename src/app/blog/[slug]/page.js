@@ -194,11 +194,7 @@ export default function BlogDetailPage() {
 
         {/* Content */}
         <div className="bg-white rounded-lg shadow-md p-8 mb-8">
-          <div className="prose prose-lg max-w-none mb-8">
-            {blog.content.split('\n').map((paragraph, idx) => (
-              paragraph.trim() && <p key={idx} className="text-gray-700 mb-4 leading-relaxed">{paragraph}</p>
-            ))}
-          </div>
+          <div className="prose prose-lg max-w-none mb-8 [&_ul]:list-disc [&_ul]:ml-5 [&_ol]:list-decimal [&_ol]:ml-5 [&_li]:my-1" dangerouslySetInnerHTML={{ __html: blog.content }} />
 
           {/* Tags */}
           {blog.tags && blog.tags.length > 0 && (

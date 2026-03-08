@@ -7,6 +7,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import axios from 'axios'
 import { ProtectedRoute } from '@/components/ProtectedRoute'
+import TiptapEditor from '@/components/TiptapEditor'
 
 function EditBlogContent() {
 	const router = useRouter()
@@ -359,81 +360,18 @@ function EditBlogContent() {
 
 					{/* Content */}
 					<div>
-						<label htmlFor="content" className="block text-sm font-medium text-gray-700 mb-2">
+						<label className="block text-sm font-medium text-gray-700 mb-2">
 							Content *
 						</label>
-						<div className="border border-gray-300 rounded-md overflow-hidden">
-							{/* Text Editor Toolbar */}
-							<div className="bg-gray-50 border-b border-gray-300 p-3 flex flex-wrap gap-2">
-								<button
-									type="button"
-									onClick={() => insertMarkdown('**', '**')}
-									className="px-3 py-1 text-sm bg-white border border-gray-300 rounded hover:bg-gray-50"
-									title="Bold"
-								>
-									<strong>B</strong>
-								</button>
-								<button
-									type="button"
-									onClick={() => insertMarkdown('*', '*')}
-									className="px-3 py-1 text-sm bg-white border border-gray-300 rounded hover:bg-gray-50"
-									title="Italic"
-								>
-									<em>I</em>
-								</button>
-								<button
-									type="button"
-									onClick={() => insertMarkdown('# ', '\n')}
-									className="px-3 py-1 text-sm bg-white border border-gray-300 rounded hover:bg-gray-50"
-									title="Heading"
-								>
-									H1
-								</button>
-								<button
-									type="button"
-									onClick={() => insertMarkdown('## ', '\n')}
-									className="px-3 py-1 text-sm bg-white border border-gray-300 rounded hover:bg-gray-50"
-									title="Subheading"
-								>
-									H2
-								</button>
-								<button
-									type="button"
-									onClick={() => insertMarkdown('- ', '\n')}
-									className="px-3 py-1 text-sm bg-white border border-gray-300 rounded hover:bg-gray-50"
-									title="Bullet List"
-								>
-									• List
-								</button>
-								<button
-									type="button"
-									onClick={() => insertMarkdown('[', '](url)')}
-									className="px-3 py-1 text-sm bg-white border border-gray-300 rounded hover:bg-gray-50"
-									title="Link"
-								>
-									🔗 Link
-								</button>
-								<button
-									type="button"
-									onClick={() => insertMarkdown('`', '`')}
-									className="px-3 py-1 text-sm bg-white border border-gray-300 rounded hover:bg-gray-50"
-									title="Code"
-								>
-									&lt;&gt; Code
-								</button>
-							</div>
-							<textarea
-								id="content"
-								name="content"
-								value={formData.content}
-								onChange={handleContentChange}
-								required
-								rows="12"
-								className="w-full px-4 py-3 border-0 focus:ring-2 focus:ring-indigo-500 outline-none resize-none font-mono text-sm"
-								placeholder="Write your blog post content here... Supports Markdown formatting"
-							/>
-						</div>
-						<p className="text-xs text-gray-500 mt-2">{charCount} characters • Markdown supported</p>
+						<TiptapEditor 
+							value={formData.content} 
+							onChange={(html) => {
+								setFormData(prev => ({ ...prev, content: html }))
+								setCharCount(html.replace(/<[^>]*>/g, '').length)
+								setHasChanges(true)
+							}}
+							placeholder="Write your blog post content here..."
+						/>
 					</div>
 
 					{/* Category & Tags */}
@@ -453,12 +391,17 @@ function EditBlogContent() {
 									className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none"
 								>
 									<option value="">Select a category</option>
+									<option value="" disabled>Select category</option>
+									<option value="real estate">Real Estate</option>
+									<option value="home improvement">Home Improvement</option>
+									<option value="interior design">Interior Design</option>
+									<option value="architecture">Architecture</option>
 									<option value="construction">Construction</option>
-									<option value="project-updates">Project Updates</option>
-									<option value="industry-news">Industry News</option>
-									<option value="tips-tricks">Tips & Tricks</option>
-									<option value="company-news">Company News</option>
-									<option value="case-studies">Case Studies</option>
+									<option value="sustainability">Sustainability</option>
+									<option value="market trends">Market Trends</option>
+									<option value="home buying">Home Buying</option>
+									<option value="home selling">Home Selling</option>
+									<option value="property management">Property Management</option>
 								</select>
 							</div>
 						<div>

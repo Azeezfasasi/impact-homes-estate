@@ -5,7 +5,7 @@ import { X } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { Commet } from "react-loading-indicators";
 
-const categories = ["All", "Industrial", "Residential", "Commercial"];
+const categories = ["All", "residential", "commercial", "industrial", "infrastructure", "renovation"];
 
 export default function ProjectsGalleryModal() {
   const [selectedCategory, setSelectedCategory] = useState("All");
@@ -31,7 +31,7 @@ export default function ProjectsGalleryModal() {
   const filteredProjects =
     selectedCategory === "All"
       ? projectsData
-      : projectsData.filter((p) => p.category === selectedCategory);
+      : projectsData.filter((p) => p.category?.toLowerCase() === selectedCategory?.toLowerCase());
 
   return (
     <section className="py-10">
@@ -43,9 +43,9 @@ export default function ProjectsGalleryModal() {
               key={category}
               onClick={() => setSelectedCategory(category)}
               className={`px-4 py-2 rounded-lg font-semibold transition-all flex items-center gap-2
-              ${selectedCategory === category ? 'bg-blue-900 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}`}
+              ${selectedCategory === category ? 'bg-impact-gold text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}`}
             >
-              {category}
+              {category === "All" ? "All" : category.charAt(0).toUpperCase() + category.slice(1)}
             </button>
           ))}
         </div>
@@ -78,10 +78,10 @@ export default function ProjectsGalleryModal() {
                 </div>
                 <div className="p-6">
                   <div className="flex flex-row justify-between">
-                    <span className="text-sm text-blue-900 font-semibold uppercase">
+                    <span className="text-sm text-impact-gold font-semibold uppercase">
                       {project.category}
                     </span>
-                    <span className="text-sm text-blue-900 font-semibold uppercase">
+                    <span className="text-sm text-impact-gold font-semibold uppercase">
                     {project.location}
                     </span>
                   </div>

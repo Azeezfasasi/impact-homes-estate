@@ -297,7 +297,7 @@ const ManageBlogPage = () => {
 										<td className="px-3 md:px-6 py-2 md:py-4 text-xs md:text-sm">
 											<div>
 												<p className="font-medium text-gray-900 line-clamp-2">{post.postTitle}</p>
-												<p className="text-xs text-gray-500 truncate hidden sm:block">{post.content?.slice(0, 80) || ''}</p>
+												<p className="text-xs text-gray-500 truncate hidden sm:block">{post.content?.replace(/<[^>]*>/g, '').split(" ").slice(0, 20).join(" ") + "…" || ''}</p>
 											</div>
 										</td>
 										<td className="px-3 md:px-6 py-2 md:py-4 text-xs md:text-sm text-gray-700 hidden sm:table-cell">{post.author}</td>

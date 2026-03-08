@@ -81,6 +81,7 @@ export async function GET(request) {
     const city = searchParams.get('city');
     const state = searchParams.get('state');
     const search = searchParams.get('search');
+    const featured = searchParams.get('featured');
     const sortBy = searchParams.get('sortBy') || 'dateListed';
     const sortOrder = searchParams.get('sortOrder') || 'desc';
 
@@ -92,6 +93,7 @@ export async function GET(request) {
     if (category) filter.category = category;
     if (city) filter['address.city'] = new RegExp(city, 'i');
     if (state) filter['address.state'] = new RegExp(state, 'i');
+    if (featured === 'true') filter.isFeatured = true;
     if (minPrice || maxPrice) {
       filter.price = {};
       if (minPrice) filter.price.$gte = parseInt(minPrice);

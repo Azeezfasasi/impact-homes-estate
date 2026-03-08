@@ -40,6 +40,24 @@ export const sendEmailViaBrevo = async (emailData) => {
       senderName,
     });
 
+    // Helper function to format email objects
+    const formatEmailList = (emailList) => {
+      if (!Array.isArray(emailList)) {
+        emailList = [emailList];
+      }
+      return emailList.map(item => {
+        // If item is already an object with email property, return as-is
+        if (typeof item === 'object' && item.email) {
+          return {
+            email: item.email,
+            ...(item.name && { name: item.name }),
+          };
+        }
+        // If item is a string, wrap it
+        return { email: item };
+      });
+    };
+
     // If using a template
     if (templateId) {
       const response = await fetch(`${brevoApiUrl}/smtp/email`, {
@@ -50,11 +68,11 @@ export const sendEmailViaBrevo = async (emailData) => {
         },
         body: JSON.stringify({
           templateId,
-          to: Array.isArray(to) ? to.map(email => ({ email })) : [{ email: to }],
+          to: formatEmailList(to),
           params,
           tags,
-          cc: cc.length > 0 ? cc.map(email => ({ email })) : undefined,
-          bcc: bcc.length > 0 ? bcc.map(email => ({ email })) : undefined,
+          cc: cc.length > 0 ? formatEmailList(cc) : undefined,
+          bcc: bcc.length > 0 ? formatEmailList(bcc) : undefined,
           replyTo: replyTo ? { email: replyTo } : undefined,
         }),
       });
@@ -64,7 +82,7 @@ export const sendEmailViaBrevo = async (emailData) => {
 
     // Regular email with content
     const emailPayload = {
-      to: Array.isArray(to) ? to.map(email => ({ email })) : [{ email: to }],
+      to: formatEmailList(to),
       sender: {
         email: senderEmail,
         name: senderName,
@@ -77,11 +95,11 @@ export const sendEmailViaBrevo = async (emailData) => {
 
     // Add optional fields
     if (cc.length > 0) {
-      emailPayload.cc = cc.map(email => ({ email }));
+      emailPayload.cc = formatEmailList(cc);
     }
 
     if (bcc.length > 0) {
-      emailPayload.bcc = bcc.map(email => ({ email }));
+      emailPayload.bcc = formatEmailList(bcc);
     }
 
     if (replyTo) {

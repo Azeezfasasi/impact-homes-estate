@@ -209,10 +209,10 @@ const activityLogSchema = new mongoose.Schema({
   metadata: mongoose.Schema.Types.Mixed,
 }, { timestamps: true });
 
-// Create models
-const Subscriber = mongoose.model('Subscriber', subscriberSchema);
-const Campaign = mongoose.model('Campaign', campaignSchema);
-const Template = mongoose.model('Template', templateSchema);
-const ActivityLog = mongoose.model('ActivityLog', activityLogSchema);
+// Create or retrieve models (prevent "Cannot overwrite model" error in Next.js)
+const Subscriber = mongoose.models.Subscriber || mongoose.model('Subscriber', subscriberSchema);
+const Campaign = mongoose.models.Campaign || mongoose.model('Campaign', campaignSchema);
+const Template = mongoose.models.Template || mongoose.model('Template', templateSchema);
+const ActivityLog = mongoose.models.ActivityLog || mongoose.model('ActivityLog', activityLogSchema);
 
 export { Subscriber, Campaign, Template, ActivityLog };

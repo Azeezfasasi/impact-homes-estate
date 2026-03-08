@@ -18,10 +18,42 @@ export default function AllProperty() {
   });
   const [pagination, setPagination] = useState(null);
   const [showFilters, setShowFilters] = useState(false);
+  
+  // Dynamic filter options
+  const [statuses, setStatuses] = useState([]);
+  const [propertyTypes, setPropertyTypes] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const [loadingFilters, setLoadingFilters] = useState(true);
+
+  useEffect(() => {
+    fetchFilterOptions();
+  }, []);
 
   useEffect(() => {
     fetchProperties();
   }, [filters]);
+
+  const fetchFilterOptions = async () => {
+    try {
+      const [statusesRes, typesRes, categoriesRes] = await Promise.all([
+        fetch('/api/statuses'),
+        fetch('/api/property-types'),
+        fetch('/api/categories')
+      ]);
+
+      const statusesData = await statusesRes.json();
+      const typesData = await typesRes.json();
+      const categoriesData = await categoriesRes.json();
+
+      setStatuses(statusesData.data || []);
+      setPropertyTypes(typesData.data || []);
+      setCategories(categoriesData.data || []);
+    } catch (error) {
+      console.error('Error fetching filter options:', error);
+    } finally {
+      setLoadingFilters(false);
+    }
+  };
 
   const fetchProperties = async () => {
     setLoading(true);
@@ -91,7 +123,7 @@ export default function AllProperty() {
   const formatPrice = (price) => {
     return new Intl.NumberFormat('en-US', {
       style: 'currency',
-      currency: 'USD',
+      currency: 'NGN',
       minimumFractionDigits: 0,
       maximumFractionDigits: 0,
     }).format(price);
@@ -166,13 +198,14 @@ export default function AllProperty() {
                   value={filters.status}
                   onChange={handleFilterChange}
                   className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  disabled={loadingFilters}
                 >
                   <option value="">All Statuses</option>
-                  <option value="available">Available</option>
-                  <option value="sold">Sold</option>
-                  <option value="rented">Rented</option>
-                  <option value="pending">Pending</option>
-                  <option value="off-market">Off Market</option>
+                  {statuses.map((status) => (
+                    <option key={status._id} value={status.name}>
+                      {status.name.charAt(0).toUpperCase() + status.name.slice(1)}
+                    </option>
+                  ))}
                 </select>
               </div>
 
@@ -185,15 +218,14 @@ export default function AllProperty() {
                   value={filters.propertyType}
                   onChange={handleFilterChange}
                   className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  disabled={loadingFilters}
                 >
                   <option value="">All Types</option>
-                  <option value="house">House</option>
-                  <option value="apartment">Apartment</option>
-                  <option value="condo">Condo</option>
-                  <option value="townhouse">Townhouse</option>
-                  <option value="land">Land</option>
-                  <option value="commercial">Commercial</option>
-                  <option value="other">Other</option>
+                  {propertyTypes.map((type) => (
+                    <option key={type._id} value={type.name}>
+                      {type.name.charAt(0).toUpperCase() + type.name.slice(1)}
+                    </option>
+                  ))}
                 </select>
               </div>
 
@@ -206,13 +238,14 @@ export default function AllProperty() {
                   value={filters.category}
                   onChange={handleFilterChange}
                   className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  disabled={loadingFilters}
                 >
                   <option value="">All Categories</option>
-                  <option value="residential">Residential</option>
-                  <option value="commercial">Commercial</option>
-                  <option value="industrial">Industrial</option>
-                  <option value="land">Land</option>
-                  <option value="investment">Investment</option>
+                  {categories.map((cat) => (
+                    <option key={cat._id} value={cat.name}>
+                      {cat.name.charAt(0).toUpperCase() + cat.name.slice(1)}
+                    </option>
+                  ))}
                 </select>
               </div>
             </div>
@@ -238,8 +271,25 @@ export default function AllProperty() {
       ) : (
         <>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-            {properties.map((property) => (
+            {properties.map((property) => {
+              const featuredImage = property.images?.find(img => img.isMain) || property.images?.[0];
+              return (
               <div key={property._id} className="bg-white rounded-lg shadow-sm border overflow-hidden hover:shadow-md transition-shadow">
+                {/* Featured Image */}
+                {featuredImage && (
+                  <div className="relative w-full h-48 bg-gray-200 overflow-hidden">
+                    <img
+                      src={featuredImage.url}
+                      alt={property.title}
+                      className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                    />
+                    {property.isFeatured && (
+                      <div className="absolute top-2 right-2 bg-yellow-400 text-gray-900 px-2 py-1 rounded-full text-xs font-bold">
+                        ⭐ Featured
+                      </div>
+                    )}
+                  </div>
+                )}
                 <div className="p-6">
                   <div className="flex justify-between items-start mb-4">
                     <h3 className="text-lg font-semibold text-gray-900 line-clamp-2">
@@ -251,7 +301,7 @@ export default function AllProperty() {
                   </div>
 
                   <p className="text-2xl font-bold text-blue-600 mb-2">
-                    {formatPrice(property.price)}
+                    {property.price.toLocaleString('en-NG', { style: 'currency', currency: 'NGN' })}
                   </p>
 
                   <p className="text-gray-600 text-sm mb-4 line-clamp-3">
@@ -281,26 +331,22 @@ export default function AllProperty() {
                     <div className="flex space-x-2">
                       <button
                         onClick={() => router.push(`/dashboard/property/${property._id}/edit`)}
-                        className="px-3 py-1 text-sm bg-gray-100 text-gray-700 rounded-md hover:bg-gray-200"
+                        className="px-3 py-1 text-sm bg-blue-100 text-blue-700 rounded-md hover:bg-blue-200 transition-colors"
                       >
-                        Edit
+                        ✏️ Edit
                       </button>
                       <button
                         onClick={() => handleDelete(property._id)}
-                        className="px-3 py-1 text-sm bg-red-100 text-red-700 rounded-md hover:bg-red-200"
+                        className="px-3 py-1 text-sm bg-red-100 text-red-700 rounded-md hover:bg-red-200 transition-colors"
                       >
-                        Delete
+                        🗑️ Delete
                       </button>
                     </div>
-                    {property.isFeatured && (
-                      <span className="px-2 py-1 bg-yellow-100 text-yellow-800 text-xs rounded-full">
-                        Featured
-                      </span>
-                    )}
                   </div>
                 </div>
               </div>
-            ))}
+              );
+            })}
           </div>
 
           {/* Pagination */}

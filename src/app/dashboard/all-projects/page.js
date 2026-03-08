@@ -206,7 +206,6 @@ export default function AllProjectsPage() {
                 <th className="px-6 py-3 text-left text-sm font-semibold text-gray-900">Category</th>
                 <th className="px-6 py-3 text-left text-sm font-semibold text-gray-900">Location</th>
                 <th className="px-6 py-3 text-left text-sm font-semibold text-gray-900">Status</th>
-                <th className="px-6 py-3 text-left text-sm font-semibold text-gray-900">Budget</th>
                 <th className="px-6 py-3 text-left text-sm font-semibold text-gray-900">Progress</th>
                 <th className="px-6 py-3 text-left text-sm font-semibold text-gray-900">Actions</th>
               </tr>
@@ -227,7 +226,6 @@ export default function AllProjectsPage() {
                         {(project.projectStatus || '').split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ')}
                       </span>
                     </td>
-                    <td className="px-6 py-4 text-sm font-medium text-gray-900">₦{(project.budget / 1000000).toFixed(1)}M</td>
                     <td className="px-6 py-4 text-sm">
                       <div className="flex items-center gap-2">
                         <div className="w-full bg-gray-200 rounded-full h-2">

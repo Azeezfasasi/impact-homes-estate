@@ -69,7 +69,8 @@ export default function DashboardMenu({ collapsed, mobileOpen = false, onClose =
         { href: '/dashboard/add-property', label: 'Add Properties', roles: ['admin', 'staff-member'] },
         { href: '/dashboard/property-categories', label: 'Property Category', roles: ['admin', 'staff-member'] },
         { href: '/dashboard/property-statuses', label: 'Property Statuses', roles: ['admin', 'staff-member'] },
-        { href: '/dashboard/property-features', label: 'Property Features', roles: ['admin', 'staff-member'] }
+        { href: '/dashboard/property-features', label: 'Property Features', roles: ['admin', 'staff-member'] },
+        { href: '/dashboard/property-type', label: 'Property Types', roles: ['admin', 'staff-member'] }
       ]
     },
     {
@@ -94,8 +95,6 @@ export default function DashboardMenu({ collapsed, mobileOpen = false, onClose =
     },
     { href: '/blog', label: 'View Blogs', icon: 'dashboard', roles: ['client'] },
     { href: '/dashboard/contact-form-responses', label: 'Contact Form Responses', icon: 'Contact', roles: ['admin', 'staff-member'] },
-    { href: '/request-a-quote', label: 'Request Quote', icon: 'dashboard', roles: ['client'] },
-    { href: '/dashboard/quote-requests', label: 'Quote Requests', icon: 'Quote Requests', roles: ['admin', 'staff-member'] },
     {
       href: '/dashboard/users',
       label: 'Manage Users',
@@ -129,7 +128,7 @@ export default function DashboardMenu({ collapsed, mobileOpen = false, onClose =
       ]
     },
     {
-      href: '/dashboard/gallery',
+      href: '/dashboard/media',
       label: 'Media Library',
       icon: 'Gallery',
       roles: ['admin', 'staff-member'],

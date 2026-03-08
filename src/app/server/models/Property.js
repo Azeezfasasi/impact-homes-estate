@@ -20,19 +20,19 @@ const PropertySchema = new mongoose.Schema({
   propertyType: {
     type: String,
     required: [true, 'Property type is required'],
-    enum: ['house', 'apartment', 'condo', 'townhouse', 'land', 'commercial', 'other'],
+    trim: true,
     default: 'house'
   },
   status: {
     type: String,
     required: [true, 'Property status is required'],
-    enum: ['available', 'sold', 'rented', 'pending', 'off-market'],
+    trim: true,
     default: 'available'
   },
   category: {
     type: String,
     required: [true, 'Property category is required'],
-    enum: ['residential', 'commercial', 'industrial', 'land', 'investment'],
+    trim: true,
     default: 'residential'
   },
   // Location details

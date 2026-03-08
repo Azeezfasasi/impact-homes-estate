@@ -11,12 +11,14 @@ import HeroSlider from '@/components/home-component/HeroSlider'
 import WelcomeCta from '@/components/home-component/WelcomeCta'
 import HomeContact from '@/components/home-component/HomeContact'
 import ClientReview from '@/components/home-component/ClientReview'
+import FeaturedProperties from '@/components/home-component/FeaturedProperties'
 
 export default function HomePage() {
   return (
     <>
       <HeroSlider />
       <WelcomeCta />
+      <FeaturedProperties />
       <HomeContact />
       <ClientReview />
       <ClientsLogoSlider />

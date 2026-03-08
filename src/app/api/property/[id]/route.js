@@ -16,7 +16,7 @@ export async function GET(request, { params }) {
   try {
     await ensureDBConnection();
 
-    const { id } = params;
+    const { id } = await params;
 
     const property = await Property.findById(id);
 
@@ -45,7 +45,7 @@ export async function PUT(request, { params }) {
   try {
     await ensureDBConnection();
 
-    const { id } = params;
+    const { id } = await params;
     const body = await request.json();
 
     // Remove fields that shouldn't be updated directly
@@ -92,7 +92,7 @@ export async function DELETE(request, { params }) {
   try {
     await ensureDBConnection();
 
-    const { id } = params;
+    const { id } = await params;
 
     const property = await Property.findByIdAndUpdate(
       id,

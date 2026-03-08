@@ -95,6 +95,12 @@ export default function MainNav({ hideBackgroundImage = false, title, subtitle, 
                 ABOUT
               </Link>
               <Link
+                href="/all-properties"
+                className="text-white font-semibold hover:text-impact-gold transition"
+              >
+                Properties
+              </Link>
+              <Link
                 href="/projects"
                 className="text-white font-semibold hover:text-impact-gold transition"
               >

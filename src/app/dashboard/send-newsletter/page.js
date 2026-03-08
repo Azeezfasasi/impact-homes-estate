@@ -1,11 +1,12 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Send, Clock, Users, Sparkles } from 'lucide-react';
+import { Send, Clock, Users, Sparkles, CheckCircle, X } from 'lucide-react';
 import Modal from '../components/Modal';
 import { useToast } from '../components/Toast';
 import { campaignAPI } from '@/utils/newsletter-api';
 import { ProtectedRoute } from '@/components/ProtectedRoute';
+import TiptapEditor from '@/components/TiptapEditor';
 
 const RECIPIENT_TYPES = [
   { value: 'all', label: 'All Active Subscribers' },
@@ -24,6 +25,8 @@ export default function SendNewsletter() {
   const { addToast } = useToast();
   const [isLoading, setIsLoading] = useState(false);
   const [showScheduleModal, setShowScheduleModal] = useState(false);
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [successData, setSuccessData] = useState(null);
   const [formData, setFormData] = useState({
     subject: '',
     content: '',
@@ -50,6 +53,22 @@ export default function SendNewsletter() {
         ? prev.tags.filter(t => t !== tag)
         : [...prev.tags, tag],
     }));
+  };
+
+  const handleCloseSuccessModal = () => {
+    setShowSuccessModal(false);
+    setSuccessData(null);
+    setFormData({
+      subject: '',
+      content: '',
+      recipientType: 'all',
+      tags: [],
+      segment: '',
+      type: 'informational',
+      scheduledFor: '',
+    });
+    // Reload the page
+    window.location.reload();
   };
 
   const validateForm = () => {
@@ -117,15 +136,14 @@ export default function SendNewsletter() {
 
       if (sendResponse.success) {
         addToast('Newsletter sent successfully!', 'success');
-        setFormData({
-          subject: '',
-          content: '',
-          recipientType: 'all',
-          tags: [],
-          segment: '',
-          type: 'informational',
-          scheduledFor: '',
+        setSuccessData({
+          subject: formData.subject,
+          type: formData.type,
+          recipientType: formData.recipientType,
+          tags: formData.tags,
+          segment: formData.segment,
         });
+        setShowSuccessModal(true);
       } else {
         addToast(sendResponse.message || 'Failed to send newsletter', 'error');
       }
@@ -151,13 +169,14 @@ export default function SendNewsletter() {
 
     setIsLoading(true);
     try {
-      // First create the campaign
+      // First create the campaign with scheduled status
       const campaignPayload = {
         title: formData.subject,
         subject: formData.subject,
         content: formData.content,
         htmlContent: formData.content,
         campaignType: formData.type,
+        status: 'scheduled',
         recipients: {
           type: formData.recipientType,
           selectedTags: formData.recipientType === 'tags' ? formData.tags : [],
@@ -190,16 +209,15 @@ export default function SendNewsletter() {
 
       if (scheduleResponse.success) {
         addToast('Newsletter scheduled successfully!', 'success');
-        setShowScheduleModal(false);
-        setFormData({
-          subject: '',
-          content: '',
-          recipientType: 'all',
-          tags: [],
-          segment: '',
-          type: 'informational',
-          scheduledFor: '',
+        setSuccessData({
+          subject: formData.subject,
+          type: formData.type,
+          recipientType: formData.recipientType,
+          tags: formData.tags,
+          segment: formData.segment,
         });
+        setShowSuccessModal(true);
+        setShowScheduleModal(false);
       } else {
         addToast(scheduleResponse.message || 'Failed to schedule newsletter', 'error');
       }
@@ -269,14 +287,10 @@ export default function SendNewsletter() {
             <label htmlFor="content" className="block text-sm font-semibold text-gray-900 mb-2">
               Content *
             </label>
-            <textarea
-              id="content"
-              name="content"
+            <TiptapEditor
               value={formData.content}
-              onChange={handleChange}
-              placeholder="Enter newsletter content (supports HTML)"
-              rows={10}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 font-mono text-sm"
+              onChange={(html) => setFormData(prev => ({ ...prev, content: html }))}
+              placeholder="Enter newsletter content with rich formatting"
             />
           </div>
         </div>
@@ -407,6 +421,64 @@ export default function SendNewsletter() {
           </div>
         </div>
       </Modal>
+
+      {/* Success Modal */}
+      {showSuccessModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white rounded-lg shadow-lg p-8 max-w-md w-full mx-4 animate-in fade-in zoom-in duration-300">
+            <div className="flex justify-between items-start mb-4">
+              <div className="flex items-center space-x-3">
+                <CheckCircle className="w-8 h-8 text-green-600" />
+                <h2 className="text-xl font-bold text-gray-900">Newsletter Sent!</h2>
+              </div>
+              <button
+                onClick={handleCloseSuccessModal}
+                className="text-gray-400 hover:text-gray-600 transition-colors"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            {successData && (
+              <div className="space-y-4 mb-6">
+                <div className="bg-gray-50 rounded-lg p-4 space-y-3">
+                  <div>
+                    <p className="text-xs text-gray-600 font-medium">Subject</p>
+                    <p className="text-sm text-gray-900 font-medium">{successData.subject}</p>
+                  </div>
+                  <div>
+                    <p className="text-xs text-gray-600 font-medium">Campaign Type</p>
+                    <p className="text-sm text-gray-900 font-medium capitalize">{successData.type}</p>
+                  </div>
+                  <div>
+                    <p className="text-xs text-gray-600 font-medium">Recipients</p>
+                    <p className="text-sm text-gray-900 font-medium capitalize">
+                      {successData.recipientType === 'all' 
+                        ? 'All Active Subscribers'
+                        : successData.recipientType === 'tags'
+                        ? `Tags: ${successData.tags.join(', ')}`
+                        : `Segment: ${successData.segment}`}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="bg-green-50 border border-green-200 rounded-lg p-3">
+                  <p className="text-sm text-green-800">
+                    ✓ Your newsletter has been sent to all selected recipients.
+                  </p>
+                </div>
+              </div>
+            )}
+
+            <button
+              onClick={handleCloseSuccessModal}
+              className="w-full px-4 py-3 bg-green-600 text-white rounded-lg font-medium hover:bg-green-700 transition-colors"
+            >
+              Send Another Newsletter
+            </button>
+          </div>
+        </div>
+      )}
     </div>
     </ProtectedRoute>
   );
