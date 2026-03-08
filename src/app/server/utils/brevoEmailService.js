@@ -43,19 +43,20 @@ export const sendEmailViaBrevo = async (emailData) => {
     // Helper function to format email objects
     const formatEmailList = (emailList) => {
       if (!Array.isArray(emailList)) {
-        emailList = [emailList];
-      }
-      return emailList.map(item => {
-        // If item is already an object with email property, return as-is
-        if (typeof item === 'object' && item.email) {
-          return {
-            email: item.email,
-            ...(item.name && { name: item.name }),
-          };
+        // If it's a string, wrap it
+        if (typeof emailList === 'string') {
+          return [{ email: emailList }];
         }
-        // If item is a string, wrap it
-        return { email: item };
-      });
+        // If it's an object with email property, wrap in array
+        if (typeof emailList === 'object' && emailList.email) {
+          return [emailList];
+        }
+        return [emailList];
+      }
+      
+      // If it's already an array, return as-is
+      // (assumes it's already in correct format: [{ email: '...', name: '...' }, ...])
+      return emailList;
     };
 
     // If using a template
