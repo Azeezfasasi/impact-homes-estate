@@ -95,6 +95,7 @@ export default function DashboardMenu({ collapsed, mobileOpen = false, onClose =
     },
     { href: '/blog', label: 'View Blogs', icon: 'dashboard', roles: ['client'] },
     { href: '/dashboard/contact-form-responses', label: 'Contact Form Responses', icon: 'Contact', roles: ['admin', 'staff-member'] },
+    { href: '/dashboard/inspection-requests', label: 'Inspection Requests', icon: 'Contact', roles: ['admin', 'staff-member'] },
     {
       href: '/dashboard/users',
       label: 'Manage Users',
@@ -147,10 +148,9 @@ export default function DashboardMenu({ collapsed, mobileOpen = false, onClose =
       children: [
         { href: '/dashboard/hero-slider', label: 'Hero Slider', roles: ['admin', 'staff-member'] },
         { href: '/dashboard/welcome-cta', label: 'Home CTA', roles: ['admin', 'staff-member'] },
-        { href: '/dashboard/our-services-contents', label: 'Our Services', roles: ['admin', 'staff-member'] },
         { href: '/dashboard/our-clients', label: 'Our Clients & Partners', roles: ['admin', 'staff-member'] },
+        { href: '/dashboard/faq', label: 'Frequently Asked Questions', roles: ['admin', 'staff-member'] },
         { href: '/dashboard/testimonials', label: 'Testimonials', roles: ['admin', 'staff-member'] },
-        { href: '/dashboard/why-rayob', label: 'Why Rayob', roles: ['admin', 'staff-member'] },
       ]
     },
     {

@@ -5,8 +5,46 @@ import React, { useState, useEffect } from 'react'
 export default function ClientReview() {
   const [currentSlide, setCurrentSlide] = useState(0)
   const [autoSlide, setAutoSlide] = useState(true)
+  const [reviews, setReviews] = useState([])
+  const [loading, setLoading] = useState(true)
 
-  const reviews = [
+  // Fetch testimonials from API
+  useEffect(() => {
+    const fetchTestimonials = async () => {
+      try {
+        const response = await fetch('/api/testimonials')
+        const data = await response.json()
+        
+        if (data.success && data.testimonials && data.testimonials.length > 0) {
+          // Map API testimonials to review format
+          const mappedReviews = data.testimonials.map((testimonial, index) => ({
+            id: testimonial._id,
+            name: testimonial.name,
+            title: testimonial.position,
+            // Generate default avatar using UI Avatars service
+            image: `https://ui-avatars.com/api/?name=${encodeURIComponent(testimonial.name)}&background=random&color=fff&size=400`,
+            rating: testimonial.rating || 5,
+            text: testimonial.message
+          }))
+          setReviews(mappedReviews)
+        } else {
+          // Fallback to demo reviews if API returns empty
+          setReviews(getDemoReviews())
+        }
+      } catch (error) {
+        console.error('Error fetching testimonials:', error)
+        // Fall back to demo reviews on error
+        setReviews(getDemoReviews())
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchTestimonials()
+  }, [])
+
+  // Demo reviews as fallback
+  const getDemoReviews = () => [
     {
       id: 1,
       name: "Sarah Johnson",
@@ -42,7 +80,7 @@ export default function ClientReview() {
   ]
 
   useEffect(() => {
-    if (!autoSlide) return
+    if (!autoSlide || reviews.length === 0) return
 
     const interval = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % reviews.length)
@@ -83,6 +121,19 @@ export default function ClientReview() {
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white">Client Reviews</h2>
         </div>
 
+        {/* Loading State */}
+        {loading ? (
+          <div className="flex items-center justify-center h-96 md:h-80 lg:h-72">
+            <div className="animate-spin">
+              <div className="h-12 w-12 border-4 border-white border-t-transparent rounded-full"></div>
+            </div>
+          </div>
+        ) : reviews.length === 0 ? (
+          <div className="flex items-center justify-center h-96 md:h-80 lg:h-72">
+            <p className="text-white text-lg">No reviews available yet</p>
+          </div>
+        ) : (
+          <>
         {/* Carousel */}
         <div className="relative">
           {/* Reviews Container */}
@@ -169,16 +220,9 @@ export default function ClientReview() {
             />
           ))}
         </div>
+          </>
+        )}
 
-        {/* Auto-slide indicator */}
-        <div className="text-center mt-8">
-          <button
-            onClick={() => setAutoSlide(!autoSlide)}
-            className="text-white text-sm hover:text-blue-400 transition-colors"
-          >
-            {autoSlide ? '⏸ Auto-sliding...' : '▶ Resume auto-slide'}
-          </button>
-        </div>
       </div>
     </div>
   )

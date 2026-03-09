@@ -1,6 +1,7 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import toast from 'react-hot-toast'
 
 export default function HomeContact() {
   const [formData, setFormData] = useState({
@@ -12,25 +13,53 @@ export default function HomeContact() {
   })
 
   const [expandedFAQ, setExpandedFAQ] = useState(0)
+  const [faqs, setFaqs] = useState([])
+  const [faqsLoading, setFaqsLoading] = useState(true)
+  const [formLoading, setFormLoading] = useState(false)
+  const [projects, setProjects] = useState([])
+  const [projectsLoading, setProjectsLoading] = useState(true)
 
-  const faqs = [
-    {
-      question: "I just want to buy a house. Why call it an investment?",
-      answer: "Whether you are acquiring a property to live in or to generate passive income, it does not take away the fact that the property value will appreciate and generate returns. Hence, we refer to as an investment."
-    },
-    {
-      question: "Do I need an expert to guide me?",
-      answer: "Yes, our expert team is here to guide you through every step of your investment journey."
-    },
-    {
-      question: "Are there investment plans?",
-      answer: "Yes, we offer various investment plans tailored to your needs and budget."
-    },
-    {
-      question: "How long does it take to deliver on a project?",
-      answer: "Delivery timelines vary depending on the project. We'll provide specific timelines during consultation."
+  // Fetch FAQs and Projects from backend
+  useEffect(() => {
+    const fetchFAQs = async () => {
+      try {
+        const response = await fetch('/api/faq')
+        if (!response.ok) throw new Error('Failed to fetch FAQs')
+        const data = await response.json()
+        setFaqs(data)
+      } catch (error) {
+        console.error('Error fetching FAQs:', error)
+        // Fallback to empty array if API fails
+        setFaqs([])
+      } finally {
+        setFaqsLoading(false)
+      }
     }
-  ]
+
+    const fetchProjects = async () => {
+      try {
+        const response = await fetch('/api/project')
+        if (!response.ok) throw new Error('Failed to fetch projects')
+        const data = await response.json()
+        // Handle the API response structure { success: true, projects: [...] }
+        const projectsList = data.projects || data || []
+        // Filter out disabled projects and those not in progress/completed
+        const activeProjects = projectsList.filter(
+          (project) => !project.isDisabled && project.projectStatus !== 'disabled'
+        )
+        setProjects(activeProjects)
+      } catch (error) {
+        console.error('Error fetching projects:', error)
+        // Fallback to empty array if API fails
+        setProjects([])
+      } finally {
+        setProjectsLoading(false)
+      }
+    }
+
+    fetchFAQs()
+    fetchProjects()
+  }, [])
 
   const handleInputChange = (e) => {
     const { name, value } = e.target
@@ -40,10 +69,46 @@ export default function HomeContact() {
     }))
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    console.log('Form submitted:', formData)
-    // Add your form submission logic here
+    
+    if (!formData.firstName || !formData.lastName || !formData.phone || !formData.email || !formData.project) {
+      toast.error('Please fill in all fields')
+      return
+    }
+
+    setFormLoading(true)
+    try {
+      const response = await fetch('/api/inspection-requests', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      })
+
+      if (!response.ok) {
+        const error = await response.json()
+        throw new Error(error.error || 'Failed to submit inspection request')
+      }
+
+      const result = await response.json()
+      toast.success('Inspection request submitted successfully! We will contact you soon.')
+      
+      // Clear form
+      setFormData({
+        firstName: '',
+        lastName: '',
+        phone: '',
+        email: '',
+        project: ''
+      })
+    } catch (error) {
+      console.error('Form submission error:', error)
+      toast.error(error.message || 'Failed to submit inspection request')
+    } finally {
+      setFormLoading(false)
+    }
   }
 
   return (
@@ -89,7 +154,7 @@ export default function HomeContact() {
                 Phone Number <span className="text-red-500">*</span>
               </label>
               <div className="flex gap-0">
-                <span className="bg-white px-3.5 py-3 border border-gray-300 rounded-l text-sm text-gray-800 whitespace-nowrap flex items-center">🇺🇸 +1</span>
+                {/* <span className="bg-white px-3.5 py-3 border border-gray-300 rounded-l text-sm text-gray-800 whitespace-nowrap flex items-center">🇺🇸 +1</span> */}
                 <input
                   type="tel"
                   name="phone"
@@ -126,15 +191,28 @@ export default function HomeContact() {
                 onChange={handleInputChange}
                 className="px-3.5 py-3 border border-gray-300 rounded text-sm text-gray-800 font-normal focus:outline-none focus:border-gray-600 focus:ring-1 focus:ring-gray-400"
                 required
+                disabled={projectsLoading}
               >
-                <option value="">Choose a project</option>
-                <option value="project1">Project 1</option>
-                <option value="project2">Project 2</option>
+                <option value="">
+                  {projectsLoading ? 'Loading projects...' : 'Choose a project'}
+                </option>
+                {projects.map((project) => (
+                  <option key={project._id} value={project._id}>
+                    {project.projectName}
+                  </option>
+                ))}
               </select>
+              {!projectsLoading && projects.length === 0 && (
+                <p className="text-xs text-gray-500 mt-1">No projects available</p>
+              )}
             </div>
 
-            <button type="submit" className="mt-2.5 px-5 py-3.5 bg-impact-gold text-black text-sm font-bold rounded hover:bg-yellow-500 transition-colors">
-              SUBMIT
+            <button 
+              type="submit" 
+              disabled={formLoading}
+              className="mt-2.5 px-5 py-3.5 bg-impact-gold text-black text-sm font-bold rounded hover:bg-yellow-500 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              {formLoading ? 'SUBMITTING...' : 'SUBMIT'}
             </button>
           </form>
         </div>
@@ -144,24 +222,34 @@ export default function HomeContact() {
           <p className="text-sm text-impact-gold mb-2.5 font-medium">Learn More From</p>
           <h2 className="text-4xl md:text-3xl sm:text-2xl font-bold mb-7 text-gray-900">Our Frequently Asked Questions</h2>
           
-          <div className="flex flex-col border border-gray-300 rounded-lg overflow-hidden">
-            {faqs.map((faq, index) => (
-              <div key={index} className="border-b border-gray-300 last:border-b-0">
-                <button
-                  className="w-full px-5 py-5 md:px-4 md:py-4 bg-gray-900 text-white flex justify-between items-center cursor-pointer text-sm md:text-xs font-semibold hover:bg-gray-800 transition-colors"
-                  onClick={() => setExpandedFAQ(expandedFAQ === index ? -1 : index)}
-                >
-                  <span>{index + 1}. {faq.question}</span>
-                  <span className={`text-yellow-400 text-2xl font-light transition-transform ${expandedFAQ === index ? 'rotate-45' : ''}`}>+</span>
-                </button>
-                {expandedFAQ === index && (
-                  <div className="px-5 py-5 md:px-4 md:py-4 bg-gray-50 text-gray-700 text-sm leading-relaxed">
-                    {faq.answer}
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
+          {faqsLoading ? (
+            <div className="flex items-center justify-center py-8">
+              <div className="animate-spin h-8 w-8 border-4 border-impact-gold border-t-transparent rounded-full"></div>
+            </div>
+          ) : faqs.length === 0 ? (
+            <div className="text-center py-8 bg-gray-50 rounded-lg border border-gray-200">
+              <p className="text-gray-600">No FAQs available at the moment.</p>
+            </div>
+          ) : (
+            <div className="flex flex-col border border-gray-300 rounded-lg overflow-hidden">
+              {faqs.map((faq, index) => (
+                <div key={faq._id || index} className="border-b border-gray-300 last:border-b-0">
+                  <button
+                    className="w-full px-5 py-5 md:px-4 md:py-4 bg-gray-900 text-white flex justify-between items-center cursor-pointer text-sm md:text-xs font-semibold hover:bg-gray-800 transition-colors"
+                    onClick={() => setExpandedFAQ(expandedFAQ === index ? -1 : index)}
+                  >
+                    <span>{index + 1}. {faq.question}</span>
+                    <span className={`text-yellow-400 text-2xl font-light transition-transform ${expandedFAQ === index ? 'rotate-45' : ''}`}>+</span>
+                  </button>
+                  {expandedFAQ === index && (
+                    <div className="px-5 py-5 md:px-4 md:py-4 bg-gray-50 text-gray-700 text-sm leading-relaxed">
+                      {faq.answer}
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </div>
