@@ -7,30 +7,30 @@ const DEFAULT_COMPANY_OVERVIEW = {
     image: '/images/fibre1.jpeg',
     paragraphs: [
       {
-        text: 'Rayob Engineering & Mgt. Co. Ltd is a dynamic, solutions-driven Engineering and Management Company committed to delivering world-class services across multiple sectors. Established in 2020 and legally incorporated in Nigeria in 2025 with a passion for innovation, engineering excellence, and sustainable project delivery.',
+        text: 'Impact Homes Real Estate is a dynamic and forward-thinking company specializing in engineering excellence, telecommunications infrastructure development, and strategic project delivery across Africa.',
         order: 0,
       },
       {
-        text: 'We bring together nearly two decades of multidisciplinary experience spanning construction, telecommunications, optical fibre implementation, operations and maintenance, project management, corporate governance, and corporate social responsibility.',
+        text: 'Founded by a visionary Chairman/CEO with over 20 years of experience in real estate and property development, we are committed to delivering innovative solutions that drive progress and create lasting value for our clients and communities.',
         order: 1,
       },
       {
-        text: 'The Chairman/CEO is strongly supported by highly experienced professionals in engineering, accounting and finance, law, management, and more. Together, we deliver value, promote excellence, and exceed the expectations of our clients and customers.',
+        text: 'Our team of highly skilled professionals combines technical expertise with a customer-centric approach, ensuring that every project we undertake is executed with precision, integrity, and a focus on exceeding expectations.',
         order: 2,
       },
       {
-        text: 'Our goal: to become a trusted African leader in engineering excellence, telecommunications infrastructure development, and strategic project delivery.',
+        text: 'Our goal: To be the leading real estate company in Africa, known for our commitment to quality, innovation, and sustainable development.',
         order: 3,
       },
     ],
   },
   vision: {
     title: 'Our Vision',
-    description: 'To be a Globally Recognized Engineering and Management Brand known for Excellence, Innovation, and Reliable Project Delivery.',
+    description: 'To be a Globally Recognized Leader in Real Estate and Property Development.',
   },
   mission: {
     title: 'Our Mission',
-    description: 'To Provide Superior Engineering and Management Services Using Modern Technology, Professional Expertise, and a Commitment to Quality, Safety, and Customer Satisfaction.',
+    description: 'To Provide Superior Real Estate and Property Development Services Using Modern Technology, Professional Expertise, and a Commitment to Quality, Safety, and Customer Satisfaction.',
   },
   coreValues: [
     { name: 'Excellence', description: 'We deliver superior outcomes in every project.', color: 'indigo', order: 0 },

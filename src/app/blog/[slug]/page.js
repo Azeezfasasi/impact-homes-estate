@@ -5,6 +5,7 @@ import { useParams } from 'next/navigation';
 import axios from 'axios';
 import { useAuth } from '@/context/AuthContext';
 import Link from 'next/link';
+import MainNav from '@/components/home-component/MainNav'
 
 export default function BlogDetailPage() {
   const { slug } = useParams();
@@ -148,7 +149,7 @@ export default function BlogDetailPage() {
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-impact-gold"></div>
       </div>
     );
   }
@@ -157,25 +158,36 @@ export default function BlogDetailPage() {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center">
         <p className="text-red-600 text-lg mb-4">{error || 'Blog not found'}</p>
-        <Link href="/blog" className="text-blue-500 hover:text-blue-700">
+        <Link href="/blog" className="text-impact-gold hover:text-impact-gold hover:underline">
           Back to blogs
         </Link>
       </div>
     );
   }
 
+  const breadcrumbs = [
+    { label: 'Home', href: '/' },
+    { label: 'Blog', href: '/blog' },
+    { label: blog.postTitle }
+  ]
+
   return (
+    <>
+    <MainNav
+      title={blog.postTitle}
+      breadcrumbs={breadcrumbs}
+    />
     <article className="min-h-screen bg-gray-50 py-12">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="mb-8">
-          <Link href="/blog" className="text-blue-900 hover:text-blue-800 mb-4 inline-block">
+          <Link href="/blog" className="text-impact-gold hover:text-impact-gold hover:underline mb-4 inline-block">
             ← Back to blogs
           </Link>
           <h1 className="text-[26px] md:text-5xl font-bold text-gray-900 mb-4">{blog.postTitle}</h1>
           
           <div className="flex flex-wrap items-center gap-4 text-gray-600 mb-6">
-            <span className="text-sm font-semibold text-blue-900 uppercase">{blog.category}</span>-
+            <span className="text-sm font-semibold text-impact-gold uppercase">{blog.category}</span>-
             <span>By {blog.author}</span>-
             <span>{new Date(blog.publishDate).toLocaleDateString('en-US', {
               year: 'numeric',
@@ -235,7 +247,7 @@ export default function BlogDetailPage() {
                   {user.avatar ? (
                     <img src={user.avatar} alt={user.firstName} className="w-full h-full object-cover" />
                   ) : (
-                    <div className="w-full h-full flex items-center justify-center bg-blue-900 text-white font-bold">
+                    <div className="w-full h-full flex items-center justify-center bg-impact-gold text-white font-bold">
                       {user.firstName?.charAt(0)}
                     </div>
                   )}
@@ -246,14 +258,14 @@ export default function BlogDetailPage() {
                     value={commentText}
                     onChange={(e) => setCommentText(e.target.value)}
                     placeholder="Share your thoughts..."
-                    className="w-full mt-2 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-900 resize-none"
+                    className="w-full mt-2 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-impact-gold resize-none"
                     rows="4"
                     disabled={submittingComment}
                   />
                   <button
                     type="submit"
                     disabled={submittingComment || !commentText.trim()}
-                    className="mt-3 px-6 py-2 bg-blue-900 text-white rounded-lg hover:bg-blue-800 disabled:opacity-50 disabled:cursor-not-allowed transition font-medium cursor-pointer"
+                    className="mt-3 px-6 py-2 bg-impact-gold text-white rounded-lg hover:bg-impact-gold hover:bg-opacity-90 disabled:opacity-50 disabled:cursor-not-allowed transition font-medium cursor-pointer"
                   >
                     {submittingComment ? 'Posting...' : 'Post Comment'}
                   </button>
@@ -263,7 +275,7 @@ export default function BlogDetailPage() {
           ) : (
             <div className="mb-8 pb-8 border-b bg-gray-50 p-4 rounded-lg">
               <p className="text-gray-600">
-                <Link href="/login" className="text-blue-900 hover:text-blue-800 font-medium">
+                <Link href="/login" className="text-impact-gold hover:text-impact-gold hover:underline font-medium">
                   Login
                 </Link>
                 {' '}to post a comment
@@ -280,7 +292,7 @@ export default function BlogDetailPage() {
                     {comment.userAvatar ? (
                       <img src={comment.userAvatar} alt={comment.userName} className="w-full h-full object-cover" />
                     ) : (
-                      <div className="w-full h-full flex items-center justify-center bg-blue-900 text-white font-bold text-sm">
+                      <div className="w-full h-full flex items-center justify-center bg-impact-gold text-white font-bold text-sm">
                         {comment.userName?.charAt(0)}
                       </div>
                     )}
@@ -314,5 +326,6 @@ export default function BlogDetailPage() {
         </div>
       </div>
     </article>
+    </>
   );
 }

@@ -6,7 +6,7 @@ const { connectDB } = require('./src/app/server/db/connect');
 
 async function main() {
   await connectDB();
-  const admin = await User.findOne({ email: 'admin@rayobengineering.com' });
+  const admin = await User.findOne({ email: 'info@impacthomes.ng' });
   if (admin) {
     console.log('Admin ObjectId:', admin._id.toString());
   } else {

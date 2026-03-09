@@ -13,9 +13,9 @@ export async function getWhyRayobContent() {
       {
         _id: new mongoose.Types.ObjectId(),
         id: 1,
-        title: "Proven Multidisciplinary Engineering Expertise",
+        title: "Proven Multidisciplinary Expertise in Real Estate Development.",
         description:
-          "Rayob Engineering & Mgt. Co. Ltd brings together deep expertise across civil engineering, telecommunications infrastructure, fibre-optic networks, and project management. This multidisciplinary strength enables the company to deliver integrated, end-to-end solutions that are technically sound, cost-effective, and aligned with client objectives.",
+          "Impact Homes Real Estate brings together deep expertise across civil engineering, telecommunications infrastructure, fibre-optic networks, and project management. This multidisciplinary strength enables the company to deliver integrated, end-to-end solutions that are technically sound, cost-effective, and aligned with client objectives.",
         icon: "Zap",
         order: 1,
       },
@@ -24,7 +24,7 @@ export async function getWhyRayobContent() {
         id: 2,
         title: "Innovative, Extensive Industry Experience with Real Project Success",
         description:
-          "With years of hands-on experience executing complex projects in construction, telecoms, and infrastructure development, Rayob has a strong track record of successfully delivering projects of varying scale and complexity. Clients benefit from practical know-how, foresight, innovations, and lessons learned from real-world project environments.",
+          "With years of hands-on experience executing complex projects in construction, telecoms, and infrastructure development, Impact Homes Real Estate has a strong track record of successfully delivering projects of varying scale and complexity. Clients benefit from practical know-how, foresight, innovations, and lessons learned from real-world project environments.",
         icon: "Target",
         order: 2,
       },
@@ -33,7 +33,7 @@ export async function getWhyRayobContent() {
         id: 3,
         title: "Strong Project Management and Delivery Discipline",
         description:
-          "Rayob adopts globally accepted project management best practices to ensure projects are delivered on time, within budget, and to the highest quality standards. Clear planning, risk management, progress tracking, and stakeholder coordination are embedded in every project, giving clients confidence and transparency throughout execution.",
+          "Impact Homes Real Estate adopts globally accepted project management best practices to ensure projects are delivered on time, within budget, and to the highest quality standards. Clear planning, risk management, progress tracking, and stakeholder coordination are embedded in every project, giving clients confidence and transparency throughout execution.",
         icon: "Briefcase",
         order: 3,
       },
@@ -42,7 +42,7 @@ export async function getWhyRayobContent() {
         id: 4,
         title: "Commitment to Quality, Safety, and Standards Compliance",
         description:
-          "Quality assurance and safety are non-negotiable at Rayob. All projects are executed in strict compliance with industry standards, regulatory requirements, and best engineering practices. This commitment minimizes rework, enhances asset longevity, and ensures safe, reliable, and sustainable project outcomes.",
+          "Quality assurance and safety are non-negotiable at Impact Homes Real Estate. All projects are executed in strict compliance with industry standards, regulatory requirements, and best engineering practices. This commitment minimizes rework, enhances asset longevity, and ensures safe, reliable, and sustainable project outcomes.",
         icon: "Shield",
         order: 4,
       },
@@ -51,7 +51,7 @@ export async function getWhyRayobContent() {
         id: 5,
         title: "Client-Centric and Solution-Driven Approach",
         description:
-          "Rayob places clients at the center of every engagement, taking time to understand specific needs, challenges, and expectations. Rather than offering generic solutions, the company delivers tailored, practical, and innovative approaches that add real value and align with each client’s strategic goals",
+          "Impact Homes Real Estate places clients at the center of every engagement, taking time to understand specific needs, challenges, and expectations. Rather than offering generic solutions, the company delivers tailored, practical, and innovative approaches that add real value and align with each client’s strategic goals",
         icon: "Users",
         order: 5,
       },
@@ -60,7 +60,7 @@ export async function getWhyRayobContent() {
         id: 6,
         title: "Strong Technical Leadership and Skilled Workforce",
         description:
-          "Projects at Rayob are led by experienced engineers and managed by skilled professionals with strong technical and leadership capabilities. The company invests in continuous training and capacity development, ensuring that clients benefit from competent personnel who are up-to- date with modern technologies and industry trends.",
+          "Projects at Impact Homes Real Estate are led by experienced engineers and managed by skilled professionals with strong technical and leadership capabilities. The company invests in continuous training and capacity development, ensuring that clients benefit from competent personnel who are up-to- date with modern technologies and industry trends.",
         order: 6,
       },
       {
@@ -68,7 +68,7 @@ export async function getWhyRayobContent() {
         id: 7,
         title: "Integrity, Reliability, and Long-Term Partnership Focus",
         description:
-          "Rayob Engineering & Mgt. Co. Ltd operates with a strong culture of integrity, professionalism, and accountability. Clients can rely on honest communication, dependable delivery, and ethical business practices, making Rayob not just a contractor, but a trusted long-term project partner.",
+          "Impact Homes Real Estate operates with a strong culture of integrity, professionalism, and accountability. Clients can rely on honest communication, dependable delivery, and ethical business practices, making Impact Homes Real Estate not just a contractor, but a trusted long-term project partner.",
         icon: "Handshake",
         order: 7,
       },
@@ -132,7 +132,7 @@ export async function updateReason(reasonId, reasonData) {
 
   const content = await WhyRayob.findOne();
   if (!content) {
-    throw new Error("WhyRayob content not found");
+    throw new Error("Impact Homes Real Estate content not found");
   }
 
   const reason = content.reasons.id(reasonId);
@@ -154,7 +154,7 @@ export async function deleteReason(reasonId) {
 
   const content = await WhyRayob.findOne();
   if (!content) {
-    throw new Error("WhyRayob content not found");
+    throw new Error("Impact Homes Real Estate content not found");
   }
 
   content.reasons.id(reasonId).deleteOne();
@@ -169,7 +169,7 @@ export async function reorderReasons(reorderedReasons) {
 
   const content = await WhyRayob.findOne();
   if (!content) {
-    throw new Error("WhyRayob content not found");
+    throw new Error("Impact Homes Real Estate content not found");
   }
 
   // Update order for each reason

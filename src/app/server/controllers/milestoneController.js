@@ -3,10 +3,10 @@ import { connectDB } from '../db/connect.js';
 
 const DEFAULT_MILESTONES = {
   milestones: [
-    { year: '2010', title: 'Company Founded', description: 'Rayob Engineering was established to deliver quality engineering solutions across industrial and commercial sectors.', order: 0, active: true },
-    { year: '2013', title: 'First Major Industrial Project', description: 'Completed our first large-scale industrial plant project, setting a standard for quality and efficiency.', order: 1, active: true },
-    { year: '2016', title: 'Expansion of Services', description: 'Expanded our service portfolio to include mechanical works and electrical installations.', order: 2, active: true },
-    { year: '2019', title: 'Award Recognition', description: 'Received industry awards for excellence in engineering and project management.', order: 3, active: true },
+    { year: '2010', title: 'Company Founded', description: 'Impact Homes Real Estate was established to deliver world-class real estate services.', order: 0, active: true },
+    { year: '2013', title: 'First Major Industrial Project', description: 'Completed our first large-scale real estate project, setting a standard for quality and efficiency.', order: 1, active: true },
+    { year: '2016', title: 'Expansion of Services', description: 'Expanded our service portfolio to include property development and management.', order: 2, active: true },
+    { year: '2019', title: 'Award Recognition', description: 'Received industry awards for excellence in real estate development and management.', order: 3, active: true },
     { year: '2023', title: 'Global Partnerships', description: 'Established partnerships with international firms, enhancing our global project reach.', order: 4, active: true },
   ],
 };

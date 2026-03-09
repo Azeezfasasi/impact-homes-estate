@@ -63,7 +63,7 @@ export default function DashboardHeader({ onToggleSidebar, onToggleMobileMenu })
             </button>
 
             <Link href="/" className="flex items-center gap-3">
-              <Image src="/img/logoblack.png" alt="Rayob Logo" width={160} height={70} priority className="w-14 md:w-[130px] block rounded-lg p-1" />
+              <Image src="/img/logoblack.png" alt="Impact Homes Real Estate Logo" width={160} height={70} priority className="w-14 md:w-[130px] block rounded-lg p-1" />
             </Link>
           </div>
 

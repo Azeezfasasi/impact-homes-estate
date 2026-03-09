@@ -9,6 +9,12 @@ const nextConfig = {
       },
     ],
   },
+  // Turbopack configuration for development
+  turbopack: {
+    resolveAlias: {
+      '@': './src',
+    },
+  },
   webpack: (config, { isServer }) => {
     // Ignore node-cron during build to prevent bundling issues
     config.ignoreWarnings = config.ignoreWarnings || [];

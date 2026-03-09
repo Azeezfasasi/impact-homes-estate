@@ -52,7 +52,7 @@ export default function PropertyDetail() {
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-impact-gold"></div>
       </div>
     );
   }
@@ -62,7 +62,7 @@ export default function PropertyDetail() {
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
           <p className="text-gray-500 text-lg mb-4">Property not found</p>
-          <Link href="/all-properties" className="text-blue-600 hover:underline">
+          <Link href="/all-properties" className="text-impact-gold hover:underline">
             Back to all properties
           </Link>
         </div>
@@ -101,7 +101,7 @@ export default function PropertyDetail() {
           </button>
           <div className="flex gap-3">
             {property.isFeatured && (
-              <span className="px-3 py-1 bg-blue-600 text-white text-sm font-semibold rounded">
+              <span className="px-3 py-1 bg-impact-gold text-white text-sm font-semibold rounded">
                 ⭐ Featured
               </span>
             )}
@@ -174,7 +174,7 @@ export default function PropertyDetail() {
                     key={index}
                     onClick={() => setSelectedImageIndex(index)}
                     className={`flex-shrink-0 w-20 h-20 rounded-lg overflow-hidden border-2 transition-all ${
-                      index === selectedImageIndex ? 'border-blue-600' : 'border-gray-300'
+                      index === selectedImageIndex ? 'border-impact-gold' : 'border-gray-300'
                     }`}
                   >
                     <img src={image.url} alt={`Thumbnail ${index + 1}`} className="w-full h-full object-cover" />
@@ -232,7 +232,7 @@ export default function PropertyDetail() {
               {/* CTA Buttons */}
               <button
                 onClick={() => setShowContactForm(!showContactForm)}
-                className="w-full px-4 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-semibold mb-2"
+                className="w-full px-4 py-3 bg-impact-gold text-white rounded-lg hover:bg-impact-gold hover:bg-opacity-90 transition-colors font-semibold mb-2"
               >
                 Contact Agent
               </button>
@@ -252,13 +252,13 @@ export default function PropertyDetail() {
                   </div>
                   <div>
                     <p className="text-sm text-gray-600">Email</p>
-                    <a href={`mailto:${property.agent.email}`} className="text-blue-600 hover:underline">
+                    <a href={`mailto:${property.agent.email}`} className="font-semibold text-gray-900 hover:underline">
                       {property.agent.email}
                     </a>
                   </div>
                   <div>
                     <p className="text-sm text-gray-600">Phone</p>
-                    <a href={`tel:${property.agent.phone}`} className="text-blue-600 hover:underline">
+                    <a href={`tel:${property.agent.phone}`} className="font-semibold text-gray-900 hover:underline">
                       {property.agent.phone}
                     </a>
                   </div>
@@ -279,7 +279,7 @@ export default function PropertyDetail() {
                   placeholder="Your Name"
                   value={contactForm.name}
                   onChange={(e) => setContactForm({ ...contactForm, name: e.target.value })}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-impact-gold"
                   required
                 />
                 <input
@@ -287,7 +287,7 @@ export default function PropertyDetail() {
                   placeholder="Your Email"
                   value={contactForm.email}
                   onChange={(e) => setContactForm({ ...contactForm, email: e.target.value })}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-impact-gold"
                   required
                 />
                 <input
@@ -295,7 +295,7 @@ export default function PropertyDetail() {
                   placeholder="Your Phone"
                   value={contactForm.phone}
                   onChange={(e) => setContactForm({ ...contactForm, phone: e.target.value })}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-impact-gold"
                   required
                 />
                 <textarea
@@ -303,7 +303,7 @@ export default function PropertyDetail() {
                   rows={4}
                   value={contactForm.message}
                   onChange={(e) => setContactForm({ ...contactForm, message: e.target.value })}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-impact-gold"
                 />
                 <div className="flex gap-3">
                   <button
@@ -315,7 +315,7 @@ export default function PropertyDetail() {
                   </button>
                   <button
                     type="submit"
-                    className="flex-1 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+                    className="flex-1 px-4 py-2 bg-impact-gold text-white rounded-lg hover:bg-impact-gold hover:bg-opacity-90"
                   >
                     Send Message
                   </button>
@@ -393,13 +393,13 @@ export default function PropertyDetail() {
             <div className="bg-white rounded-lg shadow-sm border p-6">
               <h3 className="text-lg font-bold text-gray-900 mb-4">Share</h3>
               <div className="flex gap-3">
-                <button className="flex-1 px-3 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-sm font-semibold">
+                <button className="flex-1 px-3 py-2 bg-impact-gold text-white rounded-lg hover:bg-impact-gold hover:bg-opacity-90 text-sm font-semibold">
                   Facebook
                 </button>
-                <button className="flex-1 px-3 py-2 bg-blue-400 text-white rounded-lg hover:bg-blue-500 text-sm font-semibold">
+                <button className="flex-1 px-3 py-2 bg-impact-gold text-white rounded-lg hover:bg-impact-gold hover:bg-opacity-90 text-sm font-semibold">
                   Twitter
                 </button>
-                <button className="flex-1 px-3 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 text-sm font-semibold">
+                <button className="flex-1 px-3 py-2 bg-impact-gold text-white rounded-lg hover:bg-impact-gold hover:bg-opacity-90 text-sm font-semibold">
                   Copy Link
                 </button>
               </div>

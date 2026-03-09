@@ -41,7 +41,7 @@ export default function Careers() {
       {/* Hero Section */}
       <section className="bg-gradient-to-r from-blue-700 to-blue-900 text-white py-16 md:py-24">
         <div className="container mx-auto px-6 lg:px-20 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6">Careers at Rayob Engineering</h1>
+          <h1 className="text-4xl md:text-5xl font-bold mb-6">Careers at Impact Homes Real Estate</h1>
           <p className="text-lg md:text-xl text-indigo-100 max-w-3xl mx-auto">
             Join a dynamic, innovation-driven company where your talent and passion can make a real impact across Engineering, Construction, Telecommunications, and Management solutions.
           </p>
@@ -57,7 +57,7 @@ export default function Careers() {
               <div className="relative w-full h-64 sm:h-80 lg:h-96 rounded-xl overflow-hidden shadow-lg">
                 <Image
                   src="/images/projectplaceholder.png"
-                  alt="Careers at Rayob Engineering"
+                  alt="Careers at Impact Homes Real Estate"
                   fill
                   sizes="100%"
                   className="object-cover"
@@ -72,13 +72,13 @@ export default function Careers() {
               </h2>
               <div className="space-y-4 text-gray-700 leading-relaxed">
                 <p>
-                  At Rayob Engineering & Mgt. Co. Ltd., we believe that our greatest asset is our people. As a fast-growing, innovation-driven company offering Engineering, Construction, Telecommunications, and Management solutions, we are committed to attracting, developing, and retaining exceptional talent.
+                  At Impact Homes Real Estate, we believe that our greatest asset is our people. As a fast-growing, innovation-driven company offering Engineering, Construction, Telecommunications, and Management solutions, we are committed to attracting, developing, and retaining exceptional talent.
                 </p>
                 <p>
                   We provide an enabling environment where professionals can grow, contribute meaningfully, and excel in their chosen careers. Our culture values integrity, excellence, creativity, teamwork, and a relentless commitment to delivering outstanding results across all our project engagements.
                 </p>
                 <p className="text-blue-900 font-semibold">
-                  At Rayob, your career is not just a job — it&apos;s a partnership for growth, innovation, and excellence.
+                  At Impact Homes Real Estate, your career is not just a job — it&apos;s a partnership for growth, innovation, and excellence.
                 </p>
               </div>
             </div>
@@ -110,7 +110,7 @@ export default function Careers() {
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8 text-center">Who We Look For</h2>
             <div className="bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg shadow-md p-8 md:p-12 border-l-4 border-blue-900">
               <p className="text-lg text-gray-700 leading-relaxed">
-                We seek passionate, disciplined, and forward-thinking individuals who share our vision of engineering the future with excellence. Whether you are an experienced professional or an aspiring young talent, Rayob offers the platform to turn your potential into impact.
+                We seek passionate, disciplined, and forward-thinking individuals who share our vision of engineering the future with excellence. Whether you are an experienced professional or an aspiring young talent, Impact Homes Real Estate offers the platform to turn your potential into impact.
               </p>
             </div>
           </div>
@@ -149,9 +149,9 @@ export default function Careers() {
                 Interested applicants may submit their CV and cover letter to:
               </p>
               <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center">
-                <span className="text-lg font-semibold text-blue-900">info@rayobengineering.com</span>
+                <span className="text-lg font-semibold text-blue-900">info@impacthomes.ng</span>
                 <a
-                  href="mailto:info@rayobengineering.com"
+                  href="mailto:info@impacthomes.ng"
                   className="inline-flex items-center gap-2 bg-blue-900 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-800 transition"
                 >
                   Send Application
@@ -173,7 +173,7 @@ export default function Careers() {
             Be part of a team where your contributions matter, your growth is supported, and excellence is celebrated.
           </p>
           <a
-            href="mailto:info@rayobengineering.com"
+            href="mailto:info@impacthomes.ng"
             className="inline-block bg-white text-blue-900 px-8 py-3 rounded-lg font-semibold shadow-lg hover:bg-gray-50 transition"
           >
             Submit Your Application

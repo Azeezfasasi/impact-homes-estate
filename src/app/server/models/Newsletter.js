@@ -87,11 +87,11 @@ const campaignSchema = new mongoose.Schema({
   },
   senderEmail: {
     type: String,
-    default: process.env.NEWSLETTER_FROM_EMAIL || 'noreply@rayobengineering.com',
+    default: process.env.NEWSLETTER_FROM_EMAIL || 'noreply@impacthomes.ng',
   },
   senderName: {
     type: String,
-    default: 'Rayob Engineering',
+    default: 'Impact Homes Real Estate',
   },
   recipients: {
     type: {

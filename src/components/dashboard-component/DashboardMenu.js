@@ -248,7 +248,7 @@ export default function DashboardMenu({ collapsed, mobileOpen = false, onClose =
         <div className="h-full overflow-y-auto py-6 px-4">
           <div className="flex items-center justify-between mb-6">
             <Link href="/" className="flex flex-col items-center gap-3">
-              <Image src="/images/rayob.svg" alt="Rayob Logo" width={170} height={50} className="w-35 block rounded-md" />
+              <Image src="/images/logoblack.png" alt="Impact Homes Real Estate" width={170} height={50} className="w-35 block rounded-md" />
             </Link>
             <button aria-label="Close menu" onClick={onClose} className="p-2 rounded-md text-red-600 hover:bg-gray-100">
               <svg className="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor">

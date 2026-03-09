@@ -32,7 +32,7 @@ const WhyRayobSchema = new mongoose.Schema(
   {
     heading: {
       type: String,
-      default: "Why Choose Rayob Engineering & Mgt. Co. Ltd?",
+      default: "Why Choose Impact Homes Real Estate?",
     },
     subheading: {
       type: String,
@@ -45,7 +45,7 @@ const WhyRayobSchema = new mongoose.Schema(
     },
     ctaDescription: {
       type: String,
-      default: "Experience the Rayob difference in your next project. Let's turn your engineering challenges into innovative solutions.",
+      default: "Experience the Impact Homes Real Estate difference in your next project. Let's turn your real estate challenges into innovative solutions.",
     },
     ctaButton1: {
       label: {

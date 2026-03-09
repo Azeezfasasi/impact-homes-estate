@@ -117,7 +117,7 @@ export default function ClientReview() {
       <div className="relative z-10 max-w-6xl mx-auto px-5 md:px-8 lg:px-10">
         {/* Header */}
         <div className="text-center mb-12 md:mb-16 lg:mb-20">
-          <p className="text-pink-400 text-sm md:text-base font-semibold mb-3 md:mb-4 tracking-wide">We love feedback</p>
+          <p className="text-white text-sm md:text-base font-semibold mb-3 md:mb-4 tracking-wide">We love feedback</p>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white">Client Reviews</h2>
         </div>
 
@@ -137,7 +137,7 @@ export default function ClientReview() {
         {/* Carousel */}
         <div className="relative">
           {/* Reviews Container */}
-          <div className="relative h-96 md:h-80 lg:h-72 flex items-center justify-center overflow-hidden">
+          <div className="relative h-96 md:h-80 lg:h-[320px] flex items-center justify-center overflow-hidden">
             {reviews.map((review, index) => (
               <div
                 key={review.id}
@@ -149,7 +149,7 @@ export default function ClientReview() {
                     : 'opacity-0 scale-95 translate-x-full z-0'
                 }`}
               >
-                <div className="bg-white bg-opacity-95 backdrop-blur-md rounded-xl shadow-2xl p-8 md:p-10 lg:p-12 mx-auto max-w-2xl">
+                <div className="bg-white bg-opacity-95 rounded-lg shadow-lg p-8 md:p-10 lg:p-12 mx-4 md:mx-8 lg:mx-12">
                   {/* Rating */}
                   <div className="flex justify-center gap-1 mb-6">
                     {[...Array(review.rating)].map((_, i) => (
@@ -173,7 +173,7 @@ export default function ClientReview() {
                     <img
                       src={review.image}
                       alt={review.name}
-                      className="w-16 h-16 md:w-20 md:h-20 rounded-full object-cover mb-4 border-4 border-blue-500"
+                      className="w-16 h-16 md:w-20 md:h-20 rounded-full object-cover mb-4 border-4 border-impact-gold"
                     />
                     <h3 className="text-lg md:text-xl font-bold text-gray-900">{review.name}</h3>
                     <p className="text-sm md:text-base text-gray-600">{review.title}</p>
@@ -186,7 +186,7 @@ export default function ClientReview() {
           {/* Navigation Arrows */}
           <button
             onClick={prevSlide}
-            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-12 md:-translate-x-16 z-20 bg-blue-500 hover:bg-blue-600 text-white p-3 rounded-full transition-colors"
+            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-12 md:-translate-x-16 z-20 bg-white text-impact-gold p-3 rounded-full transition-colors"
             aria-label="Previous review"
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -196,7 +196,7 @@ export default function ClientReview() {
 
           <button
             onClick={nextSlide}
-            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-12 md:translate-x-16 z-20 bg-blue-500 hover:bg-blue-600 text-white p-3 rounded-full transition-colors"
+            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-12 md:translate-x-16 z-20 bg-white text-impact-gold p-3 rounded-full transition-colors"
             aria-label="Next review"
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -213,7 +213,7 @@ export default function ClientReview() {
               onClick={() => goToSlide(index)}
               className={`transition-all duration-300 rounded-full ${
                 index === currentSlide
-                  ? 'bg-blue-500 w-8 md:w-10'
+                  ? 'bg-white w-8 md:w-10'
                   : 'bg-white bg-opacity-50 hover:bg-opacity-75 w-3 md:w-3.5'
               } h-3 md:h-3.5`}
               aria-label={`Go to review ${index + 1}`}

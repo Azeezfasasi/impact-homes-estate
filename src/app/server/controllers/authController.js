@@ -23,8 +23,8 @@ const transporter = nodemailer.createTransport({
 // Brevo API endpoint and key
 const BREVO_API_KEY = process.env.BREVO_API_KEY;
 const BREVO_API_URL = "https://api.brevo.com/v3/smtp/email";
-const SENDER_EMAIL = process.env.BREVO_SENDER_EMAIL || "info@rayobengineering.com";
-const SENDER_NAME = process.env.BREVO_SENDER_NAME || "Rayob Engineering";
+const SENDER_EMAIL = process.env.BREVO_SENDER_EMAIL || "info@impacthomes.ng";
+const SENDER_NAME = process.env.BREVO_SENDER_NAME || "Impact Homes Real Estate";
 
 // Helper function to send emails via Brevo
 const sendEmailViaBrevo = async (toEmail, subject, htmlContent) => {
@@ -128,8 +128,8 @@ export const register = async (req) => {
     try {
       await transporter.sendMail({
         to: email,
-        subject: "Email Verification - Rayob Engineering",
-        html: `<h2>Welcome to Rayob Engineering</h2>
+        subject: "Email Verification - Impact Homes Real Estate",
+        html: `<h2>Welcome to Impact Homes Real Estate</h2>
                <p>Please click the link below to verify your email:</p>
                <a href="${verificationLink}">Verify Email</a>
                <p>This link expires in 24 hours.</p>`,
@@ -448,7 +448,7 @@ export const forgotPassword = async (req) => {
             </div>
             <div class="content">
               <p>Hello ${user.firstName},</p>
-              <p>We received a request to reset your password for your Rayob Engineering account.</p>
+              <p>We received a request to reset your password for your Impact Homes Real Estate account.</p>
               <p>Click the button below to reset your password:</p>
               <a href="${resetLink}" class="button">Reset Password</a>
               <div class="warning">
@@ -457,10 +457,10 @@ export const forgotPassword = async (req) => {
               </div>
               <p>Or copy and paste this link in your browser:<br><small>${resetLink}</small></p>
               <hr>
-              <p><small>Best regards,<br>Rayob Engineering Team</small></p>
+              <p><small>Best regards,<br>Impact Homes Real Estate Team</small></p>
             </div>
             <div class="footer">
-              <p>© 2026 Rayob Engineering. All rights reserved.</p>
+              <p>© 2026 Impact Homes Real Estate. All rights reserved.</p>
             </div>
           </div>
         </body>
@@ -468,7 +468,7 @@ export const forgotPassword = async (req) => {
     `;
 
     try {
-      await sendEmailViaBrevo(email, "Password Reset - Rayob Engineering", htmlContent);
+      await sendEmailViaBrevo(email, "Password Reset - Impact Homes Real Estate", htmlContent);
       console.log(`Password reset email sent to ${email}`);
     } catch (mailError) {
       console.error("Failed to send password reset email:", mailError.message);

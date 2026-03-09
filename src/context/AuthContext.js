@@ -149,7 +149,20 @@ export const AuthProvider = ({ children }) => {
 export const useAuth = () => {
   const context = useContext(AuthContext);
   if (!context) {
-    throw new Error("useAuth must be used within AuthProvider");
+    console.warn("useAuth called outside AuthProvider, returning null context");
+    return {
+      user: null,
+      token: null,
+      loading: false,
+      login: async () => ({ success: false, message: "Auth not available" }),
+      register: async () => ({ success: false, message: "Auth not available" }),
+      logout: () => {},
+      updateProfile: async () => ({ success: false, message: "Auth not available" }),
+      isAuthenticated: false,
+      isAdmin: false,
+      isClient: false,
+      isStaff: false,
+    };
   }
   return context;
 };

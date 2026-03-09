@@ -117,7 +117,7 @@ export default function RequestQuote() {
                 name="company"
                 value={formData.company}
                 onChange={handleChange}
-                placeholder="Rayob Client Ltd."
+                placeholder="Impact Homes Real Estate Client Ltd."
                 className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-900"
               />
             </div>

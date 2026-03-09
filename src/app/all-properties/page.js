@@ -104,7 +104,7 @@ export default function AllPropertiesPage() {
                   placeholder="Property name or location..."
                   value={filters.search}
                   onChange={(e) => handleFilterChange('search', e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-impact-gold text-sm"
                 />
               </div>
 
@@ -114,7 +114,7 @@ export default function AllPropertiesPage() {
                 <select
                   value={filters.propertyType}
                   onChange={(e) => handleFilterChange('propertyType', e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-impact-gold text-sm"
                 >
                   <option value="">All Types</option>
                   {propertyTypes.map(type => (
@@ -129,7 +129,7 @@ export default function AllPropertiesPage() {
                 <select
                   value={filters.status}
                   onChange={(e) => handleFilterChange('status', e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-impact-gold text-sm"
                 >
                   <option value="">All Statuses</option>
                   {statuses.map(status => (
@@ -147,14 +147,14 @@ export default function AllPropertiesPage() {
                     placeholder="Min price"
                     value={filters.minPrice}
                     onChange={(e) => handleFilterChange('minPrice', e.target.value)}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-impact-gold text-sm"
                   />
                   <input
                     type="number"
                     placeholder="Max price"
                     value={filters.maxPrice}
                     onChange={(e) => handleFilterChange('maxPrice', e.target.value)}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-impact-gold text-sm"
                   />
                 </div>
               </div>
@@ -167,7 +167,7 @@ export default function AllPropertiesPage() {
                   placeholder="City name..."
                   value={filters.city}
                   onChange={(e) => handleFilterChange('city', e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-impact-gold text-sm"
                 />
               </div>
 
@@ -178,7 +178,7 @@ export default function AllPropertiesPage() {
                   <select
                     value={filters.sortBy}
                     onChange={(e) => handleFilterChange('sortBy', e.target.value)}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-impact-gold text-sm"
                   >
                     <option value="dateListed">Newest</option>
                     <option value="price">Price</option>
@@ -187,7 +187,7 @@ export default function AllPropertiesPage() {
                   <select
                     value={filters.sortOrder}
                     onChange={(e) => handleFilterChange('sortOrder', e.target.value)}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-impact-gold text-sm"
                   >
                     <option value="desc">Descending</option>
                     <option value="asc">Ascending</option>
@@ -209,7 +209,7 @@ export default function AllPropertiesPage() {
           <div className="lg:col-span-3">
             {loading ? (
               <div className="flex justify-center items-center h-96">
-                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-impact-gold"></div>
               </div>
             ) : properties.length > 0 ? (
               <>
@@ -242,7 +242,7 @@ export default function AllPropertiesPage() {
                           {/* Badges */}
                           <div className="absolute top-3 left-3 flex gap-2">
                             {property.isFeatured && (
-                              <span className="inline-block px-2 py-1 bg-blue-600 text-white text-xs font-semibold rounded">
+                              <span className="inline-block px-2 py-1 bg-impact-gold text-white text-xs font-semibold rounded">
                                 ⭐ Featured
                               </span>
                             )}
@@ -252,7 +252,7 @@ export default function AllPropertiesPage() {
                           </div>
 
                           {/* Price Badge */}
-                          <div className="absolute top-3 right-3 bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-bold">
+                          <div className="absolute top-3 right-3 bg-impact-gold text-white px-3 py-1 rounded-full text-sm font-bold">
                             ₦{(property.price / 1000).toFixed(0)}K
                           </div>
                         </div>
@@ -260,7 +260,7 @@ export default function AllPropertiesPage() {
                         {/* Content */}
                         <div className="p-4">
                           {/* Title */}
-                          <h3 className="text-lg font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">
+                          <h3 className="text-lg font-semibold text-gray-900 group-hover:text-impact-gold transition-colors line-clamp-2">
                             {property.title}
                           </h3>
 
@@ -296,7 +296,7 @@ export default function AllPropertiesPage() {
                             <span className="text-lg font-bold text-gray-900">
                               ₦{property.price.toLocaleString()}
                             </span>
-                            <span className="text-blue-600 text-sm font-semibold group-hover:translate-x-1 transition-transform">
+                            <span className="text-impact-gold text-sm font-semibold group-hover:translate-x-1 transition-transform">
                               View →
                             </span>
                           </div>
@@ -323,7 +323,7 @@ export default function AllPropertiesPage() {
                         onClick={() => setCurrentPage(page)}
                         className={`px-3 py-2 rounded-md transition-colors ${
                           currentPage === page
-                            ? 'bg-blue-600 text-white'
+                            ? 'bg-impact-gold text-white'
                             : 'border hover:bg-gray-50'
                         }`}
                       >
@@ -346,7 +346,7 @@ export default function AllPropertiesPage() {
                 <p className="text-gray-500 text-lg">No properties found matching your criteria</p>
                 <button
                   onClick={handleReset}
-                  className="mt-4 px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
+                  className="mt-4 px-6 py-2 bg-impact-gold text-white rounded-md hover:bg-impact-gold hover:bg-opacity-90 transition-colors"
                 >
                   Reset Filters
                 </button>

@@ -9,6 +9,16 @@ export default function HeroSlider() {
   const [currentSlide, setCurrentSlide] = useState(0)
   const [slides, setSlides] = useState([])
   const [loading, setLoading] = useState(true)
+  const [preloadedImages, setPreloadedImages] = useState({})
+
+  // Preload images
+  const preloadImages = (imagesToPreload) => {
+    imagesToPreload.forEach((url) => {
+      const img = new Image()
+      img.src = url
+      setPreloadedImages((prev) => ({ ...prev, [url]: true }))
+    })
+  }
 
   // Fetch slides from backend
   useEffect(() => {
@@ -32,10 +42,11 @@ export default function HeroSlider() {
               alt: slide.alt || 'Slide image'
             }))
           
+          preloadImages(formattedSlides.map(slide => slide.image))
           setSlides(formattedSlides)
         } else {
           // Fallback to default slide if no slides from API
-          setSlides([
+          const defaultSlides = [
             {
               id: 'default',
               image: '/img/real4.jpg',
@@ -45,12 +56,14 @@ export default function HeroSlider() {
               buttonLink: '/all-properties',
               alt: 'Investment opportunities'
             }
-          ])
+          ]
+          preloadImages(defaultSlides.map(slide => slide.image))
+          setSlides(defaultSlides)
         }
       } catch (error) {
         console.error('Failed to fetch hero slides:', error)
         // Fallback to default slide on error
-        setSlides([
+        const defaultSlides = [
           {
             id: 'default',
             image: '/img/real4.jpg',
@@ -60,7 +73,9 @@ export default function HeroSlider() {
             buttonLink: '/all-properties',
             alt: 'Investment opportunities'
           }
-        ])
+        ]
+        preloadImages(defaultSlides.map(slide => slide.image))
+        setSlides(defaultSlides)
       } finally {
         setLoading(false)
       }
@@ -110,14 +125,21 @@ export default function HeroSlider() {
   const currentSlideData = slides[currentSlide]
 
   return (
-    <div className="relative w-full h-screen overflow-hidden">
-      {/* Slides Container */}
-      <div className="relative w-full h-full">
+    <div className="relative w-full overflow-hidden">
+      {/* Main Navigation - Fixed at Top */}
+      <div className="fixed top-0 left-0 right-0 z-40 w-full">
+        <MainNav hideBackgroundImage={true} />
+      </div>
+
+      {/* Slides Container with padding for fixed nav */}
+      <div className="relative w-full h-screen">
         {slides.map((slide, index) => (
           <div
             key={slide.id}
-            className={`absolute inset-0 transition-opacity duration-1000 ease-in-out pb-[20px] ${
-              index === currentSlide ? 'opacity-100' : 'opacity-0'
+            className={`absolute inset-0 transition-opacity duration-1000 ease-in-out pb-[20px] will-change-opacity md:pt-[250px] lg:pt-[250px] ${
+              index === currentSlide 
+                ? 'opacity-100 pointer-events-auto' 
+                : 'opacity-0 pointer-events-none'
             }`}
           >
             {/* Background Image */}
@@ -127,13 +149,12 @@ export default function HeroSlider() {
                 backgroundImage: `url(${slide.image})`,
               }}
             />
-            <MainNav hideBackgroundImage={true} />
 
             {/* Dark Overlay */}
             <div className="absolute inset-0 bg-black/30" />
 
             {/* Content */}
-            <div className="relative h-full flex flex-col justify-center items-start px-6 md:px-12 max-w-7xl mx-auto mt-[-120px]">
+            <div className="relative h-full flex flex-col justify-center items-start px-6 md:px-12 max-w-7xl mx-auto">
               {/* Main Heading */}
               <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight mb-6 max-w-2xl">
                 {slide.title}

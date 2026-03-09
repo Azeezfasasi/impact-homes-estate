@@ -10,22 +10,22 @@ export async function getHomeAbout() {
   // Initialize with default content if doesn't exist
   if (!homeAbout) {
     homeAbout = await HomeAbout.create({
-      title: "About Rayob Engineering & Mgt. Co. Ltd.",
+      title: "About Impact Homes Real Estate",
       paragraphs: [
         {
           _id: new mongoose.Types.ObjectId(),
-          text: "Rayob Engineering & Mgt. Co. Ltd is a dynamic, solutions-driven Engineering and Management Company committed to delivering world-class services across multiple sectors. Established in 2020 and legally incorporated in Nigeria in 2025 with a passion for innovation, engineering excellence, and sustainable project delivery.",
+          text: "Impact Homes Real Estate is a dynamic, solutions-driven real estate company committed to delivering world-class services across multiple sectors. Established in 2020 and legally incorporated in Nigeria in 2025 with a passion for innovation, engineering excellence, and sustainable project delivery.",
           order: 0,
         },
         {
           _id: new mongoose.Types.ObjectId(),
-          text: "We bring together nearly two decades of multidisciplinary experience spanning construction, telecommunications, optical fibre implementation, operations and maintenance, project management, corporate governance, and corporate social responsibility.",
+          text: "We bring together nearly two decades of real estate and property development experience.",
           order: 1,
         }
       ],
       image: {
         url: "/images/telecom2.jpeg",
-        alt: "Rayob Engineering Team",
+        alt: "Impact Homes Real Estate Team",
       },
       ctaButton: {
         label: "Learn More",

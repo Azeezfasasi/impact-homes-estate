@@ -5,22 +5,22 @@ import { useEffect, useState } from 'react';
 import { Loader } from 'lucide-react';
 
 const DEFAULT_CONTENT = {
-  title: "About Rayob Engineering & Mgt. Co. Ltd.",
+  title: "About Impact Homes Real Estate.",
   paragraphs: [
     {
       _id: '1',
-      text: "Rayob Engineering & Mgt. Co. Ltd is a dynamic, solutions-driven Engineering and Management Company committed to delivering world-class services across multiple sectors. Established in 2020 and legally incorporated in Nigeria in 2025 with a passion for innovation, engineering excellence, and sustainable project delivery.",
+      text: "Impact Homes Real Estate is a dynamic, solutions-driven real estate company committed to delivering world-class services across multiple sectors. Established in 2020 and legally incorporated in Nigeria in 2025 with a passion for innovation, real estate excellence, and sustainable project delivery.",
       order: 0,
     },
     {
       _id: '2',
-      text: "We bring together nearly two decades of multidisciplinary experience spanning construction, telecommunications, optical fibre implementation, operations and maintenance, project management, corporate governance, and corporate social responsibility.",
+      text: "We bring together nearly two decades of multidisciplinary real estate experience",
       order: 1,
     }
   ],
   image: {
     url: "/images/telecom2.jpeg",
-    alt: "Rayob Engineering Team",
+    alt: "Impact Homes Real Estate Team",
   },
   ctaButton: {
     label: "Learn More",
@@ -76,7 +76,7 @@ export default function HomeAbout() {
           <div className="relative w-full h-64 md:h-80 lg:h-96 rounded-lg overflow-hidden shadow-lg">
             <Image
               src={content.image?.url || "/images/telecom2.jpeg"} 
-              alt={content.image?.alt || "Rayob Engineering Team"}
+              alt={content.image?.alt || "Impact Homes Real Estate Team"}
               fill
               sizes='100%'
               className="object-cover"

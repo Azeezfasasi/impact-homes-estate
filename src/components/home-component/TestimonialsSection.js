@@ -9,7 +9,7 @@ const DEFAULT_TESTIMONIALS = [
     name: "John Adewale",
     position: "Project Manager, Alpha Industries",
     message:
-      "Rayob Engineering delivered beyond expectations. Their team showed exceptional professionalism and technical expertise throughout our factory upgrade project.",
+      "Impact Homes Real Estate delivered beyond expectations. Their team showed exceptional professionalism and technical expertise throughout our project inspection.",
     rating: 5,
   },
   {
@@ -17,7 +17,7 @@ const DEFAULT_TESTIMONIALS = [
     name: "Maria Okafor",
     position: "Director, GreenBuild Ltd.",
     message:
-      "The Rayob team provided innovative solutions that reduced our construction costs and improved overall efficiency. Highly recommended for quality engineering services.",
+      "The Impact Homes Real Estate team provided innovative solutions that reduced our construction costs and improved overall efficiency. Highly recommended for quality real estate services.",
     rating: 5,
   },
   {
@@ -25,7 +25,7 @@ const DEFAULT_TESTIMONIALS = [
     name: "Engr. David Uche",
     position: "CEO, Uche Group",
     message:
-      "They combine strong technical skills with a great sense of client service. Every project we’ve done with Rayob Engineering has been a success story.",    rating: 5,  },
+      "They combine strong technical skills with a great sense of client service. Every project we’ve done with Impact Homes Real Estate has been a success story.",    rating: 5,  },
 ];
 
 export default function TestimonialsSection() {
@@ -72,8 +72,7 @@ export default function TestimonialsSection() {
             What Our Clients Say
           </h2>
           <p className="text-gray-600 max-w-2xl mx-auto">
-            Hear from some of our satisfied clients who have trusted Rayob
-            Engineering with their projects.
+            Hear from some of our satisfied clients who have trusted Impact Homes Real Estate with their projects.
           </p>
         </div>
 

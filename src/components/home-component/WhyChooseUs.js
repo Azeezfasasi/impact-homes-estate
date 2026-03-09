@@ -26,7 +26,7 @@ export default function WhyChooseUs() {
         {/* Header */}
         <div className="text-center mb-12">
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-800 mb-4">
-            Why Choose Rayob Engineering
+            Why Choose Impact Homes Real Estate
           </h2>
           <p className="text-gray-600 max-w-2xl mx-auto">
             We combine technical expertise, innovation, and a client-focused approach to deliver engineering solutions that exceed expectations.

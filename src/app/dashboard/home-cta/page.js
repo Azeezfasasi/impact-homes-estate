@@ -277,7 +277,7 @@ export default function HomeCTAManager() {
                 value={content.title}
                 onChange={handleTitleChange}
                 className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm"
-                placeholder="e.g., About Rayob Engineering & Mgt. Co. Ltd."
+                placeholder="e.g., About Impact Homes Real Estate."
               />
             </div>
 
