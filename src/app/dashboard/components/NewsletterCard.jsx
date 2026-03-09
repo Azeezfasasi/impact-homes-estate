@@ -74,7 +74,7 @@ export default function NewsletterCard({ campaign, onDelete, onEdit, onSend, onP
           </span>
         </div>
         <p className="text-sm text-gray-600 line-clamp-2">
-          {campaign.content?.substring(0, 100) || 'No description'}...
+          {campaign.content?.replace(/<[^>]*>/g, '').split(" ").slice(0, 20).join(" ").substring(0, 100) || 'No description'}...
         </p>
       </div>
 

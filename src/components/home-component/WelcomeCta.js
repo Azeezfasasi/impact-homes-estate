@@ -1,12 +1,81 @@
-import React from 'react'
+'use client'
+
+import React, { useState, useEffect } from 'react'
 
 export default function WelcomeCta() {
-  const stats = [
-    { icon: '🚀', number: '1000+', label: 'Homes delivered' },
-    { icon: '🚀', number: '1,000,500+', label: 'Square foot Developed' },
-    { icon: '🚀', number: '50+', label: 'Experienced Professionals' },
-    { icon: '🚀', number: '10+', label: 'Years of Progressive Excellence' },
-  ]
+  const [content, setContent] = useState(null)
+  const [stats, setStats] = useState([])
+  const [loading, setLoading] = useState(true)
+
+  // Fetch WelcomeCta data from backend
+  useEffect(() => {
+    const fetchWelcomeCta = async () => {
+      try {
+        const response = await fetch('/api/welcome-cta')
+        const data = await response.json()
+
+        if (data.success && data.data) {
+          setContent(data.data)
+          // Sort stats by order
+          const sortedStats = [...(data.data.stats || [])].sort(
+            (a, b) => (a.order || 0) - (b.order || 0)
+          )
+          setStats(sortedStats)
+        } else {
+          // Fallback to default if fetch fails
+          setDefaultContent()
+        }
+      } catch (error) {
+        console.error('Failed to fetch WelcomeCta:', error)
+        setDefaultContent()
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchWelcomeCta()
+
+    // Refresh every 5 minutes
+    const refreshInterval = setInterval(fetchWelcomeCta, 5 * 60 * 1000)
+    return () => clearInterval(refreshInterval)
+  }, [])
+
+  const setDefaultContent = () => {
+    const defaultStats = [
+      { icon: '🚀', number: '1000+', label: 'Homes delivered', order: 0 },
+      { icon: '🚀', number: '1,000,500+', label: 'Square foot Developed', order: 1 },
+      { icon: '🚀', number: '50+', label: 'Experienced Professionals', order: 2 },
+      { icon: '🚀', number: '10+', label: 'Years of Progressive Excellence', order: 3 },
+    ]
+    setContent({
+      title: 'Enjoy Free Investment Advisory Services',
+      description:
+        'Would you like to get started with investments in real estate? Our trained and well experienced Investment Advisors are willing to guide you on your journey to a profitable real estate investment',
+      buttonLabel: 'Speak with an Investment Advisor',
+      stats: defaultStats,
+    })
+    setStats(defaultStats)
+  }
+
+  if (loading) {
+    return (
+      <div className="max-w-7xl bg-white mx-auto my-4 lg:rounded-lg shadow-lg overflow-hidden mt-0 md:mt-[0px] lg:mt-[0px] z-10 relative border border-gray-200">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
+          <div className="bg-gradient-to-br from-impact-gold to-impact-gold/90 flex flex-col justify-center items-center p-8 md:p-12 lg:p-16 min-h-[300px]">
+            <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-white"></div>
+            <p className="mt-4 text-white">Loading...</p>
+          </div>
+          <div className="bg-white flex flex-col justify-center items-center p-8 md:p-12 lg:p-16 min-h-[300px]">
+            {/* Stats loading placeholder */}
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  if (!content) {
+    return null
+  }
 
   return (
     <div className="max-w-7xl bg-white mx-auto my-4 lg:rounded-lg shadow-lg overflow-hidden mt-0 md:mt-[0px] lg:mt-[0px] z-10 relative border border-gray-200">
@@ -15,15 +84,15 @@ export default function WelcomeCta() {
         <div className="bg-gradient-to-br from-impact-gold to-impact-gold/90 flex flex-col justify-center items-start p-8 md:p-12 lg:p-16">
           <div className="w-full max-w-lg">
             <h1 className="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
-              Enjoy Free Investment Advisory Services
+              {content.title}
             </h1>
             
             <p className="text-lg text-gray-100 mb-8 leading-relaxed">
-              Would you like to get started with investments in real estate? Our trained and well experienced Investment Advisors are willing to guide you on your journey to a profitable real estate investment
+              {content.description}
             </p>
             
             <button className="bg-white text-gray-900 font-semibold px-8 py-4 rounded-lg hover:bg-gray-50 transition-all duration-300 transform hover:scale-105 flex items-center gap-2 shadow-lg hover:shadow-xl">
-              Speak with an Investment Advisor
+              {content.buttonLabel}
               <span className="text-xl">📋</span>
             </button>
           </div>
@@ -35,7 +104,7 @@ export default function WelcomeCta() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
               {stats.map((stat, index) => (
                 <div
-                  key={index}
+                  key={stat._id || index}
                   className="flex flex-col items-center text-center p-6 rounded-xl hover:bg-gray-50 transition-all duration-300 transform hover:scale-105"
                 >
                   {/* Icon */}

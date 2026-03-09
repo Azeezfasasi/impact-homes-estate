@@ -1,5 +1,5 @@
 import Hero from "../models/Hero";
-import { connectDB } from "../../server/db/connect";
+import { connectDB } from "../db/connect.js";
 import mongoose from "mongoose";
 
 // GET all hero slides

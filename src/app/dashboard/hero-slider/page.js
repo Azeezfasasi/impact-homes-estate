@@ -62,25 +62,17 @@ export default function HeroSliderManager() {
 
     setImageUploading(true);
     try {
-      const reader = new FileReader();
-      reader.onloadend = async () => {
-        try {
-          const result = await uploadImageToCloudinary(reader.result, 'rayob/hero-slider');
-          setFormData(prev => ({
-            ...prev,
-            image: result.url,
-            alt: prev.alt || 'Hero slide image',
-          }));
-          toast.success('Image uploaded successfully');
-        } catch (error) {
-          toast.error('Failed to upload image');
-        } finally {
-          setImageUploading(false);
-        }
-      };
-      reader.readAsDataURL(file);
+      const result = await uploadImageToCloudinary(file, 'rayob/hero-slider');
+      setFormData(prev => ({
+        ...prev,
+        image: result.url || result,
+        alt: prev.alt || 'Hero slide image',
+      }));
+      toast.success('Image uploaded successfully');
     } catch (error) {
       toast.error('Failed to upload image');
+      console.error('Upload error:', error);
+    } finally {
       setImageUploading(false);
     }
   };

@@ -4,31 +4,78 @@ import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { ChevronRight } from 'lucide-react'
 import MainNav from './MainNav'
-import WelcomeCta from './WelcomeCta'
 
 export default function HeroSlider() {
   const [currentSlide, setCurrentSlide] = useState(0)
+  const [slides, setSlides] = useState([])
+  const [loading, setLoading] = useState(true)
 
-  const slides = [
-    {
-      id: 1,
-      image: '/img/real4.jpg',
-      title: 'INVESTMENT THAT COUNTS',
-      subtitle: 'Let our investment advisors guide you on your journey to a profitable real estate investment.',
-      buttonText: 'SCHEDULE AN INSPECTION',
-      buttonLink: '#'
-    },
-    {
-      id: 1,
-      image: '/img/real4.jpg',
-      title: 'INVESTMENT THAT COUNTS',
-      subtitle: 'Let our investment advisors guide you on your journey to a profitable real estate investment.',
-      buttonText: 'SCHEDULE AN INSPECTION',
-      buttonLink: '#'
+  // Fetch slides from backend
+  useEffect(() => {
+    const fetchSlides = async () => {
+      try {
+        const response = await fetch('/api/hero')
+        const data = await response.json()
+        
+        if (data.success && data.slides && data.slides.length > 0) {
+          // Map backend data to component format
+          const formattedSlides = data.slides
+            .filter(slide => slide.active !== false) // Filter out inactive slides
+            .sort((a, b) => (a.order || 0) - (b.order || 0))
+            .map(slide => ({
+              id: slide._id,
+              image: slide.image,
+              title: slide.title,
+              subtitle: slide.subtitle,
+              buttonText: slide.ctaLabel,
+              buttonLink: slide.ctaHref,
+              alt: slide.alt || 'Slide image'
+            }))
+          
+          setSlides(formattedSlides)
+        } else {
+          // Fallback to default slide if no slides from API
+          setSlides([
+            {
+              id: 'default',
+              image: '/img/real4.jpg',
+              title: 'INVESTMENT THAT COUNTS',
+              subtitle: 'Let our investment advisors guide you on your journey to a profitable real estate investment.',
+              buttonText: 'SCHEDULE AN INSPECTION',
+              buttonLink: '/all-properties',
+              alt: 'Investment opportunities'
+            }
+          ])
+        }
+      } catch (error) {
+        console.error('Failed to fetch hero slides:', error)
+        // Fallback to default slide on error
+        setSlides([
+          {
+            id: 'default',
+            image: '/img/real4.jpg',
+            title: 'INVESTMENT THAT COUNTS',
+            subtitle: 'Let our investment advisors guide you on your journey to a profitable real estate investment.',
+            buttonText: 'SCHEDULE AN INSPECTION',
+            buttonLink: '/all-properties',
+            alt: 'Investment opportunities'
+          }
+        ])
+      } finally {
+        setLoading(false)
+      }
     }
-  ]
+
+    fetchSlides()
+
+    // Optional: Refresh slides periodically (every 5 minutes)
+    const refreshInterval = setInterval(fetchSlides, 5 * 60 * 1000)
+    return () => clearInterval(refreshInterval)
+  }, [])
 
   useEffect(() => {
+    if (slides.length === 0) return
+
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % slides.length)
     }, 5000)
@@ -37,6 +84,27 @@ export default function HeroSlider() {
 
   const goToSlide = (index) => {
     setCurrentSlide(index)
+  }
+
+  if (loading) {
+    return (
+      <div className="relative w-full h-screen overflow-hidden bg-gray-900 flex items-center justify-center">
+        <div className="text-center">
+          <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-impact-gold"></div>
+          <p className="mt-4 text-white">Loading slides...</p>
+        </div>
+      </div>
+    )
+  }
+
+  if (slides.length === 0) {
+    return (
+      <div className="relative w-full h-screen overflow-hidden bg-gray-900 flex items-center justify-center">
+        <div className="text-center text-white">
+          <p>No slides available</p>
+        </div>
+      </div>
+    )
   }
 
   const currentSlideData = slides[currentSlide]
