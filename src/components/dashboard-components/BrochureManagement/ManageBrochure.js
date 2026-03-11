@@ -3,8 +3,11 @@
 import React, { useState, useEffect } from 'react'
 import { Upload, Edit2, Trash2, Eye, Download, X } from 'lucide-react'
 import toast from 'react-hot-toast'
+import { useAuth } from '@/context/AuthContext'
 
 export default function ManageBrochure() {
+  const auth = useAuth()
+  const user = auth?.user
   const [brochures, setBrochures] = useState([])
   const [loading, setLoading] = useState(false)
   const [showForm, setShowForm] = useState(false)
@@ -121,7 +124,11 @@ export default function ManageBrochure() {
         }
       } else {
         // Create
-        const userId = localStorage.getItem('userId')
+        if (!user || !user._id) {
+          toast.error('You must be logged in to upload brochures')
+          return
+        }
+
         const response = await fetch('/api/brochures', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -129,7 +136,7 @@ export default function ManageBrochure() {
             ...payload,
             file,
             fileName: previewFile,
-            uploadedBy: userId,
+            uploadedBy: user._id,
           }),
         })
 
