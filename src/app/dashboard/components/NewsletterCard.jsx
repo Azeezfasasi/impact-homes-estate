@@ -57,9 +57,9 @@ export default function NewsletterCard({ campaign, onDelete, onEdit, onSend, onP
   };
 
   return (
-    <div className="bg-white rounded-lg border border-gray-200 hover:border-blue-300 hover:shadow-lg transition-all duration-300 overflow-hidden">
+    <div className="bg-white rounded-lg border border-impact-gold/70 hover:border-impact-gold/80 hover:shadow-lg transition-all duration-300 overflow-hidden">
       {/* Header */}
-      <div className="p-6 border-b border-gray-100">
+      <div className="p-6 border-b border-impact-gold/20">
         <div className="flex items-start justify-between mb-3">
           <div className="flex-1">
             <h3 className="text-lg font-semibold text-gray-900 line-clamp-1">
@@ -128,25 +128,25 @@ export default function NewsletterCard({ campaign, onDelete, onEdit, onSend, onP
 
       {/* Actions */}
       <div className="px-6 py-4 flex items-center justify-between bg-gray-50">
-        <Link
+        {/* <Link
           href={`/dashboard/newsletter/${campaign._id}`}
-          className="text-sm font-medium text-blue-600 hover:text-blue-700 transition-colors"
+          className="text-sm font-medium text-impact-gold hover:text-impact-gold/80 transition-colors"
         >
           View Analytics
-        </Link>
+        </Link> */}
         <div className="flex items-center space-x-2">
           {campaign.status === 'draft' && (
             <>
               <button
                 onClick={() => onEdit(campaign)}
-                className="p-2 hover:bg-blue-50 rounded-lg text-blue-600 transition-colors"
+                className="p-2 hover:bg-impact-gold/20 rounded-lg text-impact-gold transition-colors"
                 title="Edit"
               >
                 <Edit className="w-4 h-4" />
               </button>
               <button
                 onClick={() => onSend(campaign._id)}
-                className="p-2 hover:bg-green-50 rounded-lg text-green-600 transition-colors"
+                className="p-2 hover:bg-impact-gold/20 rounded-lg text-impact-gold transition-colors"
                 title="Send"
               >
                 <Send className="w-4 h-4" />
@@ -156,7 +156,7 @@ export default function NewsletterCard({ campaign, onDelete, onEdit, onSend, onP
           {campaign.status === 'scheduled' && (
             <button
               onClick={() => onPause(campaign._id)}
-              className="p-2 hover:bg-yellow-50 rounded-lg text-yellow-600 transition-colors"
+              className="p-2 hover:bg-impact-gold/20 rounded-lg text-impact-gold transition-colors"
               title="Pause"
             >
               <Pause className="w-4 h-4" />

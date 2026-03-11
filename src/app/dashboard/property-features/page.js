@@ -218,7 +218,7 @@ export default function PropertyFeatures() {
     return (
       <div className="max-w-7xl mx-auto p-6">
         <div className="flex justify-center items-center h-64">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-impact-gold"></div>
         </div>
       </div>
     );
@@ -234,7 +234,7 @@ export default function PropertyFeatures() {
           </div>
           <button
             onClick={() => setShowAddForm(true)}
-            className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors"
+            className="bg-impact-gold text-white px-4 py-2 rounded-lg hover:bg-impact-gold/80 transition-colors"
           >
             Add Feature
           </button>
@@ -252,7 +252,7 @@ export default function PropertyFeatures() {
                 type="text"
                 value={newFeature.id}
                 onChange={(e) => setNewFeature({ ...newFeature, id: e.target.value.toLowerCase().replace(/\s+/g, '-') })}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 border border-impact-gold/70 rounded-md focus:outline-none focus:ring-2 focus:ring-impact-gold"
                 placeholder="e.g., smart-home"
               />
             </div>
@@ -262,7 +262,7 @@ export default function PropertyFeatures() {
                 type="text"
                 value={newFeature.name}
                 onChange={(e) => setNewFeature({ ...newFeature, name: e.target.value })}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 border border-impact-gold/70 rounded-md focus:outline-none focus:ring-2 focus:ring-impact-gold"
                 placeholder="e.g., Smart Home"
               />
             </div>
@@ -271,7 +271,7 @@ export default function PropertyFeatures() {
               <textarea
                 value={newFeature.description}
                 onChange={(e) => setNewFeature({ ...newFeature, description: e.target.value })}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 border border-impact-gold/70 rounded-md focus:outline-none focus:ring-2 focus:ring-impact-gold"
                 rows={3}
                 placeholder="Describe this feature..."
               />
@@ -281,7 +281,7 @@ export default function PropertyFeatures() {
               <select
                 value={newFeature.category}
                 onChange={(e) => setNewFeature({ ...newFeature, category: e.target.value })}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 border border-impact-gold/70 rounded-md focus:outline-none focus:ring-2 focus:ring-impact-gold"
               >
                 {categoryOptions.map(option => (
                   <option key={option.value} value={option.value}>{option.label}</option>
@@ -293,7 +293,7 @@ export default function PropertyFeatures() {
               <select
                 value={newFeature.icon}
                 onChange={(e) => setNewFeature({ ...newFeature, icon: e.target.value })}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 border border-impact-gold/70 rounded-md focus:outline-none focus:ring-2 focus:ring-impact-gold"
               >
                 {iconOptions.map(option => (
                   <option key={option.value} value={option.value}>{option.label}</option>
@@ -304,7 +304,7 @@ export default function PropertyFeatures() {
           <div className="mt-4 flex space-x-2">
             <button
               onClick={handleAddFeature}
-              className="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors"
+              className="bg-impact-gold text-white px-4 py-2 rounded-lg hover:bg-impact-gold/80 transition-colors"
             >
               Add Feature
             </button>
@@ -322,8 +322,8 @@ export default function PropertyFeatures() {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
         <div className="bg-white rounded-lg shadow-sm border p-6">
           <div className="flex items-center">
-            <div className="p-3 bg-blue-100 rounded-full">
-              <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="p-3 bg-impact-gold/20 rounded-full">
+              <svg className="w-6 h-6 text-impact-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
               </svg>
             </div>
@@ -389,7 +389,7 @@ export default function PropertyFeatures() {
                             type="text"
                             value={editingFeature.name}
                             onChange={(e) => setEditingFeature({ ...editingFeature, name: e.target.value })}
-                            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            className="w-full px-3 py-2 border border-impact-gold/70 rounded-md focus:outline-none focus:ring-2 focus:ring-impact-gold"
                           />
                         </div>
                         <div>
@@ -397,7 +397,7 @@ export default function PropertyFeatures() {
                           <select
                             value={editingFeature.category}
                             onChange={(e) => setEditingFeature({ ...editingFeature, category: e.target.value })}
-                            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            className="w-full px-3 py-2 border border-impact-gold/70 rounded-md focus:outline-none focus:ring-2 focus:ring-impact-gold"
                           >
                             {categoryOptions.map(option => (
                               <option key={option.value} value={option.value}>{option.label}</option>
@@ -409,7 +409,7 @@ export default function PropertyFeatures() {
                           <select
                             value={editingFeature.icon}
                             onChange={(e) => setEditingFeature({ ...editingFeature, icon: e.target.value })}
-                            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            className="w-full px-3 py-2 border border-impact-gold/70 rounded-md focus:outline-none focus:ring-2 focus:ring-impact-gold"
                           >
                             {iconOptions.map(option => (
                               <option key={option.value} value={option.value}>{option.label}</option>
@@ -421,7 +421,7 @@ export default function PropertyFeatures() {
                           <textarea
                             value={editingFeature.description}
                             onChange={(e) => setEditingFeature({ ...editingFeature, description: e.target.value })}
-                            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            className="w-full px-3 py-2 border border-impact-gold/70 rounded-md focus:outline-none focus:ring-2 focus:ring-impact-gold"
                             rows={3}
                           />
                         </div>
@@ -429,13 +429,13 @@ export default function PropertyFeatures() {
                       <div className="flex space-x-2">
                         <button
                           onClick={handleSaveFeature}
-                          className="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors"
+                          className="bg-impact-gold text-white px-4 py-2 rounded-lg hover:bg-impact-gold/80 transition-colors"
                         >
                           Save Changes
                         </button>
                         <button
                           onClick={handleCancelEdit}
-                          className="bg-gray-600 text-white px-4 py-2 rounded-lg hover:bg-gray-700 transition-colors"
+                          className="bg-impact-gold/20 text-impact-gold hover:bg-impact-gold/30 px-4 py-2 rounded-lg transition-colors"
                         >
                           Cancel
                         </button>
@@ -453,7 +453,7 @@ export default function PropertyFeatures() {
                                 Default
                               </span>
                             )}
-                            <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                            <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-impact-gold/10 text-impact-gold">
                               {getCategoryLabel(feature.category)}
                             </span>
                           </div>
@@ -465,7 +465,7 @@ export default function PropertyFeatures() {
                       <div className="flex space-x-2">
                         <button
                           onClick={() => handleEditFeature(feature)}
-                          className="text-blue-600 hover:text-blue-800 p-2 transition-colors"
+                          className="text-impact-gold hover:text-impact-gold/80 p-2 transition-colors"
                           title="Edit feature"
                         >
                           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

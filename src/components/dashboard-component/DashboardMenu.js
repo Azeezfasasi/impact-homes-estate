@@ -94,19 +94,8 @@ export default function DashboardMenu({ collapsed, mobileOpen = false, onClose =
       ]
     },
     { href: '/blog', label: 'View Blogs', icon: 'dashboard', roles: ['client'] },
-    { href: '/dashboard/contact-form-responses', label: 'Contact Form Responses', icon: 'Contact', roles: ['admin', 'staff-member'] },
     { href: '/dashboard/inspection-requests', label: 'Inspection Requests', icon: 'Contact', roles: ['admin', 'staff-member'] },
-    {
-      href: '/dashboard/users',
-      label: 'Manage Users',
-      icon: 'Users',
-      roles: ['admin'],
-      children: [
-        { href: '/dashboard/all-users', label: 'All Users', roles: ['admin'] },
-        { href: '/dashboard/add-user', label: 'Add User', roles: ['admin'] },
-        { href: '/dashboard/change-user-password', label: 'Change User Password', roles: ['admin'] }
-      ]
-    },
+    { href: '/dashboard/contact-form-responses', label: 'Contact Form Responses', icon: 'Contact', roles: ['admin', 'staff-member'] },
     {
       href: '/dashboard/all-newsletter',
       label: 'Newsletter Management',
@@ -128,18 +117,29 @@ export default function DashboardMenu({ collapsed, mobileOpen = false, onClose =
         { href: '/dashboard/all-gallery', label: 'All Gallery', roles: ['admin', 'staff-member'] },
       ]
     },
-    {
-      href: '/dashboard/media',
-      label: 'Media Library',
-      icon: 'Gallery',
-      roles: ['admin', 'staff-member'],
-      children: [
-        { href: '/dashboard/all-media', label: 'All Media', roles: ['admin', 'staff-member'] },
-        { href: '/dashboard/add-media', label: 'Add Media', roles: ['admin', 'staff-member'] },
-      ]
-    },
+    // {
+    //   href: '/dashboard/media',
+    //   label: 'Media Library',
+    //   icon: 'Gallery',
+    //   roles: ['admin', 'staff-member'],
+    //   children: [
+    //     { href: '/dashboard/all-media', label: 'All Media', roles: ['admin', 'staff-member'] },
+    //     { href: '/dashboard/add-media', label: 'Add Media', roles: ['admin', 'staff-member'] },
+    //   ]
+    // },
     { href: '/gallery', label: 'Our Gallery', icon: 'projects', roles: ['client'] },
     { href: '/dashboard/my-profile', label: 'Profile', icon: 'dashboard', roles: ['admin', 'client', 'staff-member'] },
+    {
+      href: '/dashboard/users',
+      label: 'Manage Users',
+      icon: 'Users',
+      roles: ['admin'],
+      children: [
+        { href: '/dashboard/all-users', label: 'All Users', roles: ['admin'] },
+        { href: '/dashboard/add-user', label: 'Add User', roles: ['admin'] },
+        { href: '/dashboard/change-user-password', label: 'Change User Password', roles: ['admin'] }
+      ]
+    },
     {
       href: '/dashboard/home',
       label: 'Homepage Contents',
@@ -161,7 +161,6 @@ export default function DashboardMenu({ collapsed, mobileOpen = false, onClose =
       children: [
         { href: '/dashboard/company-overview', label: 'Company Overview', roles: ['admin', 'staff-member'] },
         { href: '/dashboard/history-milestones', label: 'History & Milestones', roles: ['admin', 'staff-member'] },
-        { href: '/dashboard/team-section', label: 'Our Team Manager', roles: ['admin', 'staff-member'] },
       ]
     },
   ]
@@ -199,7 +198,7 @@ export default function DashboardMenu({ collapsed, mobileOpen = false, onClose =
                   <div>
                     <button
                       onClick={() => toggleSub(i.href)}
-                      className={`w-full flex items-center justify-between gap-3 px-3 py-2 rounded-md ${active ? 'bg-indigo-50 text-indigo-600' : 'text-white hover:bg-blue-800'}`}
+                      className={`w-full flex items-center justify-between gap-3 px-3 py-2 rounded-md ${active ? 'bg-impact-gold/10 text-impact-gold' : 'text-white hover:bg-impact-gold'}`}
                     >
                       <span className="flex justify-start items-center gap-2">
                         <span className="shrink-0"> <Icon name={i.icon} /> </span>
@@ -217,7 +216,7 @@ export default function DashboardMenu({ collapsed, mobileOpen = false, onClose =
                       <ul className="mt-1 space-y-1 pl-10">
                         {i.children.map(c => (
                           <li key={c.href}>
-                            <Link href={c.href} className={`block px-3 py-2 rounded-md text-sm ${pathname === c.href ? 'bg-indigo-50 text-indigo-600' : 'text-white hover:bg-blue-600'}`}>
+                            <Link href={c.href} className={`block px-3 py-2 rounded-md text-sm ${pathname === c.href ? 'bg-impact-gold/90 text-white' : 'text-white hover:bg-impact-gold'}`}>
                               {c.label}
                             </Link>
                           </li>
@@ -226,7 +225,7 @@ export default function DashboardMenu({ collapsed, mobileOpen = false, onClose =
                     )}
                   </div>
                 ) : (
-                  <Link href={i.href} className={`flex items-center gap-3 px-3 py-2 rounded-md ${active ? 'bg-indigo-50 text-indigo-600' : 'text-white hover:bg-blue-800'}`}>
+                  <Link href={i.href} className={`flex items-center gap-3 px-3 py-2 rounded-md ${active ? 'bg-impact-gold text-white' : 'text-white hover:bg-impact-gold'}`}>
                     <span className="shrink-0"> <Icon name={i.icon} /> </span>
                     {!collapsed && <span className="text-sm font-medium">{i.label}</span>}
                   </Link>

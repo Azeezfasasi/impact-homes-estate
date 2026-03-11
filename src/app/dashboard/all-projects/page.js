@@ -144,7 +144,7 @@ export default function AllProjectsPage() {
             <h1 className="text-2xl md:text-3xl font-bold text-gray-900">All Projects</h1>
             <p className="mt-2 text-gray-600">Manage and view all construction projects.</p>
           </div>
-          <Link href="/dashboard/add-projects" className="inline-flex items-center justify-center gap-2 bg-indigo-600 text-white font-medium px-4 py-2 rounded-md hover:bg-indigo-700 whitespace-nowrap">
+          <Link href="/dashboard/add-projects" className="inline-flex items-center justify-center gap-2 bg-impact-gold text-white font-medium px-4 py-2 rounded-md hover:bg-impact-gold/80 whitespace-nowrap">
             <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor">
               <path strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
             </svg>
@@ -163,13 +163,13 @@ export default function AllProjectsPage() {
         <div className="bg-white rounded-lg shadow-sm p-4 md:p-6 mb-6 space-y-4">
           <div>
             <label htmlFor="search" className="block text-sm font-medium text-gray-700 mb-2">Search Projects</label>
-            <input type="text" id="search" placeholder="Search by project name or location..." value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none" />
+            <input type="text" id="search" placeholder="Search by project name or location..." value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-impact-gold focus:border-transparent outline-none" />
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label htmlFor="status-filter" className="block text-sm font-medium text-gray-700 mb-2">Filter by Status</label>
-              <select id="status-filter" value={filterStatus} onChange={(e) => setFilterStatus(e.target.value)} className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none">
+              <select id="status-filter" value={filterStatus} onChange={(e) => setFilterStatus(e.target.value)} className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-impact-gold focus:border-transparent outline-none">
                 <option value="all">All Statuses</option>
                 <option value="planning">Planning</option>
                 <option value="in-progress">In Progress</option>
@@ -180,7 +180,7 @@ export default function AllProjectsPage() {
 
             <div>
               <label htmlFor="category-filter" className="block text-sm font-medium text-gray-700 mb-2">Filter by Category</label>
-              <select id="category-filter" value={filterCategory} onChange={(e) => setFilterCategory(e.target.value)} className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none">
+              <select id="category-filter" value={filterCategory} onChange={(e) => setFilterCategory(e.target.value)} className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-impact-gold focus:border-transparent outline-none">
                 <option value="all">All Categories</option>
                 <option value="residential">Residential</option>
                 <option value="commercial">Commercial</option>
@@ -229,14 +229,14 @@ export default function AllProjectsPage() {
                     <td className="px-6 py-4 text-sm">
                       <div className="flex items-center gap-2">
                         <div className="w-full bg-gray-200 rounded-full h-2">
-                          <div className="bg-indigo-600 h-2 rounded-full" style={{ width: `${project.completion}%` }} />
+                          <div className="bg-impact-gold h-2 rounded-full" style={{ width: `${project.completion}%` }} />
                         </div>
                         <span className="text-xs font-medium">{project.completion}%</span>
                       </div>
                     </td>
                     <td className="px-6 py-4 text-sm space-y-2">
                       <div className="flex gap-2">
-                        <Link href={`/dashboard/all-projects/${project._id}/edit`} className="px-3 py-1 bg-blue-50 text-blue-600 rounded hover:bg-blue-100 text-xs font-medium">
+                        <Link href={`/dashboard/all-projects/${project._id}/edit`} className="px-3 py-1 bg-impact-gold/80 text-white rounded hover:bg-impact-gold/90 text-xs font-medium">
                           Edit
                         </Link>
                         <button onClick={() => handleToggle(project._id)} disabled={loading} className={`px-3 py-1 rounded text-xs font-medium ${!project.isDisabled ? 'bg-orange-50 text-orange-600 hover:bg-orange-100' : 'bg-green-50 text-green-600 hover:bg-green-100'}`}>
@@ -270,7 +270,7 @@ export default function AllProjectsPage() {
 
             <div className="flex gap-2">
               {Array.from({ length: totalPages }, (_, i) => i + 1).map(page => (
-                <button key={page} onClick={() => setCurrentPage(page)} className={`px-3 py-2 rounded-md text-sm font-medium ${currentPage === page ? 'bg-indigo-600 text-white' : 'border border-gray-300 text-gray-700 hover:bg-gray-50'}`}>
+                <button key={page} onClick={() => setCurrentPage(page)} className={`px-3 py-2 rounded-md text-sm font-medium ${currentPage === page ? 'bg-impact-gold text-white' : 'border border-gray-300 text-gray-700 hover:bg-gray-50'}`}>
                   {page}
                 </button>
               ))}
@@ -323,7 +323,7 @@ export default function AllProjectsPage() {
                 </div>
 
                 <div className="flex gap-2">
-                  <Link href={`/dashboard/all-projects/${project._id}/edit`} className="flex-1 px-3 py-2 bg-blue-50 text-blue-600 rounded text-sm font-medium text-center hover:bg-blue-100">
+                  <Link href={`/dashboard/all-projects/${project._id}/edit`} className="flex-1 px-3 py-2 bg-impact-gold text-white rounded text-sm font-medium text-center hover:bg-impact-gold/80">
                     Edit
                   </Link>
                   <button onClick={() => handleToggle(project._id)} disabled={loading} className={`flex-1 px-3 py-2 rounded text-sm font-medium ${!project.isDisabled ? 'bg-orange-50 text-orange-600 hover:bg-orange-100' : 'bg-green-50 text-green-600 hover:bg-green-100'}`}>
@@ -354,7 +354,7 @@ export default function AllProjectsPage() {
             </div>
             <div className="flex gap-2 justify-center flex-wrap">
               {Array.from({ length: totalPages }, (_, i) => i + 1).map(page => (
-                <button key={page} onClick={() => setCurrentPage(page)} className={`px-2 py-1 rounded-md text-sm ${currentPage === page ? 'bg-indigo-600 text-white' : 'border border-gray-300 text-gray-700 hover:bg-gray-50'}`}>
+                <button key={page} onClick={() => setCurrentPage(page)} className={`px-2 py-1 rounded-md text-sm ${currentPage === page ? 'bg-impact-gold text-white' : 'border border-gray-300 text-gray-700 hover:bg-gray-50'}`}>
                   {page}
                 </button>
               ))}

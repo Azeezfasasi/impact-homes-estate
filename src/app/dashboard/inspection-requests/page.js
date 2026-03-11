@@ -192,12 +192,12 @@ export default function ManageInspectionRequests() {
           {loading && requests.length === 0 ? (
             <div className="text-center py-12">
               <div className="inline-block animate-spin">
-                <div className="h-8 w-8 border-4 border-blue-500 border-t-transparent rounded-full"></div>
+                <div className="h-8 w-8 border-4 border-impact-gold border-t-transparent rounded-full"></div>
               </div>
               <p className="text-gray-600 mt-4">Loading inspection requests...</p>
             </div>
           ) : requests.length === 0 ? (
-            <div className="text-center py-12 bg-white rounded-lg border border-gray-200">
+            <div className="text-center py-12 bg-white rounded-lg border border-impact-gold/70">
               <p className="text-gray-600 text-lg">No inspection requests yet.</p>
             </div>
           ) : (
@@ -205,7 +205,7 @@ export default function ManageInspectionRequests() {
               {requests.map((request) => (
                 <div
                   key={request._id}
-                  className="bg-white rounded-lg border border-gray-200 p-6 hover:shadow-lg transition-shadow cursor-pointer"
+                  className="bg-white rounded-lg border border-impact-gold/70 p-6 hover:shadow-lg transition-shadow cursor-pointer"
                   onClick={() => handleViewDetails(request)}
                 >
                   <div className="flex justify-between items-start gap-4 mb-4">
@@ -222,11 +222,11 @@ export default function ManageInspectionRequests() {
 
                   <div className="space-y-2 text-sm text-gray-600">
                     <div className="flex items-center gap-2">
-                      <Phone size={16} className="text-blue-600" />
+                      <Phone size={16} className="text-impact-gold" />
                       <span>{request.phone}</span>
                     </div>
                     <div className="flex items-center gap-2">
-                      <Mail size={16} className="text-blue-600" />
+                      <Mail size={16} className="text-impact-gold" />
                       <span>{request.email}</span>
                     </div>
                   </div>
@@ -236,7 +236,7 @@ export default function ManageInspectionRequests() {
                       Requested: {new Date(request.createdAt).toLocaleDateString()}
                     </p>
                     {request.replies.length > 0 && (
-                      <p className="text-xs text-blue-600 mt-1 font-semibold">
+                      <p className="text-xs text-impact-gold mt-1 font-semibold">
                         {request.replies.length} reply{request.replies.length !== 1 ? 'ies' : ''}
                       </p>
                     )}
@@ -274,14 +274,14 @@ export default function ManageInspectionRequests() {
               <div className="bg-gray-50 rounded-lg p-4 space-y-3">
                 <h3 className="font-semibold text-gray-900">Contact Information</h3>
                 <div className="flex items-center gap-3">
-                  <Phone size={18} className="text-blue-600" />
+                  <Phone size={18} className="text-impact-gold" />
                   <div>
                     <p className="text-sm text-gray-600">Phone</p>
                     <p className="font-medium text-gray-900">{selectedRequest.phone}</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-3">
-                  <Mail size={18} className="text-blue-600" />
+                  <Mail size={18} className="text-impact-gold" />
                   <div>
                     <p className="text-sm text-gray-600">Email</p>
                     <p className="font-medium text-gray-900">{selectedRequest.email}</p>
@@ -298,7 +298,7 @@ export default function ManageInspectionRequests() {
                   value={newStatus}
                   onChange={(e) => handleStatusChange(e.target.value)}
                   disabled={loading}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-impact-gold/50 disabled:opacity-50"
                 >
                   <option value="pending">Pending</option>
                   <option value="approved">Approved</option>
@@ -323,10 +323,10 @@ export default function ManageInspectionRequests() {
                 {selectedRequest.replies.length > 0 ? (
                   <div className="space-y-3 mb-6 max-h-60 overflow-y-auto">
                     {selectedRequest.replies.map((reply, index) => (
-                      <div key={index} className="bg-blue-50 rounded-lg p-4 ">
+                      <div key={index} className="bg-impact-gold/10 rounded-lg p-4 ">
                         <div className="flex justify-between items-start gap-3 mb-2">
-                          <p className="font-semibold text-blue-900">{reply.adminName}</p>
-                          <p className="text-xs text-blue-700">
+                          <p className="font-semibold text-impact-gold">{reply.adminName}</p>
+                          <p className="text-xs text-impact-gold">
                             {new Date(reply.createdAt).toLocaleString()}
                           </p>
                         </div>
@@ -344,13 +344,13 @@ export default function ManageInspectionRequests() {
                     value={replyMessage}
                     onChange={(e) => setReplyMessage(e.target.value)}
                     placeholder="Type your reply here..."
-                    className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
+                    className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-impact-gold/50 resize-none"
                     rows={3}
                   />
                   <button
                     type="submit"
                     disabled={replyLoading || !replyMessage.trim()}
-                    className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 font-semibold"
+                    className="px-4 py-2 bg-impact-gold text-white rounded-lg hover:bg-impact-gold/80 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 font-semibold"
                   >
                     <Send size={18} />
                     Send

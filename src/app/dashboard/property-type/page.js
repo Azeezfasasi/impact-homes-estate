@@ -201,7 +201,7 @@ export default function PropertyType() {
     return (
       <div className="max-w-7xl mx-auto p-6">
         <div className="flex justify-center items-center h-64">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-impact-gold"></div>
         </div>
       </div>
     );
@@ -217,7 +217,7 @@ export default function PropertyType() {
           </div>
           <button
             onClick={() => setShowAddForm(true)}
-            className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors"
+            className="bg-impact-gold text-white px-4 py-2 rounded-lg hover:bg-impact-gold/80 transition-colors"
           >
             Add Property Type
           </button>
@@ -235,7 +235,7 @@ export default function PropertyType() {
                 type="text"
                 value={newPropertyType.id}
                 onChange={(e) => setNewPropertyType({ ...newPropertyType, id: e.target.value.toLowerCase().replace(/\s+/g, '-') })}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 border border-impact-gold/70 rounded-md focus:outline-none focus:ring-2 focus:ring-impact-gold"
                 placeholder="e.g., vacation-home"
               />
             </div>
@@ -245,7 +245,7 @@ export default function PropertyType() {
                 type="text"
                 value={newPropertyType.name}
                 onChange={(e) => setNewPropertyType({ ...newPropertyType, name: e.target.value })}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 border border-impact-gold/70 rounded-md focus:outline-none focus:ring-2 focus:ring-impact-gold"
                 placeholder="e.g., Vacation Home"
               />
             </div>
@@ -254,7 +254,7 @@ export default function PropertyType() {
               <textarea
                 value={newPropertyType.description}
                 onChange={(e) => setNewPropertyType({ ...newPropertyType, description: e.target.value })}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 border border-impact-gold/70 rounded-md focus:outline-none focus:ring-2 focus:ring-impact-gold"
                 rows={3}
                 placeholder="Describe this property type..."
               />
@@ -264,7 +264,7 @@ export default function PropertyType() {
               <select
                 value={newPropertyType.icon}
                 onChange={(e) => setNewPropertyType({ ...newPropertyType, icon: e.target.value })}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 border border-impact-gold/70 rounded-md focus:outline-none focus:ring-2 focus:ring-impact-gold"
               >
                 {iconOptions.map(option => (
                   <option key={option.value} value={option.value}>{option.label}</option>
@@ -275,7 +275,7 @@ export default function PropertyType() {
           <div className="mt-4 flex space-x-2">
             <button
               onClick={handleAddPropertyType}
-              className="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors"
+              className="bg-impact-gold text-white px-4 py-2 rounded-lg hover:bg-impact-gold/80 transition-colors"
             >
               Add Property Type
             </button>
@@ -293,8 +293,8 @@ export default function PropertyType() {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
         <div className="bg-white rounded-lg shadow-sm border p-6">
           <div className="flex items-center">
-            <div className="p-3 bg-blue-100 rounded-full">
-              <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="p-3 bg-impact-gold/10 rounded-full">
+              <svg className="w-6 h-6 text-impact-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
               </svg>
             </div>
@@ -360,7 +360,7 @@ export default function PropertyType() {
                             type="text"
                             value={editingPropertyType.name}
                             onChange={(e) => setEditingPropertyType({ ...editingPropertyType, name: e.target.value })}
-                            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            className="w-full px-3 py-2 border border-impact-gold/70 rounded-md focus:outline-none focus:ring-2 focus:ring-impact-gold"
                           />
                         </div>
                         <div>
@@ -368,7 +368,7 @@ export default function PropertyType() {
                           <select
                             value={editingPropertyType.icon}
                             onChange={(e) => setEditingPropertyType({ ...editingPropertyType, icon: e.target.value })}
-                            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            className="w-full px-3 py-2 border border-impact-gold/70 rounded-md focus:outline-none focus:ring-2 focus:ring-impact-gold"
                           >
                             {iconOptions.map(option => (
                               <option key={option.value} value={option.value}>{option.label}</option>
@@ -380,7 +380,7 @@ export default function PropertyType() {
                           <textarea
                             value={editingPropertyType.description}
                             onChange={(e) => setEditingPropertyType({ ...editingPropertyType, description: e.target.value })}
-                            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            className="w-full px-3 py-2 border border-impact-gold/70 rounded-md focus:outline-none focus:ring-2 focus:ring-impact-gold"
                             rows={3}
                           />
                         </div>
@@ -388,7 +388,7 @@ export default function PropertyType() {
                       <div className="flex space-x-2">
                         <button
                           onClick={handleSavePropertyType}
-                          className="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors"
+                          className="bg-impact-gold text-white px-4 py-2 rounded-lg hover:bg-impact-gold/80 transition-colors"
                         >
                           Save Changes
                         </button>
@@ -421,7 +421,7 @@ export default function PropertyType() {
                       <div className="flex space-x-2">
                         <button
                           onClick={() => handleEditPropertyType(propertyType)}
-                          className="text-blue-600 hover:text-blue-800 p-2 transition-colors"
+                          className="text-impact-gold hover:text-impact-gold/80 p-2 transition-colors"
                           title="Edit property type"
                         >
                           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

@@ -188,7 +188,7 @@ export default function EditProjectPage() {
     return (
       <div className="min-h-screen bg-gray-50 py-6 px-4 sm:px-6 lg:px-8 flex items-center justify-center">
         <div className="text-center">
-          <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600"></div>
+          <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-impact-gold"></div>
           <p className="mt-4 text-gray-600">Loading project...</p>
         </div>
       </div>
@@ -202,7 +202,7 @@ export default function EditProjectPage() {
         {/* Header */}
         <div className="flex items-center justify-between mb-8">
           <div>
-            <Link href="/dashboard/all-projects" className="text-indigo-600 hover:text-indigo-700 text-sm font-medium mb-2 inline-flex items-center gap-1">
+            <Link href="/dashboard/all-projects" className="text-impact-gold hover:text-impact-gold/80 text-sm font-medium mb-2 inline-flex items-center gap-1">
               <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                 <path strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
               </svg>
@@ -228,11 +228,11 @@ export default function EditProjectPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
                 <label htmlFor="projectName" className="block text-sm font-medium text-gray-700 mb-2">Project Name <span className='text-red-500 font-bold'>*</span></label>
-                <input type="text" id="projectName" name="projectName" value={formData.projectName} onChange={handleInputChange} required className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none" placeholder="e.g., Commercial Complex" />
+                <input type="text" id="projectName" name="projectName" value={formData.projectName} onChange={handleInputChange} required className="w-full px-4 py-2 border border-impact-gold/70 rounded-md focus:ring-2 focus:ring-impact-gold focus:border-transparent outline-none" placeholder="e.g., Commercial Complex" />
               </div>
               <div>
                 <label htmlFor="category" className="block text-sm font-medium text-gray-700 mb-2">Category <span className='text-red-500 font-bold'>*</span></label>
-                <select id="category" name="category" value={formData.category} onChange={handleInputChange} required className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none">
+                <select id="category" name="category" value={formData.category} onChange={handleInputChange} required className="w-full px-4 py-2 border border-impact-gold/70 rounded-md focus:ring-2 focus:ring-impact-gold focus:border-transparent outline-none">
                   <option value="">Select category</option>
                   <option value="residential">Residential</option>
                   <option value="commercial">Commercial</option>
@@ -243,7 +243,7 @@ export default function EditProjectPage() {
               </div>
               <div>
                 <label htmlFor="location" className="block text-sm font-medium text-gray-700 mb-2">Location</label>
-                <input type="text" id="location" name="location" value={formData.location} onChange={handleInputChange} className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none" placeholder="e.g., Lagos, Nigeria" />
+                <input type="text" id="location" name="location" value={formData.location} onChange={handleInputChange} className="w-full px-4 py-2 border border-impact-gold/70 rounded-md focus:ring-2 focus:ring-impact-gold focus:border-transparent outline-none" placeholder="e.g., Lagos, Nigeria" />
               </div>
             </div>
           </fieldset>
@@ -251,7 +251,7 @@ export default function EditProjectPage() {
           {/* Description */}
           <div>
             <label htmlFor="projectDescription" className="block text-sm font-medium text-gray-700 mb-2">Project Description</label>
-            <textarea id="projectDescription" name="projectDescription" value={formData.projectDescription} onChange={handleInputChange} rows="4" className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none resize-none" placeholder="Describe the project in detail..." />
+            <textarea id="projectDescription" name="projectDescription" value={formData.projectDescription} onChange={handleInputChange} rows="4" className="w-full px-4 py-2 border border-impact-gold/70 rounded-md focus:ring-2 focus:ring-impact-gold focus:border-transparent outline-none resize-none" placeholder="Describe the project in detail..." />
           </div>
 
           {/* Timeline & Budget */}
@@ -260,19 +260,19 @@ export default function EditProjectPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
                 <label htmlFor="startDate" className="block text-sm font-medium text-gray-700 mb-2">Start Date</label>
-                <input type="date" id="startDate" name="startDate" value={formData.startDate} onChange={handleInputChange} className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none" />
+                <input type="date" id="startDate" name="startDate" value={formData.startDate} onChange={handleInputChange} className="w-full px-4 py-2 border border-impact-gold/70 rounded-md focus:ring-2 focus:ring-impact-gold focus:border-transparent outline-none" />
               </div>
               <div>
                 <label htmlFor="expectedEndDate" className="block text-sm font-medium text-gray-700 mb-2">Expected End Date</label>
-                <input type="date" id="expectedEndDate" name="expectedEndDate" value={formData.expectedEndDate} onChange={handleInputChange} className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none" />
+                <input type="date" id="expectedEndDate" name="expectedEndDate" value={formData.expectedEndDate} onChange={handleInputChange} className="w-full px-4 py-2 border border-impact-gold/70 rounded-md focus:ring-2 focus:ring-impact-gold focus:border-transparent outline-none" />
               </div>
               <div>
                 <label htmlFor="completion" className="block text-sm font-medium text-gray-700 mb-2">Completion % (0-100)</label>
-                <input type="number" id="completion" name="completion" value={formData.completion} onChange={handleInputChange} min="0" max="100" className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none" />
+                <input type="number" id="completion" name="completion" value={formData.completion} onChange={handleInputChange} min="0" max="100" className="w-full px-4 py-2 border border-impact-gold/70 rounded-md focus:ring-2 focus:ring-impact-gold focus:border-transparent outline-none" />
               </div>
               <div>
                 <label htmlFor="projectStatus" className="block text-sm font-medium text-gray-700 mb-2">Project Status <span className='text-red-500 font-bold'>*</span></label>
-                <select id="projectStatus" name="projectStatus" value={formData.projectStatus} onChange={handleInputChange} required className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none">
+                <select id="projectStatus" name="projectStatus" value={formData.projectStatus} onChange={handleInputChange} required className="w-full px-4 py-2 border border-impact-gold/70 rounded-md focus:ring-2 focus:ring-impact-gold focus:border-transparent outline-none">
                   <option value="planning">Planning</option>
                   <option value="in-progress">In Progress</option>
                   <option value="completed">Completed</option>
@@ -306,19 +306,19 @@ export default function EditProjectPage() {
                     </button>
                   </div>
                 )}
-                <input type="file" id="featuredImage" name="featuredImage" onChange={handleImageChange} accept="image/*" className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none" />
+                <input type="file" id="featuredImage" name="featuredImage" onChange={handleImageChange} accept="image/*" className="w-full px-4 py-2 border border-impact-gold/70 rounded-md focus:ring-2 focus:ring-impact-gold focus:border-transparent outline-none" />
                 {formData.featuredImage && !formData.featuredImagePreview && <p className="text-sm text-green-600 mt-2">✓ {formData.featuredImage.name}</p>}
               </div>
               <div>
                 <label htmlFor="galleryImages" className="block text-sm font-medium text-gray-700 mb-2">Gallery Images (multiple)</label>
-                <input type="file" id="galleryImages" name="galleryImages" onChange={handleImageChange} accept="image/*" multiple className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none" />
+                <input type="file" id="galleryImages" name="galleryImages" onChange={handleImageChange} accept="image/*" multiple className="w-full px-4 py-2 border border-impact-gold/70 rounded-md focus:ring-2 focus:ring-impact-gold focus:border-transparent outline-none" />
                 {formData.galleryImagePreviews && formData.galleryImagePreviews.length > 0 && (
                   <div className="mt-4">
                     <p className="text-sm font-medium text-gray-700 mb-2">Gallery Images ({formData.galleryImagePreviews.length})</p>
                     <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                       {formData.galleryImagePreviews.map((preview, idx) => (
                         <div key={idx} className="relative group">
-                          <img src={preview} alt={`Gallery image ${idx + 1}`} className="w-full h-24 object-cover rounded-lg border border-gray-300" />
+                          <img src={preview} alt={`Gallery image ${idx + 1}`} className="w-full h-24 object-cover rounded-lg border border-impact-gold/70" />
                           <button
                             type="button"
                             onClick={() => {
@@ -346,7 +346,7 @@ export default function EditProjectPage() {
 
           {/* Actions */}
           <div className="flex gap-4 pt-6 border-t">
-            <button type="submit" disabled={saving} className="flex-1 bg-indigo-600 text-white font-medium py-2 px-1 md:px-4 rounded-md hover:bg-indigo-700 disabled:opacity-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 cursor-pointer">
+            <button type="submit" disabled={saving} className="flex-1 bg-impact-gold text-white font-medium py-2 px-1 md:px-4 rounded-md hover:bg-impact-gold/80 disabled:opacity-50 focus:outline-none focus:ring-2 focus:ring-impact-gold/70 cursor-pointer">
               {saving ? 'Saving...' : 'Save Changes'}
             </button>
             <Link href="/dashboard/all-projects" className="flex-1 bg-red-200 text-gray-700 font-medium py-2 px-1 md:px-4 rounded-md hover:bg-red-300 text-center focus:outline-none focus:ring-2 focus:ring-red-500">

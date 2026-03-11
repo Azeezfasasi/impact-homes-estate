@@ -12,6 +12,7 @@ export default function MainNav({ hideBackgroundImage = false, title, subtitle, 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [openDropdown, setOpenDropdown] = useState(null)
   const [userDropdownOpen, setUserDropdownOpen] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false)
   const userDropdownRef = useRef(null)
   const router = useRouter()
   const [mounted, setMounted] = useState(false)
@@ -26,6 +27,16 @@ export default function MainNav({ hideBackgroundImage = false, title, subtitle, 
   // Ensure component is mounted before rendering user-specific UI
   useEffect(() => {
     setMounted(true)
+  }, [])
+
+  // Handle scroll to hide top info bar
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50)
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
   const toggleMobileMenu = () => {
@@ -63,7 +74,7 @@ export default function MainNav({ hideBackgroundImage = false, title, subtitle, 
   }, [])
 
   return (
-    <div className="w-full text-white relative shadow-lg pb-6">
+    <div className={`w-full text-white relative shadow-lg ${isScrolled ? 'pb-0' : 'pb-4'}`}>
       {/* Background Image for non-homepage pages */}
       {!hideBackgroundImage && (
         <div
@@ -77,7 +88,8 @@ export default function MainNav({ hideBackgroundImage = false, title, subtitle, 
       )}
       <div className="absolute inset-0 bg-black/50" />
       
-      {/* Top Info Bar */}
+      {/* Top Info Bar - Hidden when scrolled */}
+      {!isScrolled && (
       <div className="text-white py-3 px-4 z-10 relative">
         {/* add black overlay only to the top info bar */}
         <div className="relative">
@@ -122,13 +134,22 @@ export default function MainNav({ hideBackgroundImage = false, title, subtitle, 
                 </div>
             </div>
         </div>
+        </div>
       </div>
+      )}
 
       {/* Main Navigation Bar */}
-      <nav className="text-white sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 relative">
-            <div className="absolute inset-0 bg-black/50" />
-          <div className="flex items-center justify-between h-20">
+      <nav className={`text-white sticky top-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-black/90' : ''}`}>
+        <div className={`mx-auto px-4 relative ${isScrolled ? 'w-full' : 'max-w-7xl'}`}>
+            {!isScrolled && <div className="absolute inset-0 bg-black/50" />}
+          <div className="flex items-center justify-between gap-6 h-20">
+
+            {/* Logo - Show when scrolled */}
+            {isScrolled && (
+              <Link href="/" className="flex items-center gap-2 z-10 relative">
+                <Image src="/img/logowhite.png" alt="Impact Homes Logo" width={140} height={40} className="h-10 w-auto" />
+              </Link>
+            )}
 
             {/* Desktop Navigation Menu */}
             <div className="hidden lg:flex items-center gap-8 z-10 relative">
@@ -301,12 +322,14 @@ export default function MainNav({ hideBackgroundImage = false, title, subtitle, 
             </div>
 
             {/* Mobile Menu Button */}
+             {!isScrolled && (
             <button
               className="lg:hidden flex items-center gap-4 z-10 relative"
               onClick={toggleMobileMenu}
             >
               {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
+              )}
             <div className="lg:hidden flex items-center gap-4 z-10 relative">
               <Link
                 href="#"
@@ -375,6 +398,14 @@ export default function MainNav({ hideBackgroundImage = false, title, subtitle, 
                 </Link>
               )
               ) : null}
+              {isScrolled && (
+                <button
+                  className="lg:hidden flex items-center gap-4 z-10 relative"
+                  onClick={toggleMobileMenu}
+                >
+                  {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+                </button>
+              )}
             </div>
           </div>
 
@@ -508,7 +539,6 @@ export default function MainNav({ hideBackgroundImage = false, title, subtitle, 
         </section>
       )}
 
-    </div>
     </div>
   )
 }

@@ -31,8 +31,8 @@ export default function SubscriberRow({ subscriber, onDelete, onEdit, onView }) 
     <>
       <td className="px-6 py-4">
         <div className="flex items-center space-x-3">
-          <div className="flex items-center justify-center w-10 h-10 rounded-full bg-blue-100">
-            <Mail className="w-5 h-5 text-blue-600" />
+          <div className="flex items-center justify-center w-10 h-10 rounded-full bg-impact-gold/10">
+            <Mail className="w-5 h-5 text-impact-gold" />
           </div>
           <div>
             <p className="text-sm font-medium text-gray-900">
@@ -68,7 +68,7 @@ export default function SubscriberRow({ subscriber, onDelete, onEdit, onView }) 
         <div className="flex items-center justify-end space-x-2">
           <button
             onClick={() => onView(subscriber)}
-            className="p-1 hover:bg-blue-50 rounded text-blue-600 transition-colors"
+            className="p-1 hover:bg-blue-50 rounded text-impact-gold transition-colors"
             title="View"
           >
             <Eye className="w-4 h-4" />

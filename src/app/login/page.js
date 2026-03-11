@@ -61,10 +61,10 @@ export default function Login() {
       title="Login to Your Account"
       breadcrumbs={breadcrumbs}
     />
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 px-6">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-impact-gold/20 to-impact-gold/10 px-6">
       {!mounted || (loading && !user) ? (
         <div className="text-center">
-          <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-blue-900"></div>
+          <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-impact-gold"></div>
           <p className="mt-4 text-gray-600">Loading...</p>
         </div>
       ) : (
@@ -86,7 +86,7 @@ export default function Login() {
               value={formData.email}
               onChange={handleChange}
               required
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-900"
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-impact-gold"
               placeholder="you@example.com"
             />
           </div>
@@ -100,7 +100,7 @@ export default function Login() {
                 value={formData.password}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-900"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-impact-gold"
                 placeholder="Enter your password"
               />
               <button
@@ -110,9 +110,9 @@ export default function Login() {
                 title={showPassword ? "Hide password" : "Show password"}
               >
                 {showPassword ? (
-                  <Eye className="w-5 h-5 text-blue-800" />
+                  <Eye className="w-5 h-5 text-impact-gold" />
                 ) : (
-                  <EyeOff className="w-5 h-5 text-blue-800" />
+                  <EyeOff className="w-5 h-5 text-impact-gold" />
                 )}
               </button>
             </div>
@@ -125,18 +125,18 @@ export default function Login() {
                 name="remember"
                 checked={formData.remember}
                 onChange={handleChange}
-                className="h-4 w-4 rounded border-gray-300 focus:ring-2 focus:ring-blue-900"
+                className="h-4 w-4 rounded border-gray-300 focus:ring-2 focus:ring-impact-gold"
               />
               Remember me
             </label>
-            <Link href="/forgot-password" className="text-blue-900 hover:text-blue-800 font-medium">
+            <Link href="/forgot-password" className="text-impact-gold hover:text-impact-gold/90 font-medium">
               Forgot password?
             </Link>
           </div>
 
           <button
             type="submit"
-            className="w-full bg-blue-900 text-white py-3 rounded-lg font-semibold shadow hover:bg-blue-800 transition"
+            className="w-full bg-impact-gold text-white py-3 rounded-lg font-semibold shadow hover:bg-impact-gold/90 transition"
             disabled={submitting}
           >
             {submitting ? "Logging in..." : "Login"}
@@ -145,7 +145,7 @@ export default function Login() {
 
         <p className="text-center text-gray-600 mt-6">
           Don&apos;t have an account?{" "}
-          <Link href="/register" className="text-blue-900 hover:text-blue-800 font-medium">
+          <Link href="/register" className="text-impact-gold hover:text-impact-gold/90 font-medium">
             Register
           </Link>
         </p>

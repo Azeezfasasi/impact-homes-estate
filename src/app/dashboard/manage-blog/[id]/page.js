@@ -255,7 +255,7 @@ function EditBlogContent() {
 				<div className="mb-8 flex items-center gap-4">
 					<Link
 						href="/dashboard/manage-blog"
-						className="flex items-center gap-2 text-indigo-600 hover:text-indigo-700 font-medium"
+						className="flex items-center gap-2 text-impact-gold hover:text-impact-gold/80 font-medium"
 					>
 						<ArrowLeft className="w-5 h-5" />
 						Back to Posts
@@ -305,7 +305,7 @@ function EditBlogContent() {
 								value={formData.postTitle}
 								onChange={handleInputChange}
 								required
-								className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none"
+								className="w-full px-4 py-2 border border-impact-gold/70 rounded-md focus:ring-2 focus:ring-impact-gold/50 focus:border-transparent outline-none"
 								placeholder="e.g., Getting Started with Next.js"
 							/>
 							<p className="text-xs text-gray-500 mt-1">This will appear as the main headline</p>
@@ -321,7 +321,7 @@ function EditBlogContent() {
 								name="urlSlug"
 								value={formData.urlSlug}
 								onChange={handleInputChange}
-								className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none bg-gray-50"
+								className="w-full px-4 py-2 border border-impact-gold/70 rounded-md focus:ring-2 focus:ring-impact-gold/50 focus:border-transparent outline-none bg-gray-50"
 								placeholder="auto-generated from title"
 							/>
 							<p className="text-xs text-gray-500 mt-1">Auto-generated from title, edit if needed</p>
@@ -337,7 +337,7 @@ function EditBlogContent() {
 										value={formData.author}
 										onChange={handleInputChange}
 										required
-										className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none"
+										className="w-full px-4 py-2 border border-impact-gold/70 rounded-md focus:ring-2 focus:ring-impact-gold/50 focus:border-transparent outline-none"
 										placeholder="Author name"
 									/>
 								</div>
@@ -351,7 +351,7 @@ function EditBlogContent() {
 									name="publishDate"
 									value={formData.publishDate}
 									onChange={handleInputChange}
-									className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none"
+									className="w-full px-4 py-2 border border-impact-gold/70 rounded-md focus:ring-2 focus:ring-impact-gold/50 focus:border-transparent outline-none"
 								/>
 							</div>
 							</div>
@@ -388,7 +388,7 @@ function EditBlogContent() {
 									value={formData.category}
 									onChange={handleInputChange}
 									required
-									className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none"
+									className="w-full px-4 py-2 border border-impact-gold/70 rounded-md focus:ring-2 focus:ring-impact-gold/50 focus:border-transparent outline-none"
 								>
 									<option value="">Select a category</option>
 									<option value="" disabled>Select category</option>
@@ -414,7 +414,7 @@ function EditBlogContent() {
 								name="tags"
 								value={formData.tags.join(', ')}
 								onChange={handleInputChange}
-								className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none"
+								className="w-full px-4 py-2 border border-impact-gold/70 rounded-md focus:ring-2 focus:ring-impact-gold/50 focus:border-transparent outline-none"
 								placeholder="Separate tags with commas"
 							/>
 							<p className="text-xs text-gray-500 mt-1">Separate multiple tags with commas</p>
@@ -557,13 +557,13 @@ function EditBlogContent() {
 						<button
 							type="submit"
 							disabled={saving}
-							className="flex-1 bg-indigo-600 text-white font-medium py-2 px-4 rounded-md hover:bg-indigo-700 disabled:opacity-50 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+							className="flex-1 bg-impact-gold text-white font-medium py-2 px-4 rounded-md hover:bg-impact-gold/80 disabled:opacity-50 focus:outline-none focus:ring-2 focus:ring-impact-gold/50"
 						>
 							{saving ? 'Saving...' : 'Save Changes'}
 						</button>
 						<Link
 							href="/dashboard/manage-blog"
-							className="flex-1 border border-gray-300 text-gray-700 font-medium py-2 px-4 rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-500 text-center"
+							className="flex-1 border border-impact-gold/70 text-impact-gold font-medium py-2 px-4 rounded-md hover:bg-impact-gold/20 focus:outline-none focus:ring-2 focus:ring-impact-gold/50 text-center"
 						>
 							Cancel
 						</Link>

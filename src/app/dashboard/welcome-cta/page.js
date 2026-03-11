@@ -244,7 +244,7 @@ export default function WelcomeCtaManager() {
     return (
       <ProtectedRoute allowedRoles={['admin', 'staff-member']}>
         <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-          <Loader className="w-8 h-8 animate-spin text-blue-600" />
+          <Loader className="w-8 h-8 animate-spin text-impact-gold" />
         </div>
       </ProtectedRoute>
     );
@@ -277,7 +277,7 @@ export default function WelcomeCtaManager() {
                   value={content.title}
                   onChange={handleTitleChange}
                   placeholder="e.g., Enjoy Free Investment Advisory Services"
-                  className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full px-4 py-2.5 border border-impact-gold/70 rounded-lg focus:ring-2 focus:ring-impact-gold focus:border-transparent"
                 />
               </div>
 
@@ -291,7 +291,7 @@ export default function WelcomeCtaManager() {
                   onChange={handleDescriptionChange}
                   placeholder="Enter the description text..."
                   rows="4"
-                  className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full px-4 py-2.5 border border-impact-gold/70 rounded-lg focus:ring-2 focus:ring-impact-gold focus:border-transparent"
                 />
               </div>
 
@@ -305,7 +305,7 @@ export default function WelcomeCtaManager() {
                   value={content.buttonLabel}
                   onChange={handleButtonLabelChange}
                   placeholder="e.g., Speak with an Investment Advisor"
-                  className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full px-4 py-2.5 border border-impact-gold/70 rounded-lg focus:ring-2 focus:ring-impact-gold focus:border-transparent"
                 />
               </div>
 
@@ -313,7 +313,7 @@ export default function WelcomeCtaManager() {
               <button
                 onClick={handleSaveMainContent}
                 disabled={saving}
-                className="px-6 py-2.5 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium disabled:opacity-50 flex items-center gap-2"
+                className="px-6 py-2.5 bg-impact-gold text-white rounded-lg hover:bg-impact-gold/80 font-medium disabled:opacity-50 flex items-center gap-2"
               >
                 {saving && <Loader className="w-4 h-4 animate-spin" />}
                 Save Changes
@@ -327,7 +327,7 @@ export default function WelcomeCtaManager() {
               <h2 className="text-2xl font-bold text-gray-900">Statistics</h2>
               <button
                 onClick={() => setIsFormOpen(true)}
-                className="flex items-center gap-2 px-4 py-2.5 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition-colors"
+                className="flex items-center gap-2 px-4 py-2.5 bg-impact-gold text-white rounded-lg font-medium hover:bg-impact-gold/80 transition-colors"
               >
                 <Plus className="w-5 h-5" />
                 Add Stat
@@ -341,7 +341,7 @@ export default function WelcomeCtaManager() {
                   <p className="text-gray-500 mb-4">No statistics created yet</p>
                   <button
                     onClick={() => setIsFormOpen(true)}
-                    className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+                    className="inline-flex items-center gap-2 px-4 py-2 bg-impact-gold text-white rounded-lg hover:bg-impact-gold/80"
                   >
                     <Plus className="w-4 h-4" />
                     Create First Stat
@@ -364,7 +364,7 @@ export default function WelcomeCtaManager() {
                       <div className="flex gap-2">
                         <button
                           onClick={() => handleEditStat(stat)}
-                          className="flex-1 flex items-center justify-center gap-1 px-3 py-2 bg-blue-50 text-blue-600 rounded hover:bg-blue-100 transition-colors text-sm font-medium"
+                          className="flex-1 flex items-center justify-center gap-1 px-3 py-2 bg-impact-gold/10 text-impact-gold rounded hover:bg-impact-gold/20 transition-colors text-sm font-medium"
                         >
                           <Edit2 className="w-4 h-4" />
                           Edit
@@ -440,7 +440,7 @@ export default function WelcomeCtaManager() {
                       onChange={handleStatInputChange}
                       placeholder="e.g., 🚀"
                       maxLength="2"
-                      className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-lg"
+                      className="w-full px-4 py-2.5 border border-impact-gold/70 rounded-lg focus:ring-2 focus:ring-impact-gold focus:border-transparent text-lg"
                     />
                   </div>
 
@@ -455,7 +455,7 @@ export default function WelcomeCtaManager() {
                       value={statForm.number}
                       onChange={handleStatInputChange}
                       placeholder="e.g., 1000+"
-                      className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      className="w-full px-4 py-2.5 border border-impact-gold/70 rounded-lg focus:ring-2 focus:ring-impact-gold focus:border-transparent"
                     />
                   </div>
 
@@ -470,7 +470,7 @@ export default function WelcomeCtaManager() {
                       value={statForm.label}
                       onChange={handleStatInputChange}
                       placeholder="e.g., Homes delivered"
-                      className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      className="w-full px-4 py-2.5 border border-impact-gold/70 rounded-lg focus:ring-2 focus:ring-impact-gold focus:border-transparent"
                     />
                   </div>
 
@@ -487,7 +487,7 @@ export default function WelcomeCtaManager() {
                     <button
                       type="submit"
                       disabled={saving}
-                      className="flex-1 px-4 py-2.5 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium disabled:opacity-50 flex items-center justify-center gap-2"
+                      className="flex-1 px-4 py-2.5 bg-impact-gold text-white rounded-lg hover:bg-impact-gold/80 font-medium disabled:opacity-50 flex items-center justify-center gap-2"
                     >
                       {saving && <Loader className="w-4 h-4 animate-spin" />}
                       {editingStatId ? 'Update' : 'Add'}

@@ -245,7 +245,7 @@ const ContactFormResponses = () => {
 								placeholder="Search by name, email, subject, or message..."
 								value={searchQuery}
 								onChange={handleSearch}
-								className="w-full pl-10 pr-2 md:pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 text-[14px] md:text-[16px] focus:border-transparent outline-none"
+								className="w-full pl-10 pr-2 md:pr-4 py-2 border border-impact-gold/70 rounded-lg focus:ring-2 focus:ring-impact-gold/50 text-[14px] md:text-[16px] focus:border-transparent outline-none"
 							/>
 						</div>
 
@@ -266,7 +266,7 @@ const ContactFormResponses = () => {
 										onClick={() => handleStatusFilter('pending')}
 										className={`px-4 py-2 text-[14px] md:text-[16px] rounded-lg font-medium transition ${
 											statusFilter === 'pending'
-												? 'bg-blue-600 text-white'
+												? 'bg-impact-gold text-white'
 												: 'bg-gray-100 text-gray-700 hover:bg-gray-200'
 										}`}
 									>
@@ -367,7 +367,7 @@ const ContactFormResponses = () => {
 												<div className="flex items-center justify-center gap-2">
 													<button
 														onClick={() => handleView(response)}
-														className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition"
+														className="p-2 text-impact-gold hover:bg-impact-gold/20 rounded-lg transition"
 														title="View"
 													>
 														<Eye className="w-4 h-4" />
@@ -414,7 +414,7 @@ const ContactFormResponses = () => {
 																						<select
 																							value={newStatus}
 																							onChange={(e) => setNewStatus(e.target.value)}
-																							className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none"
+																							className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-impact-gold/70 focus:border-transparent outline-none"
 																						>
 																							<option value="">Select a status</option>
 																							<option value="pending">Pending</option>
@@ -440,7 +440,7 @@ const ContactFormResponses = () => {
 																							await handleChangeStatus(selectedResponse, newStatus);
 																							setShowStatusModal(false);
 																						}}
-																						className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 font-medium transition flex items-center gap-2"
+																						className="px-4 py-2 bg-impact-gold text-white rounded-lg hover:bg-impact-gold/80 font-medium transition flex items-center gap-2"
 																					>
 																						Update Status
 																					</button>
@@ -558,7 +558,7 @@ const ContactFormResponses = () => {
 							<div className="p-6 border-t border-gray-200 flex justify-end gap-3 sticky bottom-0 bg-gray-50">
 								<button
 									onClick={() => setShowViewModal(false)}
-									className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-100 font-medium transition"
+									className="px-4 py-2 border border-impact-gold/70 text-gray-700 rounded-lg hover:bg-gray-100 font-medium transition"
 								>
 									Close
 								</button>
@@ -567,7 +567,7 @@ const ContactFormResponses = () => {
 										setShowViewModal(false)
 										handleReplyClick(selectedResponse)
 									}}
-									className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 font-medium transition flex items-center gap-2"
+									className="px-4 py-2 bg-impact-gold text-white rounded-lg hover:bg-impact-gold/80 font-medium transition flex items-center gap-2"
 								>
 									<Reply className="w-4 h-4" />
 									Reply
@@ -614,7 +614,7 @@ const ContactFormResponses = () => {
 										onChange={(e) => setReplyText(e.target.value)}
 										rows="6"
 										placeholder="Type your reply message here..."
-										className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none resize-none"
+										className="w-full px-4 py-2 border border-impact-gold/70 rounded-lg focus:ring-2 focus:ring-impact-gold focus:border-transparent outline-none resize-none"
 									/>
 									<p className="text-xs text-gray-500 mt-1">{replyText.length} characters</p>
 								</div>
@@ -629,7 +629,7 @@ const ContactFormResponses = () => {
 								</button>
 								<button
 									onClick={handleSubmitReply}
-									className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 font-medium transition flex items-center gap-2"
+									className="px-4 py-2 bg-impact-gold text-white rounded-lg hover:bg-impact-gold/80 font-medium transition flex items-center gap-2"
 								>
 									<Reply className="w-4 h-4" />
 									Send Reply

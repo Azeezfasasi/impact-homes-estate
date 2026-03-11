@@ -149,14 +149,14 @@ export default function AllProperty() {
         </div>
         <button
           onClick={() => router.push('/dashboard/add-property')}
-          className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="px-4 py-2 bg-impact-gold text-white rounded-md hover:bg-impact-gold/80 focus:outline-none focus:ring-2 focus:ring-impact-gold"
         >
           Add New Property
         </button>
       </div>
 
       {/* Filters */}
-      <div className="bg-white rounded-lg shadow-sm border mb-6">
+      <div className="rounded-lg shadow-sm border border-impact-gold/40 bg-impact-gold/10 mb-6">
         <div className="p-4">
           <button
             onClick={() => setShowFilters(!showFilters)}
@@ -185,7 +185,7 @@ export default function AllProperty() {
                   value={filters.search}
                   onChange={handleFilterChange}
                   placeholder="Search properties..."
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2 border border-impact-gold/70 rounded-md focus:outline-none focus:ring-2 focus:ring-impact-gold"
                 />
               </div>
 
@@ -197,7 +197,7 @@ export default function AllProperty() {
                   name="status"
                   value={filters.status}
                   onChange={handleFilterChange}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2 border border-impact-gold/70 rounded-md focus:outline-none focus:ring-2 focus:ring-impact-gold"
                   disabled={loadingFilters}
                 >
                   <option value="">All Statuses</option>
@@ -217,7 +217,7 @@ export default function AllProperty() {
                   name="propertyType"
                   value={filters.propertyType}
                   onChange={handleFilterChange}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2 border border-impact-gold/70 rounded-md focus:outline-none focus:ring-2 focus:ring-impact-gold"
                   disabled={loadingFilters}
                 >
                   <option value="">All Types</option>
@@ -237,7 +237,7 @@ export default function AllProperty() {
                   name="category"
                   value={filters.category}
                   onChange={handleFilterChange}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2 border border-impact-gold/70 rounded-md focus:outline-none focus:ring-2 focus:ring-impact-gold"
                   disabled={loadingFilters}
                 >
                   <option value="">All Categories</option>
@@ -256,14 +256,14 @@ export default function AllProperty() {
       {/* Properties Grid */}
       {loading ? (
         <div className="flex justify-center items-center h-64">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-impact-gold"></div>
         </div>
       ) : properties.length === 0 ? (
         <div className="text-center py-12">
           <p className="text-gray-500 text-lg">No properties found</p>
           <button
             onClick={() => router.push('/dashboard/add-property')}
-            className="mt-4 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
+            className="mt-4 px-4 py-2 bg-impact-gold text-white rounded-md hover:bg-impact-gold/80 focus:outline-none focus:ring-2 focus:ring-impact-gold"
           >
             Add Your First Property
           </button>
@@ -300,7 +300,7 @@ export default function AllProperty() {
                     </span>
                   </div>
 
-                  <p className="text-2xl font-bold text-blue-600 mb-2">
+                  <p className="text-2xl font-bold text-impact-gold mb-2">
                     {property.price.toLocaleString('en-NG', { style: 'currency', currency: 'NGN' })}
                   </p>
 
@@ -331,7 +331,7 @@ export default function AllProperty() {
                     <div className="flex space-x-2">
                       <button
                         onClick={() => router.push(`/dashboard/property/${property._id}/edit`)}
-                        className="px-3 py-1 text-sm bg-blue-100 text-blue-700 rounded-md hover:bg-blue-200 transition-colors"
+                        className="px-3 py-1 text-sm bg-impact-gold text-white rounded-md hover:bg-impact-gold/80 transition-colors"
                       >
                         ✏️ Edit
                       </button>

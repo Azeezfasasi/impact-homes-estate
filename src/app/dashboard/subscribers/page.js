@@ -206,7 +206,7 @@ export default function Subscribers() {
       <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between">
         <div>
           <h1 className="text-[20px] md:text-2xl font-bold text-gray-900 flex items-center space-x-2">
-            <Users className="w-5 md:w-8 h-5 md:h-8 text-blue-600" />
+            <Users className="w-5 md:w-8 h-5 md:h-8 text-impact-gold" />
             <span>Subscribers</span>
           </h1>
           <p className="text-gray-600 mt-2">Manage your newsletter subscriber list</p>
@@ -243,7 +243,7 @@ export default function Subscribers() {
                 setSearchTerm(e.target.value);
                 setPage(1);
               }}
-              className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full pl-10 pr-4 py-2 border border-impact-gold/70 rounded-lg focus:outline-none focus:ring-2 focus:ring-impact-gold"
             />
           </div>
 
@@ -254,7 +254,7 @@ export default function Subscribers() {
               setStatusFilter(e.target.value);
               setPage(1);
             }}
-            className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="px-4 py-2 border border-impact-gold/70 rounded-lg focus:outline-none focus:ring-2 focus:ring-impact-gold"
           >
             {STATUS_OPTIONS.map(option => (
               <option key={option.value} value={option.value}>
@@ -264,9 +264,9 @@ export default function Subscribers() {
           </select>
 
           {/* Stats */}
-          <div className="px-4 py-2 bg-blue-50 rounded-lg">
-            <p className="text-xs text-gray-600">Total Subscribers</p>
-            <p className="text-lg font-semibold text-gray-900">{subscribers.length}</p>
+          <div className="px-4 py-2 bg-impact-gold/5 rounded-lg border border-impact-gold/20">
+            <p className="text-[14px] text-impact-gold">Total Subscribers</p>
+            <p className="text-lg font-semibold text-impact-gold">{subscribers.length}</p>
           </div>
 
           {/* Selected */}
@@ -286,17 +286,17 @@ export default function Subscribers() {
       {isLoading ? (
         <div className="flex items-center justify-center py-12 overflow-auto">
           <div className="text-center">
-            <div className="w-12 h-12 border-4 border-blue-200 border-t-blue-600 rounded-full animate-spin mx-auto mb-4"></div>
+            <div className="w-12 h-12 border-4 border-impact-gold/20 border-t-impact-gold rounded-full animate-spin mx-auto mb-4"></div>
             <p className="text-gray-600">Loading subscribers...</p>
           </div>
         </div>
       ) : subscribers.length === 0 ? (
         <div className="text-center py-12 bg-white rounded-lg border border-gray-200">
-          <Users className="w-12 h-12 text-gray-400 mx-auto mb-4" />
+          <Users className="w-12 h-12 text-impact-gold mx-auto mb-4" />
           <p className="text-gray-600">No subscribers found</p>
           <button
             onClick={() => setImportModal({ isOpen: true })}
-            className="mt-4 inline-flex items-center space-x-2 px-4 py-2 text-blue-600 hover:text-blue-700 font-medium"
+            className="mt-4 inline-flex items-center space-x-2 px-4 py-2 text-impact-gold hover:text-impact-gold/80 font-medium"
           >
             <Upload className="w-4 h-4" />
             <span>Import subscribers</span>
@@ -306,7 +306,7 @@ export default function Subscribers() {
         <>
           <div className="bg-white rounded-lg border border-gray-300 max-w-[350px] lg:max-w-full lg:w-full overflow-auto mx-auto">
             <table className="w-full overflow-x-auto">
-              <thead className="bg-gray-50 border-b border-gray-200">
+              <thead className="bg-gray-50 border-b border-impact-gold/20">
                 <tr>
                   <th className="px-6 py-3 text-left w-12">
                     <input
@@ -319,7 +319,7 @@ export default function Subscribers() {
                           setSelectedSubscribers([]);
                         }
                       }}
-                      className="w-4 h-4 text-blue-600 rounded"
+                      className="w-4 h-4 text-impact-gold rounded"
                     />
                   </th>
                   <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase">
@@ -361,7 +361,7 @@ export default function Subscribers() {
                             );
                           }
                         }}
-                        className="w-4 h-4 text-blue-600 rounded"
+                        className="w-4 h-4 text-impact-gold rounded"
                       />
                     </td>
                     <SubscriberRow
@@ -512,7 +512,7 @@ export default function Subscribers() {
                       },
                     })
                   }
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2 border border-impact-gold/70 rounded-lg focus:outline-none focus:ring-2 focus:ring-impact-gold"
                 />
               </div>
               <div>
@@ -531,7 +531,7 @@ export default function Subscribers() {
                       },
                     })
                   }
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2 border border-impact-gold/70 rounded-lg focus:outline-none focus:ring-2 focus:ring-impact-gold"
                 />
               </div>
             </div>
@@ -550,7 +550,7 @@ export default function Subscribers() {
                     },
                   })
                 }
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 border border-impact-gold/70 rounded-lg focus:outline-none focus:ring-2 focus:ring-impact-gold"
               >
                 {STATUS_OPTIONS.map(option => (
                   <option key={option.value} value={option.value}>
@@ -581,7 +581,7 @@ export default function Subscribers() {
                           },
                         });
                       }}
-                      className="w-4 h-4 text-blue-600 rounded"
+                      className="w-4 h-4 text-impact-gold rounded"
                     />
                     <span className="text-sm text-gray-700 capitalize">{tag}</span>
                   </label>
@@ -612,7 +612,7 @@ export default function Subscribers() {
             type="file"
             accept=".csv"
             onChange={(e) => setImportFile(e.target.files?.[0] || null)}
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-3 py-2 border border-impact-gold/70 rounded-lg focus:outline-none focus:ring-2 focus:ring-impact-gold"
           />
           {importFile && (
             <p className="text-sm text-green-600">

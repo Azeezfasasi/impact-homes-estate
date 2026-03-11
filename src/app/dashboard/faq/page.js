@@ -150,7 +150,7 @@ export default function ManageFAQ() {
           </div>
           <button
             onClick={() => handleOpenModal()}
-            className="flex items-center gap-2 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors font-semibold"
+            className="flex items-center gap-2 bg-impact-gold text-white px-6 py-3 rounded-lg hover:bg-impact-gold/80 transition-colors font-semibold"
           >
             <Plus size={20} />
             Add FAQ
@@ -183,7 +183,7 @@ export default function ManageFAQ() {
                     name="question"
                     value={formData.question}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-4 py-2 border border-impact-gold/70 rounded-lg focus:outline-none focus:ring-2 focus:ring-impact-gold"
                     placeholder="Enter FAQ question"
                     required
                   />
@@ -197,7 +197,7 @@ export default function ManageFAQ() {
                     name="answer"
                     value={formData.answer}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
+                    className="w-full px-4 py-2 border border-impact-gold/70 rounded-lg focus:outline-none focus:ring-2 focus:ring-impact-gold resize-none"
                     placeholder="Enter FAQ answer"
                     rows={6}
                     required
@@ -213,7 +213,7 @@ export default function ManageFAQ() {
                     name="order"
                     value={formData.order}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-4 py-2 border border-impact-gold/70 rounded-lg focus:outline-none focus:ring-2 focus:ring-impact-gold"
                     placeholder="0"
                   />
                   <p className="text-xs text-gray-500 mt-1">Lower numbers appear first</p>
@@ -223,7 +223,7 @@ export default function ManageFAQ() {
                   <button
                     type="submit"
                     disabled={loading}
-                    className="flex-1 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="flex-1 bg-impact-gold text-white px-6 py-3 rounded-lg hover:bg-impact-gold/80 transition-colors font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     {loading ? 'Saving...' : editingId ? 'Update FAQ' : 'Create FAQ'}
                   </button>
@@ -245,7 +245,7 @@ export default function ManageFAQ() {
           {loading && faqs.length === 0 ? (
             <div className="text-center py-12">
               <div className="inline-block animate-spin">
-                <div className="h-8 w-8 border-4 border-blue-500 border-t-transparent rounded-full"></div>
+                <div className="h-8 w-8 border-4 border-impact-gold border-t-transparent rounded-full"></div>
               </div>
               <p className="text-gray-600 mt-4">Loading FAQs...</p>
             </div>
@@ -259,7 +259,7 @@ export default function ManageFAQ() {
                 <div className="flex justify-between items-start gap-4">
                   <div className="flex-1">
                     <div className="flex items-center gap-3 mb-2">
-                      <span className="bg-blue-100 text-blue-800 text-sm font-semibold px-3 py-1 rounded">
+                      <span className="bg-impact-gold text-white text-sm font-semibold px-3 py-1 rounded">
                         {index + 1}
                       </span>
                       <h3 className="text-lg font-semibold text-gray-900">
@@ -279,7 +279,7 @@ export default function ManageFAQ() {
                   <div className="flex gap-2">
                     <button
                       onClick={() => handleOpenModal(faq)}
-                      className="p-2 text-blue-600 hover:bg-blue-100 rounded-lg transition-colors"
+                      className="p-2 text-impact-gold hover:bg-impact-gold/20 rounded-lg transition-colors"
                       title="Edit"
                     >
                       <Edit2 size={18} />

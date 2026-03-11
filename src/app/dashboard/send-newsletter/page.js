@@ -234,7 +234,7 @@ export default function SendNewsletter() {
       {/* Header */}
       <div>
         <h1 className="text-[20px] md:text-2xl font-bold text-gray-900 flex items-center space-x-2">
-          <Send className="w-5 md:w-8 h-5 md:h-8 text-blue-600" />
+          <Send className="w-5 md:w-8 h-5 md:h-8 text-impact-gold" />
           <span>Send Newsletter</span>
         </h1>
         <p className="text-gray-600 mt-2">Create and send newsletters to your subscribers</p>
@@ -256,7 +256,7 @@ export default function SendNewsletter() {
                   onClick={() => setFormData(prev => ({ ...prev, type: type.value }))}
                   className={`p-3 rounded-lg border-2 transition-all ${
                     formData.type === type.value
-                      ? 'border-blue-600 bg-blue-50'
+                      ? 'border-impact-gold bg-impact-gold/10'
                       : 'border-gray-200 bg-white hover:border-gray-300'
                   }`}
                 >
@@ -278,7 +278,7 @@ export default function SendNewsletter() {
               value={formData.subject}
               onChange={handleChange}
               placeholder="Enter newsletter subject"
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-2 border border-impact-gold/70 rounded-lg focus:outline-none focus:ring-2 focus:ring-impact-gold"
             />
           </div>
 
@@ -312,7 +312,7 @@ export default function SendNewsletter() {
                     value={type.value}
                     checked={formData.recipientType === type.value}
                     onChange={handleChange}
-                    className="w-4 h-4 text-blue-600"
+                    className="w-4 h-4 text-impact-gold"
                   />
                   <span className="text-sm text-gray-700">{type.label}</span>
                 </label>
@@ -321,7 +321,7 @@ export default function SendNewsletter() {
 
             {/* Tags Selection */}
             {formData.recipientType === 'tags' && (
-              <div className="mt-4 pt-4 border-t border-gray-200">
+              <div className="mt-4 pt-4 border-t border-impact-gold/70">
                 <p className="text-xs text-gray-600 mb-3">Select tags:</p>
                 <div className="space-y-2">
                   {['vip', 'active', 'engaged', 'new'].map(tag => (
@@ -330,7 +330,7 @@ export default function SendNewsletter() {
                         type="checkbox"
                         checked={formData.tags.includes(tag)}
                         onChange={() => handleTagToggle(tag)}
-                        className="w-4 h-4 text-blue-600 rounded"
+                        className="w-4 h-4 text-impact-gold rounded"
                       />
                       <span className="text-sm text-gray-700 capitalize">{tag}</span>
                     </label>
@@ -340,7 +340,7 @@ export default function SendNewsletter() {
             )}
 
             {/* Segment Selection */}
-            {formData.recipientType === 'segment' && (
+            {/* {formData.recipientType === 'segment' && (
               <div className="mt-4 pt-4 border-t border-gray-200">
                 <input
                   type="text"
@@ -348,10 +348,10 @@ export default function SendNewsletter() {
                   value={formData.segment}
                   onChange={handleChange}
                   placeholder="Enter segment name"
-                  className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2 text-sm border border-impact-gold/70 rounded-lg focus:outline-none focus:ring-2 focus:ring-impact-gold"
                 />
               </div>
-            )}
+            )}*/}
           </div>
 
           {/* Actions */}
@@ -359,7 +359,7 @@ export default function SendNewsletter() {
             <button
               onClick={handleSendNow}
               disabled={isLoading}
-              className="w-full px-4 py-3 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
+              className="w-full px-4 py-3 bg-impact-gold text-white rounded-lg font-medium hover:bg-impact-gold/80 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
             >
               <Send className="w-4 h-4" />
               <span>{isLoading ? 'Sending...' : 'Send Now'}</span>
@@ -375,12 +375,12 @@ export default function SendNewsletter() {
           </div>
 
           {/* Tips */}
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+          <div className="bg-impact-gold/5 border border-impact-gold/70 rounded-lg p-4">
             <div className="flex items-start space-x-3">
-              <Sparkles className="w-5 h-5 text-blue-600 shrink-0 mt-0.5" />
+              <Sparkles className="w-5 h-5 text-impact-gold shrink-0 mt-0.5" />
               <div>
-                <p className="text-sm font-semibold text-blue-900">Pro Tip</p>
-                <ul className="text-xs text-blue-800 mt-2 space-y-1">
+                <p className="text-sm font-semibold text-impact-gold">Pro Tip</p>
+                <ul className="text-[14px] text-impact-gold/80 mt-2 space-y-1">
                   <li>• Use engaging subject lines</li>
                   <li>• Keep content concise</li>
                   <li>• Test before sending</li>
@@ -416,7 +416,7 @@ export default function SendNewsletter() {
               value={formData.scheduledFor}
               onChange={handleChange}
               min={new Date().toISOString().slice(0, 16)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-3 py-2 border border-impact-gold/70 rounded-lg focus:outline-none focus:ring-2 focus:ring-impact-gold"
             />
           </div>
         </div>

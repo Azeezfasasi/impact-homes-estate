@@ -308,7 +308,7 @@ export default function AddProperty() {
                 name="title"
                 value={formData.title}
                 onChange={handleInputChange}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 border border-impact-gold/70 rounded-md focus:outline-none focus:ring-2 focus:ring-impact-gold"
                 placeholder="e.g., Modern 3BR House in Downtown"
                 required
               />
@@ -325,7 +325,7 @@ export default function AddProperty() {
                   name="price"
                   value={formData.price}
                   onChange={handleInputChange}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2 border border-impact-gold/70 rounded-md focus:outline-none focus:ring-2 focus:ring-impact-gold"
                   placeholder="e.g., 250000"
                   min="0"
                   step="0.01"
@@ -336,13 +336,13 @@ export default function AddProperty() {
 
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                Property Type * <span className="text-xs text-blue-600">{propertyTypesLoading ? '(Loading...)' : ''}</span>
+                Property Type * <span className="text-xs text-impact-gold">{propertyTypesLoading ? '(Loading...)' : ''}</span>
               </label>
               <select
                 name="propertyType"
                 value={formData.propertyType}
                 onChange={handleInputChange}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 border border-impact-gold/70 rounded-md focus:outline-none focus:ring-2 focus:ring-impact-gold"
                 required
               >
                 <option value="">-- Select Property Type --</option>
@@ -356,13 +356,13 @@ export default function AddProperty() {
 
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                Status * <span className="text-xs text-blue-600">{statusesLoading ? '(Loading...)' : ''}</span>
+                Status * <span className="text-xs text-impact-gold">{statusesLoading ? '(Loading...)' : ''}</span>
               </label>
               <select
                 name="status"
                 value={formData.status}
                 onChange={handleInputChange}
-                className="w-full px-3 py-2 border-2 border-blue-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white font-medium"
+                className="w-full px-3 py-2 border-2 border-impact-gold/40 rounded-md focus:outline-none focus:ring-2 focus:ring-impact-gold bg-white font-medium"
                 required
               >
                 <option value="">-- Select Status --</option>
@@ -376,13 +376,13 @@ export default function AddProperty() {
 
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                Category * <span className="text-xs text-blue-600">(Required)</span>
+                Category * <span className="text-xs text-impact-gold">(Required)</span>
               </label>
               <select
                 name="category"
                 value={formData.category}
                 onChange={handleInputChange}
-                className="w-full px-3 py-2 border-2 border-blue-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white font-medium"
+                className="w-full px-3 py-2 border-2 border-impact-gold/40 rounded-md focus:outline-none focus:ring-2 focus:ring-impact-gold bg-white font-medium"
                 required
               >
                 <option value="">-- Select Category --</option>
@@ -420,7 +420,7 @@ export default function AddProperty() {
               value={formData.description}
               onChange={handleInputChange}
               rows={4}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-3 py-2 border border-impact-gold/70 rounded-md focus:outline-none focus:ring-2 focus:ring-impact-gold"
               placeholder="Detailed description of the property..."
               required
             />
@@ -440,7 +440,7 @@ export default function AddProperty() {
                 name="address.street"
                 value={formData.address.street}
                 onChange={handleInputChange}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 border border-impact-gold/70 rounded-md focus:outline-none focus:ring-2 focus:ring-impact-gold"
                 placeholder="123 Main Street"
                 required
               />
@@ -455,7 +455,7 @@ export default function AddProperty() {
                 name="address.city"
                 value={formData.address.city}
                 onChange={handleInputChange}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 border border-impact-gold/70 rounded-md focus:outline-none focus:ring-2 focus:ring-impact-gold"
                 placeholder="New York"
                 required
               />
@@ -470,7 +470,7 @@ export default function AddProperty() {
                 name="address.state"
                 value={formData.address.state}
                 onChange={handleInputChange}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 border border-impact-gold/70 rounded-md focus:outline-none focus:ring-2 focus:ring-impact-gold"
                 placeholder="NY"
                 required
               />
@@ -485,7 +485,7 @@ export default function AddProperty() {
                 name="address.zipCode"
                 value={formData.address.zipCode}
                 onChange={handleInputChange}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 border border-impact-gold/70 rounded-md focus:outline-none focus:ring-2 focus:ring-impact-gold"
                 placeholder="10001"
                 required
               />
@@ -500,7 +500,7 @@ export default function AddProperty() {
                 name="address.country"
                 value={formData.address.country}
                 onChange={handleInputChange}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 border border-impact-gold/70 rounded-md focus:outline-none focus:ring-2 focus:ring-impact-gold"
                 placeholder="USA"
               />
             </div>
@@ -520,7 +520,7 @@ export default function AddProperty() {
                 name="bedrooms"
                 value={formData.bedrooms}
                 onChange={handleInputChange}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 border border-impact-gold/70 rounded-md focus:outline-none focus:ring-2 focus:ring-impact-gold"
                 placeholder="3"
                 min="0"
               />
@@ -535,7 +535,7 @@ export default function AddProperty() {
                 name="bathrooms"
                 value={formData.bathrooms}
                 onChange={handleInputChange}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 border border-impact-gold/70 rounded-md focus:outline-none focus:ring-2 focus:ring-impact-gold"
                 placeholder="2"
                 min="0"
                 step="0.5"
@@ -551,7 +551,7 @@ export default function AddProperty() {
                 name="squareFootage"
                 value={formData.squareFootage}
                 onChange={handleInputChange}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 border border-impact-gold/70 rounded-md focus:outline-none focus:ring-2 focus:ring-impact-gold"
                 placeholder="2000"
                 min="0"
               />
@@ -566,7 +566,7 @@ export default function AddProperty() {
                 name="lotSize"
                 value={formData.lotSize}
                 onChange={handleInputChange}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 border border-impact-gold/70 rounded-md focus:outline-none focus:ring-2 focus:ring-impact-gold"
                 placeholder="5000"
                 min="0"
               />
@@ -581,7 +581,7 @@ export default function AddProperty() {
                 name="yearBuilt"
                 value={formData.yearBuilt}
                 onChange={handleInputChange}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 border border-impact-gold/70 rounded-md focus:outline-none focus:ring-2 focus:ring-impact-gold"
                 placeholder="2020"
                 min="1800"
                 max={new Date().getFullYear() + 1}
@@ -595,7 +595,7 @@ export default function AddProperty() {
           <h2 className="text-xl font-semibold mb-4">Property Features</h2>
           {featuresLoading ? (
             <div className="flex items-center justify-center py-8">
-              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-impact-gold"></div>
             </div>
           ) : features.length > 0 ? (
             <div className="space-y-4">
@@ -621,7 +621,7 @@ export default function AddProperty() {
                             type="checkbox"
                             checked={formData.features.includes(feature.id)}
                             onChange={() => handleFeatureToggle(feature.id)}
-                            className="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500 cursor-pointer"
+                            className="h-4 w-4 text-impact-gold border-gray-300 rounded focus:ring-impact-gold cursor-pointer"
                           />
                           <div className="ml-3 flex-1">
                             <div className="text-sm font-medium text-gray-900">{feature.name}</div>
@@ -652,7 +652,7 @@ export default function AddProperty() {
                 name="agent.name"
                 value={formData.agent.name}
                 onChange={handleInputChange}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 border border-impact-gold/70 rounded-md focus:outline-none focus:ring-2 focus:ring-impact-gold"
                 placeholder="John Doe"
                 required
               />
@@ -667,7 +667,7 @@ export default function AddProperty() {
                 name="agent.email"
                 value={formData.agent.email}
                 onChange={handleInputChange}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 border border-impact-gold/70 rounded-md focus:outline-none focus:ring-2 focus:ring-impact-gold"
                 placeholder="john@example.com"
                 required
               />
@@ -682,7 +682,7 @@ export default function AddProperty() {
                 name="agent.phone"
                 value={formData.agent.phone}
                 onChange={handleInputChange}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 border border-impact-gold/70 rounded-md focus:outline-none focus:ring-2 focus:ring-impact-gold"
                 placeholder="(555) 123-4567"
                 required
               />
@@ -712,7 +712,7 @@ export default function AddProperty() {
                 </button>
               </div>
             ) : (
-              <label className="flex flex-col items-center justify-center border-2 border-dashed border-gray-300 rounded-lg p-12 hover:border-blue-500 hover:bg-blue-50 transition-colors cursor-pointer">
+              <label className="flex flex-col items-center justify-center border-2 border-dashed border-impact-gold/80 rounded-lg p-12 hover:border-impact-gold hover:bg-impact-gold/20 transition-colors cursor-pointer">
                 <svg className="w-12 h-12 text-gray-400 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                 </svg>
@@ -757,7 +757,7 @@ export default function AddProperty() {
                 ))}
               </div>
             )}
-            <label className="flex flex-col items-center justify-center border-2 border-dashed border-gray-300 rounded-lg p-12 hover:border-blue-500 hover:bg-blue-50 transition-colors cursor-pointer">
+            <label className="flex flex-col items-center justify-center border-2 border-dashed border-impact-gold/80 rounded-lg p-12 hover:border-impact-gold hover:bg-impact-gold/20 transition-colors cursor-pointer">
               <svg className="w-12 h-12 text-gray-400 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
               </svg>
@@ -793,7 +793,7 @@ export default function AddProperty() {
           <button
             type="submit"
             disabled={loading}
-            className="px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="px-6 py-2 bg-impact-gold text-white rounded-md hover:bg-impact-gold/80 focus:outline-none focus:ring-2 focus:ring-impact-gold disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {loading ? 'Adding Property...' : 'Add Property'}
           </button>

@@ -187,7 +187,7 @@ export default function PropertyStatuses() {
     return (
       <div className="max-w-7xl mx-auto p-6">
         <div className="flex justify-center items-center h-64">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-impact-gold"></div>
         </div>
       </div>
     );
@@ -203,7 +203,7 @@ export default function PropertyStatuses() {
           </div>
           <button
             onClick={() => setShowAddForm(true)}
-            className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors"
+            className="bg-impact-gold text-white px-4 py-2 rounded-lg hover:bg-impact-gold/80 transition-colors"
           >
             Add Status
           </button>
@@ -221,7 +221,7 @@ export default function PropertyStatuses() {
                 type="text"
                 value={newStatus.id}
                 onChange={(e) => setNewStatus({ ...newStatus, id: e.target.value.toLowerCase().replace(/\s+/g, '-') })}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 border border-impact-gold/70 rounded-md focus:outline-none focus:ring-2 focus:ring-impact-gold"
                 placeholder="e.g., under-offer"
               />
             </div>
@@ -231,7 +231,7 @@ export default function PropertyStatuses() {
                 type="text"
                 value={newStatus.name}
                 onChange={(e) => setNewStatus({ ...newStatus, name: e.target.value })}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 border border-impact-gold/70 rounded-md focus:outline-none focus:ring-2 focus:ring-impact-gold"
                 placeholder="e.g., Under Offer"
               />
             </div>
@@ -240,7 +240,7 @@ export default function PropertyStatuses() {
               <textarea
                 value={newStatus.description}
                 onChange={(e) => setNewStatus({ ...newStatus, description: e.target.value })}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 border border-impact-gold/70 rounded-md focus:outline-none focus:ring-2 focus:ring-impact-gold"
                 rows={3}
                 placeholder="Describe this status..."
               />
@@ -258,7 +258,7 @@ export default function PropertyStatuses() {
                   type="text"
                   value={newStatus.color}
                   onChange={(e) => setNewStatus({ ...newStatus, color: e.target.value })}
-                  className="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="flex-1 px-3 py-2 border border-impact-gold/70 rounded-md focus:outline-none focus:ring-2 focus:ring-impact-gold"
                   placeholder="#6366f1"
                 />
               </div>
@@ -267,7 +267,7 @@ export default function PropertyStatuses() {
           <div className="mt-4 flex space-x-2">
             <button
               onClick={handleAddStatus}
-              className="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors"
+              className="bg-impact-gold text-white px-4 py-2 rounded-lg hover:bg-impact-gold/80 transition-colors"
             >
               Add Status
             </button>
@@ -285,8 +285,8 @@ export default function PropertyStatuses() {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
         <div className="bg-white rounded-lg shadow-sm border p-6">
           <div className="flex items-center">
-            <div className="p-3 bg-blue-100 rounded-full">
-              <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="p-3 bg-impact-gold/10 rounded-full">
+              <svg className="w-6 h-6 text-impact-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m7-4a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
             </div>
@@ -352,7 +352,7 @@ export default function PropertyStatuses() {
                             type="text"
                             value={editingStatus.name}
                             onChange={(e) => setEditingStatus({ ...editingStatus, name: e.target.value })}
-                            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            className="w-full px-3 py-2 border border-impact-gold/70 rounded-md focus:outline-none focus:ring-2 focus:ring-impact-gold"
                           />
                         </div>
                         <div>
@@ -362,13 +362,13 @@ export default function PropertyStatuses() {
                               type="color"
                               value={editingStatus.color}
                               onChange={(e) => setEditingStatus({ ...editingStatus, color: e.target.value })}
-                              className="w-16 h-10 border border-gray-300 rounded-md cursor-pointer"
+                              className="w-16 h-10 border border-impact-gold/70 rounded-md cursor-pointer"
                             />
                             <input
                               type="text"
                               value={editingStatus.color}
                               onChange={(e) => setEditingStatus({ ...editingStatus, color: e.target.value })}
-                              className="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                              className="flex-1 px-3 py-2 border border-impact-gold/70 rounded-md focus:outline-none focus:ring-2 focus:ring-impact-gold"
                             />
                           </div>
                         </div>
@@ -377,7 +377,7 @@ export default function PropertyStatuses() {
                           <textarea
                             value={editingStatus.description}
                             onChange={(e) => setEditingStatus({ ...editingStatus, description: e.target.value })}
-                            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            className="w-full px-3 py-2 border border-impact-gold/70 rounded-md focus:outline-none focus:ring-2 focus:ring-impact-gold"
                             rows={3}
                           />
                         </div>
@@ -385,7 +385,7 @@ export default function PropertyStatuses() {
                       <div className="flex space-x-2">
                         <button
                           onClick={handleSaveStatus}
-                          className="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors"
+                          className="bg-impact-gold text-white px-4 py-2 rounded-lg hover:bg-impact-gold/80 transition-colors"
                         >
                           Save Changes
                         </button>
@@ -424,7 +424,7 @@ export default function PropertyStatuses() {
                       <div className="flex space-x-2">
                         <button
                           onClick={() => handleEditStatus(status)}
-                          className="text-blue-600 hover:text-blue-800 p-2 transition-colors"
+                          className="text-impact-gold hover:text-impact-gold/80 p-2 transition-colors"
                           title="Edit status"
                         >
                           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

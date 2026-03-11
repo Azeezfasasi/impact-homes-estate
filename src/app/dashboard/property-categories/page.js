@@ -243,7 +243,7 @@ export default function PropertyCategories() {
     return (
       <div className="max-w-7xl mx-auto p-6">
         <div className="flex justify-center items-center h-64">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-impact-gold"></div>
         </div>
       </div>
     );
@@ -259,7 +259,7 @@ export default function PropertyCategories() {
           </div>
           <button
             onClick={() => setShowAddForm(true)}
-            className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors"
+            className="bg-impact-gold text-white px-4 py-2 rounded-lg hover:bg-impact-gold/80 transition-colors"
           >
             Add Category
           </button>
@@ -277,7 +277,7 @@ export default function PropertyCategories() {
                 type="text"
                 value={newCategory.id}
                 onChange={(e) => setNewCategory({ ...newCategory, id: e.target.value.toLowerCase().replace(/\s+/g, '-') })}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 border border-impact-gold/70 rounded-md focus:outline-none focus:ring-2 focus:ring-impact-gold"
                 placeholder="e.g., luxury-homes"
               />
             </div>
@@ -287,7 +287,7 @@ export default function PropertyCategories() {
                 type="text"
                 value={newCategory.name}
                 onChange={(e) => setNewCategory({ ...newCategory, name: e.target.value })}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 border border-impact-gold/70 rounded-md focus:outline-none focus:ring-2 focus:ring-impact-gold"
                 placeholder="e.g., Luxury Homes"
               />
             </div>
@@ -296,7 +296,7 @@ export default function PropertyCategories() {
               <textarea
                 value={newCategory.description}
                 onChange={(e) => setNewCategory({ ...newCategory, description: e.target.value })}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 border border-impact-gold/70 rounded-md focus:outline-none focus:ring-2 focus:ring-impact-gold"
                 rows={3}
                 placeholder="Describe this category..."
               />
@@ -306,7 +306,7 @@ export default function PropertyCategories() {
               <select
                 value={newCategory.color}
                 onChange={(e) => setNewCategory({ ...newCategory, color: e.target.value })}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 border border-impact-gold/70 rounded-md focus:outline-none focus:ring-2 focus:ring-impact-gold"
               >
                 {colorOptions.map(option => (
                   <option key={option.value} value={option.value}>{option.label}</option>
@@ -317,7 +317,7 @@ export default function PropertyCategories() {
           <div className="mt-4 flex space-x-2">
             <button
               onClick={handleAddCategory}
-              className="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors"
+              className="bg-impact-gold text-white px-4 py-2 rounded-lg hover:bg-impact-gold/80 transition-colors"
             >
               Add Category
             </button>
@@ -335,8 +335,8 @@ export default function PropertyCategories() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
         <div className="bg-white rounded-lg shadow-sm border p-6">
           <div className="flex items-center">
-            <div className="p-3 bg-blue-100 rounded-full">
-              <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="p-3 bg-impact-gold/20 rounded-full">
+              <svg className="w-6 h-6 text-impact-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
               </svg>
             </div>
@@ -421,7 +421,7 @@ export default function PropertyCategories() {
                           type="text"
                           value={editingCategory.name}
                           onChange={(e) => setEditingCategory({ ...editingCategory, name: e.target.value })}
-                          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                          className="w-full px-3 py-2 border border-impact-gold/70 rounded-md focus:outline-none focus:ring-2 focus:ring-impact-gold"
                         />
                       </div>
                       <div>
@@ -429,7 +429,7 @@ export default function PropertyCategories() {
                         <select
                           value={editingCategory.color}
                           onChange={(e) => setEditingCategory({ ...editingCategory, color: e.target.value })}
-                          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                          className="w-full px-3 py-2 border border-impact-gold/70 rounded-md focus:outline-none focus:ring-2 focus:ring-impact-gold"
                         >
                           {colorOptions.map(option => (
                             <option key={option.value} value={option.value}>{option.label}</option>
@@ -441,7 +441,7 @@ export default function PropertyCategories() {
                         <textarea
                           value={editingCategory.description}
                           onChange={(e) => setEditingCategory({ ...editingCategory, description: e.target.value })}
-                          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                          className="w-full px-3 py-2 border border-impact-gold/70 rounded-md focus:outline-none focus:ring-2 focus:ring-impact-gold"
                           rows={3}
                         />
                       </div>
@@ -449,7 +449,7 @@ export default function PropertyCategories() {
                     <div className="flex space-x-2">
                       <button
                         onClick={handleSaveCategory}
-                        className="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors"
+                        className="bg-impact-gold text-white px-4 py-2 rounded-lg hover:bg-impact-gold/80 transition-colors"
                       >
                         Save Changes
                       </button>
@@ -483,7 +483,7 @@ export default function PropertyCategories() {
                       <div className="flex space-x-2">
                         <button
                           onClick={() => handleEditCategory(category)}
-                          className="text-blue-600 hover:text-blue-800 p-2"
+                          className="text-impact-gold hover:text-impact-gold/80 p-2"
                           title="Edit category"
                         >
                           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -509,7 +509,7 @@ export default function PropertyCategories() {
                   <div className="mt-4">
                     <div className="w-full bg-gray-200 rounded-full h-2">
                       <div
-                        className="bg-blue-600 h-2 rounded-full transition-all duration-300"
+                        className="bg-impact-gold h-2 rounded-full transition-all duration-300"
                         style={{ width: `${stats.percentage}%` }}
                       ></div>
                     </div>
@@ -550,7 +550,7 @@ export default function PropertyCategories() {
                 .map((cat) => (
                   <li key={cat.id} className="flex items-center justify-between">
                     <span className="text-gray-600">{cat.name}</span>
-                    <span className="text-sm text-blue-600">No properties yet</span>
+                    <span className="text-sm text-impact-gold">No properties yet</span>
                   </li>
                 ))}
               {categories.filter(cat => getCategoryStats(cat.id).count === 0).length === 0 && (

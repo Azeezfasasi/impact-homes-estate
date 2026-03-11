@@ -13,7 +13,6 @@ export default function page() {
     <>
     <MainNav
       title="About Us"
-      // subtitle="Learn more about our company and values"
       breadcrumbs={breadcrumbs}
     />
     <CompanyOverview />

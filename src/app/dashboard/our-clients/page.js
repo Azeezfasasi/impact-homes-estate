@@ -181,7 +181,7 @@ export default function OurClientsManager() {
     return (
       <ProtectedRoute allowedRoles={['admin', 'staff-member']}>
         <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-          <Loader className="w-8 h-8 animate-spin text-blue-600" />
+          <Loader className="w-8 h-8 animate-spin text-impact-gold" />
         </div>
       </ProtectedRoute>
     );
@@ -199,7 +199,7 @@ export default function OurClientsManager() {
             </div>
             <button
               onClick={() => setIsFormOpen(true)}
-              className="flex items-center gap-2 px-4 py-2.5 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition-colors w-full sm:w-auto justify-center sm:justify-start"
+              className="flex items-center gap-2 px-4 py-2.5 bg-impact-gold text-white rounded-lg font-medium hover:bg-impact-gold/80 transition-colors w-full sm:w-auto justify-center sm:justify-start"
             >
               <Plus className="w-5 h-5" />
               Add New Client
@@ -213,7 +213,7 @@ export default function OurClientsManager() {
                 <p className="text-gray-500 mb-4">No clients created yet</p>
                 <button
                   onClick={() => setIsFormOpen(true)}
-                  className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+                  className="inline-flex items-center gap-2 px-4 py-2 bg-impact-gold text-white rounded-lg hover:bg-impact-gold/80"
                 >
                   <Plus className="w-4 h-4" />
                   Add First Client
@@ -267,7 +267,7 @@ export default function OurClientsManager() {
                         <div className="flex gap-2 flex-wrap">
                           <button
                             onClick={() => handleEdit(client)}
-                            className="flex items-center justify-center gap-2 px-3 py-2 bg-blue-50 text-blue-600 rounded hover:bg-blue-100 transition-colors text-sm font-medium flex-1"
+                            className="flex items-center justify-center gap-2 px-3 py-2 bg-impact-gold/10 text-impact-gold rounded hover:bg-impact-gold/20 transition-colors text-sm font-medium flex-1"
                           >
                             <Edit2 className="w-4 h-4" />
                             Edit
@@ -338,7 +338,7 @@ export default function OurClientsManager() {
                       value={formData.name}
                       onChange={handleInputChange}
                       placeholder="e.g., Huawei Technologies Limited"
-                      className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm"
+                      className="w-full px-4 py-2.5 border border-impact-gold/70 rounded-lg focus:ring-2 focus:ring-impact-gold focus:border-transparent text-sm"
                     />
                   </div>
 
@@ -349,7 +349,7 @@ export default function OurClientsManager() {
                     </label>
                     <div className="space-y-3">
                       <div className="flex gap-2">
-                        <label className="flex-1 flex items-center justify-center gap-2 px-4 py-3 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer hover:border-blue-500 hover:bg-blue-50 transition">
+                        <label className="flex-1 flex items-center justify-center gap-2 px-4 py-3 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer hover:border-impact-gold hover:impact-gold/10 transition">
                           <span className="text-sm font-medium text-gray-700">
                             {uploading ? 'Uploading...' : 'Choose Logo'}
                           </span>
@@ -390,7 +390,7 @@ export default function OurClientsManager() {
                     <button
                       type="submit"
                       disabled={saving || uploading}
-                      className="flex-1 px-4 py-2.5 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium disabled:opacity-50 flex items-center justify-center gap-2"
+                      className="flex-1 px-4 py-2.5 bg-impact-gold text-white rounded-lg hover:bg-impact-gold/80 font-medium disabled:opacity-50 flex items-center justify-center gap-2"
                     >
                       {(saving || uploading) && <Loader className="w-4 h-4 animate-spin" />}
                       {editingId ? 'Update Client' : 'Create Client'}

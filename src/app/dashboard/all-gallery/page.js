@@ -104,7 +104,7 @@ export default function AllGalleriesPage() {
           <h1 className="text-[24px] md:text-[24px] font-bold text-gray-900">Gallery Management</h1>
           <button
             onClick={() => router.push('/dashboard/add-gallery')}
-            className="flex items-center gap-2 bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors mt-4 lg:mt-0"
+            className="flex items-center gap-2 bg-impact-gold text-white py-2 px-4 rounded-lg hover:bg-impact-gold/80 transition-colors mt-4 lg:mt-0"
           >
             <Plus className="h-5 w-5" />
             Add Gallery
@@ -141,7 +141,7 @@ export default function AllGalleriesPage() {
                   value={filters.search}
                   onChange={handleSearchChange}
                   placeholder="Search galleries..."
-                  className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full pl-10 pr-4 py-2 border border-impact-gold/70 rounded-lg focus:ring-2 focus:ring-impact-gold focus:border-transparent"
                 />
               </div>
             </div>
@@ -155,7 +155,7 @@ export default function AllGalleriesPage() {
                 name="category"
                 value={filters.category}
                 onChange={handleFilterChange}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full px-4 py-2 border border-impact-gold/70 rounded-lg focus:ring-2 focus:ring-impact-gold focus:border-transparent"
               >
                 <option value="">All Categories</option>
                 {CATEGORIES.map(cat => (
@@ -175,7 +175,7 @@ export default function AllGalleriesPage() {
                 name="status"
                 value={filters.status}
                 onChange={handleFilterChange}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full px-4 py-2 border border-impact-gold/70 rounded-lg focus:ring-2 focus:ring-impact-gold focus:border-transparent"
               >
                 <option value="">All Statuses</option>
                 <option value="active">Active</option>
@@ -192,7 +192,7 @@ export default function AllGalleriesPage() {
                 name="limit"
                 value={filters.limit}
                 onChange={handleFilterChange}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full px-4 py-2 border border-impact-gold/70 rounded-lg focus:ring-2 focus:ring-impact-gold focus:border-transparent"
               >
                 <option value="5">5</option>
                 <option value="10">10</option>
@@ -206,14 +206,14 @@ export default function AllGalleriesPage() {
         {/* Loading State */}
         {loading ? (
           <div className="flex justify-center items-center py-12">
-            <Loader className="h-8 w-8 animate-spin text-blue-600" />
+            <Loader className="h-8 w-8 animate-spin text-impact-gold" />
           </div>
         ) : galleries.length === 0 ? (
           <div className="bg-white rounded-lg shadow-md p-12 text-center">
             <p className="text-gray-600 mb-4">No galleries found</p>
             <button
               onClick={() => router.push('/dashboard/add-gallery')}
-              className="inline-flex items-center gap-2 bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors"
+              className="inline-flex items-center gap-2 bg-impact-gold text-white py-2 px-4 rounded-lg hover:bg-impact-gold/80 transition-colors"
             >
               <Plus className="h-5 w-5" />
               Create First Gallery
@@ -289,14 +289,14 @@ export default function AllGalleriesPage() {
                     <div className="flex gap-2">
                       <button
                         onClick={() => router.push(`/dashboard/view-gallery/${gallery._id}`)}
-                        className="flex-1 flex items-center justify-center gap-2 bg-blue-50 text-blue-600 py-2 rounded hover:bg-blue-100 transition-colors text-sm font-medium"
+                        className="flex-1 flex items-center justify-center gap-2 bg-impact-gold text-white py-2 rounded hover:bg-impact-gold/80 transition-colors text-sm font-medium"
                       >
                         <Eye className="h-4 w-4" />
                         View
                       </button>
                       <button
                         onClick={() => router.push(`/dashboard/edit-gallery/${gallery._id}`)}
-                        className="flex-1 flex items-center justify-center gap-2 bg-green-50 text-green-600 py-2 rounded hover:bg-green-100 transition-colors text-sm font-medium"
+                        className="flex-1 flex items-center justify-center gap-2 bg-impact-gold text-white py-2 rounded hover:bg-impact-gold/80 transition-colors text-sm font-medium"
                       >
                         <Edit className="h-4 w-4" />
                         Edit
@@ -335,7 +335,7 @@ export default function AllGalleriesPage() {
                     onClick={() => handlePageChange(i + 1)}
                     className={`px-4 py-2 rounded-lg transition-colors ${
                       pagination.page === i + 1
-                        ? 'bg-blue-600 text-white'
+                        ? 'bg-impact-gold text-white'
                         : 'border border-gray-300 hover:bg-gray-50'
                     }`}
                   >
