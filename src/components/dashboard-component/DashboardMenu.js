@@ -83,6 +83,7 @@ export default function DashboardMenu({ collapsed, mobileOpen = false, onClose =
         { href: '/dashboard/all-projects', label: 'All Projects', roles: ['admin', 'staff-member'] }
       ]
     },
+    { href: '/dashboard/manage-brochure', label: 'Manage Brochure', icon: 'dashboard', roles: ['admin'] },
     {
       href: '/dashboard/blog',
       label: 'Blog',
