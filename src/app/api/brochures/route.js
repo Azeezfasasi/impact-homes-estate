@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import connectDB from '@/lib/mongodb';
+import { connectDB } from '@/utils/db';
 import Brochure from '@/app/server/models/Brochure';
 import { uploadToCloudinary, deleteFromCloudinary } from '@/app/server/utils/cloudinaryService';
 

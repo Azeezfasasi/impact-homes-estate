@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import connectDB from '@/lib/mongodb';
+import { connectDB } from '@/utils/db';
 import Brochure from '@/app/server/models/Brochure';
 
 export async function POST(request, { params }) {
