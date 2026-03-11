@@ -182,6 +182,12 @@ export default function MainNav({ hideBackgroundImage = false, title, subtitle, 
                   >
                     GALLERY
                   </Link>
+                  <Link
+                    href="/blog"
+                    className="block px-4 py-2 text-white hover:text-impact-gold hover:bg-white/5 transition"
+                  >
+                    Blog
+                  </Link>
                 </div>
               </div>
 
@@ -196,12 +202,6 @@ export default function MainNav({ hideBackgroundImage = false, title, subtitle, 
                 className="text-white font-semibold hover:text-impact-gold transition"
               >
                 PROJECTS
-              </Link>
-              <Link
-                href="/blog"
-                className="hover:text-impact-gold transition"
-              >
-                BLOG
               </Link>
 
               {/* Become a Sales Partner Dropdown */}
@@ -314,7 +314,7 @@ export default function MainNav({ hideBackgroundImage = false, title, subtitle, 
               ) : null}
 
               <Link
-                href="#"
+                href="/download-brochure"
                 className="bg-impact-gold hover:bg-impact-gold/90 text-white px-6 py-3 rounded font-semibold transition whitespace-nowrap"
               >
                 DOWNLOAD BROCHURES
@@ -332,7 +332,7 @@ export default function MainNav({ hideBackgroundImage = false, title, subtitle, 
               )}
             <div className="lg:hidden flex items-center gap-4 z-10 relative">
               <Link
-                href="#"
+                href="/download-brochure"
                 className="bg-impact-gold hover:bg-impact-gold/90 text-[12px] text-white px-2 py-2 rounded font-semibold transition whitespace-nowrap"
               >
                 DOWNLOAD BROCHURES
@@ -489,7 +489,7 @@ export default function MainNav({ hideBackgroundImage = false, title, subtitle, 
                   SPECIAL OFFERS
                 </Link>
                 <Link
-                  href="#"
+                  href="/download-brochure"
                   className="bg-impact-gold hover:bg-impact-gold/90 text-white px-4 py-2 rounded font-semibold mt-2 inline-block"
                 >
                   DOWNLOAD BROCHURES
