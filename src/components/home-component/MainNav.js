@@ -230,7 +230,7 @@ export default function MainNav({ hideBackgroundImage = false, title, subtitle, 
               </div>
 
               <Link
-                href="#"
+                href="special-offer"
                 className="hover:text-impact-gold transition"
               >
                 SPECIAL OFFERS
@@ -489,7 +489,7 @@ export default function MainNav({ hideBackgroundImage = false, title, subtitle, 
                   )}
                 </div>
 
-                <Link href="#" className="hover:text-impact-gold">
+                <Link href="special-offer" className="hover:text-impact-gold">
                   SPECIAL OFFERS
                 </Link>
                 <Link

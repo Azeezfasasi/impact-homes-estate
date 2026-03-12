@@ -97,6 +97,7 @@ export default function DashboardMenu({ collapsed, mobileOpen = false, onClose =
     { href: '/blog', label: 'View Blogs', icon: 'dashboard', roles: ['client'] },
     { href: '/dashboard/inspection-requests', label: 'Inspection Requests', icon: 'Contact', roles: ['admin', 'staff-member'] },
     { href: '/dashboard/manage-partner-application', label: 'Partner Application', icon: 'Contact', roles: ['admin', 'staff-member'] },
+    { href: '/dashboard/manage-special-offer', label: 'Manage Special Offers', icon: 'Contact', roles: ['admin', 'staff-member'] },
     { href: '/dashboard/contact-form-responses', label: 'Contact Form Responses', icon: 'Contact', roles: ['admin', 'staff-member'] },
     {
       href: '/dashboard/all-newsletter',
