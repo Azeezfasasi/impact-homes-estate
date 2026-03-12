@@ -89,6 +89,8 @@ export async function addStat(statData) {
   const newStat = {
     _id: new mongoose.Types.ObjectId(),
     icon: statData.icon || "🚀",
+    iconUrl: statData.iconUrl || null,
+    iconPublicId: statData.iconPublicId || null,
     number: statData.number,
     label: statData.label,
     order: welcomeCta.stats.length,
@@ -118,6 +120,8 @@ export async function updateStat(statId, statData) {
   }
 
   stat.icon = statData.icon !== undefined ? statData.icon : stat.icon;
+  stat.iconUrl = statData.iconUrl !== undefined ? statData.iconUrl : stat.iconUrl;
+  stat.iconPublicId = statData.iconPublicId !== undefined ? statData.iconPublicId : stat.iconPublicId;
   stat.number = statData.number || stat.number;
   stat.label = statData.label || stat.label;
   welcomeCta.updatedAt = new Date();

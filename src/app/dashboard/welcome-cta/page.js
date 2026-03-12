@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { Plus, Edit2, Trash2, X, Loader, ArrowUp, ArrowDown } from 'lucide-react';
+import { Plus, Edit2, Trash2, X, Loader, ArrowUp, ArrowDown, Upload } from 'lucide-react';
 import { ProtectedRoute } from '@/components/ProtectedRoute';
 import toast from 'react-hot-toast';
 
@@ -18,9 +18,13 @@ export default function WelcomeCtaManager() {
   const [editingStatId, setEditingStatId] = useState(null);
   const [statForm, setStatForm] = useState({
     icon: '🚀',
+    iconUrl: null,
+    iconPublicId: null,
     number: '',
     label: '',
   });
+  const [isUploadingIcon, setIsUploadingIcon] = useState(false);
+  const fileInputRef = React.useRef(null);
 
   // Fetch content
   useEffect(() => {
@@ -63,6 +67,103 @@ export default function WelcomeCtaManager() {
     }));
   };
 
+  const handleIconUpload = async (e) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    // Validate file type
+    const validTypes = ['image/svg+xml', 'image/png', 'image/jpeg', 'image/gif', 'image/webp'];
+    if (!validTypes.includes(file.type)) {
+      toast.error('Please upload a valid image format (SVG, PNG, JPEG, GIF, WebP)');
+      return;
+    }
+
+    // Validate file size (max 5MB)
+    if (file.size > 5 * 1024 * 1024) {
+      toast.error('File size must be less than 5MB');
+      return;
+    }
+
+    setIsUploadingIcon(true);
+    try {
+      const reader = new FileReader();
+      reader.onload = async (event) => {
+        try {
+          const fileData = event.target?.result;
+          console.log('Uploading file to Cloudinary:', { fileName: file.name, fileType: file.type });
+          
+          const response = await fetch('/api/cloudinary', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              fileData,
+              folderName: 'rayob/stats-icons',
+            }),
+          });
+
+          const data = await response.json();
+          console.log('Cloudinary response:', data);
+
+          if (data.success) {
+            console.log('Upload successful, URL:', data.url);
+            setStatForm(prev => ({
+              ...prev,
+              iconUrl: data.url,
+              iconPublicId: data.publicId,
+            }));
+            // Reset file input
+            if (fileInputRef.current) {
+              fileInputRef.current.value = '';
+            }
+            toast.success('Icon uploaded successfully');
+          } else {
+            toast.error(data.message || 'Failed to upload icon');
+          }
+        } catch (error) {
+          toast.error('Failed to upload icon');
+          console.error('Upload error:', error);
+        } finally {
+          setIsUploadingIcon(false);
+        }
+      };
+      reader.readAsDataURL(file);
+    } catch (error) {
+      toast.error('Failed to process file');
+      console.error(error);
+      setIsUploadingIcon(false);
+    }
+  };
+
+  const handleRemoveIcon = async () => {
+    if (!statForm.iconPublicId) return;
+
+    try {
+      const response = await fetch('/api/cloudinary', {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          publicId: statForm.iconPublicId,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setStatForm(prev => ({
+          ...prev,
+          iconUrl: null,
+          iconPublicId: null,
+        }));
+        toast.success('Icon removed');
+      } else {
+        toast.error('Failed to remove icon');
+      }
+    } catch (error) {
+      toast.error('Failed to remove icon');
+      console.error(error);
+    }
+  };
+
   const handleAddStat = async (e) => {
     e.preventDefault();
 
@@ -86,7 +187,7 @@ export default function WelcomeCtaManager() {
 
       if (data.success) {
         toast.success('Stat added successfully');
-        setStatForm({ icon: '🚀', number: '', label: '' });
+        setStatForm({ icon: '🚀', iconUrl: null, iconPublicId: null, number: '', label: '' });
         setIsFormOpen(false);
         await fetchContent();
       } else {
@@ -103,6 +204,8 @@ export default function WelcomeCtaManager() {
   const handleEditStat = (stat) => {
     setStatForm({
       icon: stat.icon,
+      iconUrl: stat.iconUrl || null,
+      iconPublicId: stat.iconPublicId || null,
       number: stat.number,
       label: stat.label,
     });
@@ -134,7 +237,7 @@ export default function WelcomeCtaManager() {
 
       if (data.success) {
         toast.success('Stat updated successfully');
-        setStatForm({ icon: '🚀', number: '', label: '' });
+        setStatForm({ icon: '🚀', iconUrl: null, iconPublicId: null, number: '', label: '' });
         setEditingStatId(null);
         setIsFormOpen(false);
         await fetchContent();
@@ -237,7 +340,7 @@ export default function WelcomeCtaManager() {
   const handleCloseForm = () => {
     setIsFormOpen(false);
     setEditingStatId(null);
-    setStatForm({ icon: '🚀', number: '', label: '' });
+    setStatForm({ icon: '🚀', iconUrl: null, iconPublicId: null, number: '', label: '' });
   };
 
   if (loading) {
@@ -354,7 +457,15 @@ export default function WelcomeCtaManager() {
                     className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-lg p-4 border border-gray-200 hover:shadow-md transition-shadow"
                   >
                     <div className="text-center mb-3">
-                      <div className="text-4xl mb-2">{stat.icon}</div>
+                      {stat.iconUrl ? (
+                        <img
+                          src={stat.iconUrl}
+                          alt={stat.label}
+                          className="w-16 h-16 mx-auto mb-2 object-contain"
+                        />
+                      ) : (
+                        <div className="text-4xl mb-2">{stat.icon}</div>
+                      )}
                       <h3 className="text-xl font-bold text-gray-900">{stat.number}</h3>
                       <p className="text-sm text-gray-600 mt-1">{stat.label}</p>
                     </div>
@@ -428,20 +539,88 @@ export default function WelcomeCtaManager() {
                   onSubmit={editingStatId ? handleUpdateStat : handleAddStat}
                   className="p-4 sm:p-6 space-y-4"
                 >
-                  {/* Icon */}
+                  {/* Icon Preview and Upload */}
                   <div>
                     <label className="block text-sm font-semibold text-gray-700 mb-2">
-                      Icon
+                      Icon / Image
                     </label>
-                    <input
-                      type="text"
-                      name="icon"
-                      value={statForm.icon}
-                      onChange={handleStatInputChange}
-                      placeholder="e.g., 🚀"
-                      maxLength="2"
-                      className="w-full px-4 py-2.5 border border-impact-gold/70 rounded-lg focus:ring-2 focus:ring-impact-gold focus:border-transparent text-lg"
-                    />
+                    <div className="space-y-3">
+                      {/* Preview */}
+                      <div className="flex items-center justify-center p-4 bg-gray-50 rounded-lg border border-dashed border-gray-300">
+                        {statForm.iconUrl ? (
+                          <div className="text-center">
+                            <img
+                              src={statForm.iconUrl}
+                              alt="Preview"
+                              className="w-16 h-16 mx-auto mb-2 object-contain"
+                            />
+                            <p className="text-xs text-gray-600">Uploaded image</p>
+                          </div>
+                        ) : (
+                          <div className="text-center">
+                            <div className="text-5xl mb-2">{statForm.icon}</div>
+                            <p className="text-xs text-gray-600">Current emoji</p>
+                          </div>
+                        )}
+                      </div>
+
+                      {/* Upload Button */}
+                      <div className="flex gap-2">
+                        <input
+                          ref={fileInputRef}
+                          type="file"
+                          accept="image/svg+xml,image/png,image/jpeg,image/gif,image/webp"
+                          onChange={handleIconUpload}
+                          disabled={isUploadingIcon}
+                          className="hidden"
+                        />
+                        <button
+                          type="button"
+                          onClick={() => fileInputRef.current?.click()}
+                          disabled={isUploadingIcon}
+                          className="flex-1 flex items-center justify-center gap-2 px-3 py-2 bg-blue-50 text-blue-600 rounded hover:bg-blue-100 transition-colors text-sm font-medium disabled:opacity-50"
+                        >
+                          {isUploadingIcon ? (
+                            <>
+                              <Loader className="w-4 h-4 animate-spin" />
+                              Uploading...
+                            </>
+                          ) : (
+                            <>
+                              <Upload className="w-4 h-4" />
+                              Upload Image
+                            </>
+                          )}
+                        </button>
+                        {statForm.iconUrl && (
+                          <button
+                            type="button"
+                            onClick={handleRemoveIcon}
+                            className="flex-1 px-3 py-2 bg-red-50 text-red-600 rounded hover:bg-red-100 transition-colors text-sm font-medium"
+                          >
+                            Remove
+                          </button>
+                        )}
+                      </div>
+
+                      {/* Emoji Fallback */}
+                      {!statForm.iconUrl && (
+                        <div>
+                          <label className="block text-xs font-semibold text-gray-600 mb-1">
+                            Or use emoji instead
+                          </label>
+                          <input
+                            type="text"
+                            name="icon"
+                            value={statForm.icon}
+                            onChange={handleStatInputChange}
+                            placeholder="e.g., 🚀"
+                            maxLength="2"
+                            className="w-full px-4 py-2.5 border border-impact-gold/70 rounded-lg focus:ring-2 focus:ring-impact-gold focus:border-transparent text-lg"
+                          />
+                        </div>
+                      )}
+                    </div>
                   </div>
 
                   {/* Number */}

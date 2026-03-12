@@ -116,7 +116,7 @@ export default function HomeContact() {
       <div className="mx-auto max-w-7xl grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-10">
         {/* Left Section - Contact Form */}
         <div className="bg-gray-800 text-white p-10 rounded-lg md:p-8 sm:p-6">
-          <h1 className="text-4xl md:text-3xl sm:text-2xl font-bold mb-5">Schedule an Inspection</h1>
+          <h1 className="text-2xl md:text-3xl sm:text-2xl font-bold mb-5">Schedule an Inspection</h1>
           <p className="text-base md:text-sm text-gray-300 mb-8 leading-relaxed">Kindly complete the form below to Schedule an Inspection of any of our projects</p>
           
           <form onSubmit={handleSubmit} className="flex flex-col gap-5">
@@ -219,8 +219,8 @@ export default function HomeContact() {
 
         {/* Right Section - FAQ */}
         <div className="py-5 sm:py-0">
-          <p className="text-sm text-impact-gold mb-2.5 font-medium">Learn More From</p>
-          <h2 className="text-4xl md:text-3xl sm:text-2xl font-bold mb-7 text-gray-900">Our Frequently Asked Questions</h2>
+          <p className="text-sm text-center lg:text-left text-impact-gold mb-2.5 font-medium">Learn More From</p>
+          <h2 className="text-2xl text-center lg:text-left md:text-3xl sm:text-2xl font-bold mb-7 text-gray-900">Our Frequently Asked Questions</h2>
           
           {faqsLoading ? (
             <div className="flex items-center justify-center py-8">

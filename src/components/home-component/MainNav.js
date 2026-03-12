@@ -96,7 +96,7 @@ export default function MainNav({ hideBackgroundImage = false, title, subtitle, 
             <div className="max-w-7xl mx-auto flex flex-col lg:flex-row justify-between items-center gap-4 text-sm pb-4">
                 {/* Logo */}
                 <Link href="/" className="flex items-center gap-2 text-2xl font-bold">
-                    <Image src="/img/logowhite.png" alt="Impact Homes Logo" width={170} height={50} className="ml-2 w-full lg:h-[100px]" />
+                    <Image src="/img/logowhite.png" alt="Impact Homes Logo" width={170} height={50} className="md:ml-0 w-full h-[60px] lg:h-[100px]" />
                 </Link>
                 
             <div className='gap-10 hidden lg:flex'>
@@ -235,6 +235,13 @@ export default function MainNav({ hideBackgroundImage = false, title, subtitle, 
               >
                 SPECIAL OFFERS
               </Link>
+
+              <Link
+                href="/contact-us"
+                className="hover:text-impact-gold transition"
+              >
+                Contact Us
+              </Link>
             </div>
 
             {/* Right Side Icons and Button */}
@@ -333,7 +340,7 @@ export default function MainNav({ hideBackgroundImage = false, title, subtitle, 
             <div className="lg:hidden flex items-center gap-4 z-10 relative">
               <Link
                 href="/download-brochure"
-                className="bg-impact-gold hover:bg-impact-gold/90 text-[12px] text-white px-2 py-2 rounded font-semibold transition whitespace-nowrap"
+                className="bg-impact-gold hover:bg-impact-gold/90 text-[9px] md:text-[14px] text-white px-2 py-2 rounded font-semibold transition whitespace-nowrap"
               >
                 DOWNLOAD BROCHURES
               </Link>

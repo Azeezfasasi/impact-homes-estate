@@ -3,12 +3,14 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import MainNav from '@/components/home-component/MainNav'
+import { Menu, X } from 'lucide-react';
 
 export default function AllPropertiesPage() {
   const [properties, setProperties] = useState([]);
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
+  const [showFilters, setShowFilters] = useState(false);
   const [filters, setFilters] = useState({
     search: '',
     propertyType: '',
@@ -91,10 +93,41 @@ export default function AllPropertiesPage() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+          {/* Mobile Filter Button */}
+          <div className="lg:hidden mb-4">
+            <button
+              onClick={() => setShowFilters(true)}
+              className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-impact-gold text-white rounded-lg font-medium hover:bg-impact-gold/90 transition-colors"
+            >
+              <Menu className="w-5 h-5" />
+              Show Filters
+            </button>
+          </div>
+
+          {/* Mobile Overlay */}
+          {showFilters && (
+            <div
+              className="fixed inset-0 bg-black/50 z-30 lg:hidden"
+              onClick={() => setShowFilters(false)}
+            />
+          )}
+
           {/* Sidebar Filters */}
-          <div className="lg:col-span-1">
-            <div className="bg-white rounded-lg shadow-sm border p-6 sticky top-4">
-              <h2 className="text-lg font-semibold text-gray-900 mb-4">Filters</h2>
+          <div
+            className={`fixed lg:static top-0 left-0 h-full lg:h-auto w-72 lg:w-auto bg-white z-50 transition-transform duration-300 ease-in-out transform ${
+              showFilters ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
+            } lg:col-span-1 overflow-y-auto lg:overflow-visible`}
+          >
+            <div className="bg-white rounded-lg shadow-sm border p-6 sticky top-0 lg:sticky lg:rounded-lg">
+              {/* Close Button for Mobile */}
+              <button
+                onClick={() => setShowFilters(false)}
+                className="lg:hidden absolute top-4 right-4 text-gray-500 hover:text-gray-700 z-50"
+              >
+                <X className="w-6 h-6" />
+              </button>
+
+              <h2 className="text-lg font-semibold text-gray-900 mb-6 mt-8 lg:mt-0 pr-8 lg:pr-0">Filters</h2>
 
               {/* Search */}
               <div className="mb-6">

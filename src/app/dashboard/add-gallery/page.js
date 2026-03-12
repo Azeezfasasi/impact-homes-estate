@@ -21,7 +21,7 @@ export default function AddGalleryPage() {
   const [formData, setFormData] = useState({
     title: '',
     description: '',
-    category: 'accommodation',
+    category: 'project',
     featured: false,
     status: 'active',
     businessName: '',
@@ -57,36 +57,24 @@ export default function AddGalleryPage() {
     try {
       // Process files sequentially to avoid timeout issues
       for (const file of files) {
-        const reader = new FileReader();
-        
-        await new Promise((resolve, reject) => {
-          reader.onloadend = async () => {
-            try {
-              const base64 = reader.result;
+        await new Promise(async (resolve, reject) => {
+          try {
+            const result = await uploadImageToCloudinary(file, 'rayob/gallery');
 
-              const result = await uploadImageToCloudinary(base64, 'rayob/gallery');
+            setFormData(prev => ({
+              ...prev,
+              images: [...prev.images, {
+                url: result.url,
+                publicId: result.publicId,
+                alt: '',
+                displayOrder: prev.images.length,
+              }],
+            }));
 
-              setFormData(prev => ({
-                ...prev,
-                images: [...prev.images, {
-                  url: result.url,
-                  publicId: result.publicId,
-                  alt: '',
-                  displayOrder: prev.images.length,
-                }],
-              }));
-
-              resolve();
-            } catch (err) {
-              reject(new Error(`Failed to upload ${file.name}: ${err.message}`));
-            }
-          };
-
-          reader.onerror = () => {
-            reject(new Error(`Failed to read ${file.name}`));
-          };
-
-          reader.readAsDataURL(file);
+            resolve();
+          } catch (err) {
+            reject(new Error(`Failed to upload ${file.name}: ${err.message}`));
+          }
         });
       }
 
@@ -329,25 +317,27 @@ export default function AddGalleryPage() {
                 </label>
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-4">
                   {formData.images.map((img, index) => (
-                    <div key={index} className="relative group">
-                      <Image
-                        src={img.url}
-                        alt={img.alt || `Image ${index + 1}`}
-                        width={200}
-                        height={128}
-                        className="w-full h-24 sm:h-32 object-cover rounded-lg"
-                      />
-                      <button
-                        type="button"
-                        onClick={() => removeImage(index)}
-                        className="absolute top-0.5 right-0.5 sm:top-1 sm:right-1 bg-red-500 text-white rounded-full p-0.5 sm:p-1 opacity-0 group-hover:opacity-100 transition-opacity"
-                      >
-                        <X className="h-3 w-3 sm:h-4 sm:w-4" />
-                      </button>
-                      <p className="text-xs text-gray-600 mt-1">
-                        {img.displayOrder + 1}/{formData.images.length}
-                      </p>
-                    </div>
+                    img.url ? (
+                      <div key={index} className="relative group">
+                        <Image
+                          src={img.url}
+                          alt={img.alt || `Image ${index + 1}`}
+                          width={200}
+                          height={128}
+                          className="w-full h-24 sm:h-32 object-cover rounded-lg"
+                        />
+                        <button
+                          type="button"
+                          onClick={() => removeImage(index)}
+                          className="absolute top-0.5 right-0.5 sm:top-1 sm:right-1 bg-red-500 text-white rounded-full p-0.5 sm:p-1 opacity-0 group-hover:opacity-100 transition-opacity"
+                        >
+                          <X className="h-3 w-3 sm:h-4 sm:w-4" />
+                        </button>
+                        <p className="text-xs text-gray-600 mt-1">
+                          {img.displayOrder + 1}/{formData.images.length}
+                        </p>
+                      </div>
+                    ) : null
                   ))}
                 </div>
               </div>

@@ -154,9 +154,9 @@ export default function HeroSlider() {
             <div className="absolute inset-0 bg-black/30" />
 
             {/* Content */}
-            <div className="relative h-full flex flex-col justify-center items-start px-6 md:px-12 max-w-7xl mx-auto">
+            <div className="relative h-full flex flex-col justify-center items-start px-6 md:px-12 max-w-7xl mx-auto mt-[100px] md:mt-0">
               {/* Main Heading */}
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight mb-6 max-w-2xl">
+              <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-tight mb-6 max-w-2xl">
                 {slide.title}
               </h1>
 

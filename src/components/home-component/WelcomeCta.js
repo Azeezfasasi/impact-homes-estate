@@ -7,6 +7,13 @@ export default function WelcomeCta() {
   const [stats, setStats] = useState([])
   const [loading, setLoading] = useState(true)
 
+  // create an image src for the icons
+  const home = '/img/home/svg'
+  const foot = '/img/foot.svg'
+  const briefcase = '/img/briefcase.svg'
+  const years = '/img/years.svg'
+
+
   // Fetch WelcomeCta data from backend
   useEffect(() => {
     const fetchWelcomeCta = async () => {
@@ -42,10 +49,10 @@ export default function WelcomeCta() {
 
   const setDefaultContent = () => {
     const defaultStats = [
-      { icon: '🚀', number: '1000+', label: 'Homes delivered', order: 0 },
-      { icon: '🚀', number: '1,000,500+', label: 'Square foot Developed', order: 1 },
-      { icon: '🚀', number: '50+', label: 'Experienced Professionals', order: 2 },
-      { icon: '🚀', number: '10+', label: 'Years of Progressive Excellence', order: 3 },
+      { icon: home, number: '1000+', label: 'Homes delivered', order: 0 },
+      { icon: foot, number: '1,000,500+', label: 'Square foot Developed', order: 1 },
+      { icon: briefcase, number: '50+', label: 'Experienced Professionals', order: 2 },
+      { icon: years, number: '10+', label: 'Years of Progressive Excellence', order: 3 },
     ]
     setContent({
       title: 'Enjoy Free Investment Advisory Services',
@@ -83,7 +90,7 @@ export default function WelcomeCta() {
         {/* Left Section - Purple Background */}
         <div className="bg-gradient-to-br from-impact-gold to-impact-gold/90 flex flex-col justify-center items-start p-8 md:p-12 lg:p-16">
           <div className="w-full max-w-lg">
-            <h1 className="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
+            <h1 className="text-3xl md:text-5xl font-bold text-white mb-6 leading-tight">
               {content.title}
             </h1>
             
@@ -109,12 +116,17 @@ export default function WelcomeCta() {
                 >
                   {/* Icon */}
                   <div className="text-6xl md:text-7xl mb-4 relative">
-                    <div className="relative inline-block">
-                      <span>{stat.icon}</span>
-                      <div className="absolute -top-2 -right-2 bg-purple-600 text-white rounded-full w-6 h-6 md:w-7 md:h-7 flex items-center justify-center text-sm font-bold">
-                        ✓
+                    {stat.iconUrl ? (
+                      <img
+                        src={stat.iconUrl}
+                        alt={stat.label}
+                        className="w-20 h-20 md:w-24 md:h-24 object-contain"
+                      />
+                    ) : (
+                      <div className="relative inline-block">
+                        <span>{stat.icon}</span>
                       </div>
-                    </div>
+                    )}
                   </div>
 
                   {/* Number */}

@@ -118,7 +118,7 @@ export default function ClientReview() {
         {/* Header */}
         <div className="text-center mb-12 md:mb-16 lg:mb-20">
           <p className="text-white text-sm md:text-base font-semibold mb-3 md:mb-4 tracking-wide">We love feedback</p>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white">Client Reviews</h2>
+          <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white">Client Reviews</h2>
         </div>
 
         {/* Loading State */}

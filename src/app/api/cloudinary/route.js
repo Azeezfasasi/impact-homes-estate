@@ -10,18 +10,37 @@ cloudinary.config({
 /**
  * Retry upload with exponential backoff
  */
-async function uploadWithRetry(fileData, folderName, maxRetries = 3) {
+async function uploadWithRetry(fileData, folderName, fileType = null, maxRetries = 3) {
   let lastError;
   
   for (let attempt = 1; attempt <= maxRetries; attempt++) {
     try {
-      const result = await cloudinary.uploader.upload(fileData, {
+      // Determine resource type based on file type
+      let resourceType = 'auto';
+      let format = undefined;
+      
+      if (fileType === 'image/svg+xml') {
+        resourceType = 'image';
+        format = 'svg';
+      }
+      
+      const uploadOptions = {
         folder: folderName,
-        resource_type: 'auto',
-        quality: 'auto',
-        fetch_format: 'auto',
+        resource_type: resourceType,
         timeout: 60000,
-      });
+      };
+      
+      // Only add format-related options for non-SVG files
+      if (resourceType === 'auto') {
+        uploadOptions.quality = 'auto';
+        uploadOptions.fetch_format = 'auto';
+      }
+      
+      if (format) {
+        uploadOptions.format = format;
+      }
+      
+      const result = await cloudinary.uploader.upload(fileData, uploadOptions);
       
       return result;
     } catch (error) {
@@ -64,11 +83,27 @@ export async function POST(req) {
       );
     }
 
-    const result = await uploadWithRetry(fileData, folderName);
+    // Extract file type from data URL
+    let fileType = null;
+    if (typeof fileData === 'string' && fileData.startsWith('data:')) {
+      const matches = fileData.match(/^data:([^;]+)/);
+      if (matches) {
+        fileType = matches[1];
+      }
+    }
+
+    const result = await uploadWithRetry(fileData, folderName, fileType);
+
+    // For SVG files, ensure the URL is served as an image
+    let imageUrl = result.secure_url;
+    if (fileType === 'image/svg+xml') {
+      // Transform raw SVG URL to image delivery URL with proper format
+      imageUrl = imageUrl.replace('/raw/upload/', '/image/upload/');
+    }
 
     return Response.json({
       success: true,
-      url: result.secure_url,
+      url: imageUrl,
       publicId: result.public_id,
       width: result.width,
       height: result.height,

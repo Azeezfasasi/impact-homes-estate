@@ -50,7 +50,14 @@ export const uploadImageToCloudinary = async (file, folderName = 'rayob/gallery'
       }
 
       const data = await response.json();
-      return data.url || data;
+      
+      // Return object with url and publicId
+      return {
+        url: data.url,
+        publicId: data.publicId,
+        width: data.width,
+        height: data.height,
+      };
     } catch (error) {
       lastError = error;
       

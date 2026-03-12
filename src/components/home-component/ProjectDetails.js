@@ -77,7 +77,7 @@ export default function ProjectDetails({ projectId }) {
   if (!project) return <div className="py-20 text-center text-gray-500 text-lg">Project not found.</div>;
 
   return (
-    <section className="py-16 bg-gradient-to-br from-slate-50 via-blue-50 to-white">
+    <section className="py-16 bg-white">
       <div className="container mx-auto px-4 max-w-6xl">
         {/* Header Section */}
         <div className="mb-12">

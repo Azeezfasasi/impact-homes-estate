@@ -6,7 +6,7 @@ export default function CallToAction() {
 
       <div className="relative container mx-auto px-6 lg:px-20 text-center">
         {/* Headline */}
-        <h2 className="text-3xl sm:text-4xl font-bold mb-4">
+        <h2 className="text-2xl sm:text-4xl font-bold mb-4">
           Ready to invest in a Project?
         </h2>
 

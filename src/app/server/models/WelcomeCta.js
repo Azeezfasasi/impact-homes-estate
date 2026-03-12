@@ -6,6 +6,14 @@ const StatSchema = new mongoose.Schema({
     type: String,
     default: '🚀',
   },
+  iconUrl: {
+    type: String,
+    default: null,
+  },
+  iconPublicId: {
+    type: String,
+    default: null,
+  },
   number: {
     type: String,
     required: true,

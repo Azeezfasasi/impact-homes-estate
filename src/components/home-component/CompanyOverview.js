@@ -82,7 +82,7 @@ export default function CompanyOverview() {
             <div className="order-2 lg:order-1">
               <div className="relative w-full h-64 sm:h-80 lg:h-96 rounded-xl overflow-hidden shadow-lg">
                 <Image
-                  src="/images/fibre1.jpeg"
+                  src={data.companyInfo.image || '/img/real2.jpg'}
                   alt="Impact Homes Real Estate Overview"
                   fill
                   sizes="100%"
