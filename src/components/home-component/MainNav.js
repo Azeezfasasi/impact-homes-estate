@@ -106,7 +106,7 @@ export default function MainNav({ hideBackgroundImage = false, title, subtitle, 
                     <span className="text-xs">☎</span>
                     </div>
                     <div>
-                    <p className="text-impact-gold text-xs">Call Us</p>
+                    <p className="text-white text-xs">Call Us</p>
                     <p className="font-semibold text-white">(+234) 0704 099 9508</p>
                     </div>
                 </div>
@@ -117,7 +117,7 @@ export default function MainNav({ hideBackgroundImage = false, title, subtitle, 
                     <span className="text-xs">✉</span>
                     </div>
                     <div>
-                    <p className="text-impact-gold text-xs">Send us an email</p>
+                    <p className="text-white text-xs">Send us an email</p>
                     <p className="font-semibold text-white">Info@impacthomes.ng</p>
                     </div>
                 </div>
@@ -128,7 +128,7 @@ export default function MainNav({ hideBackgroundImage = false, title, subtitle, 
                     <span className="text-xs">📍</span>
                     </div>
                     <div>
-                    <p className="text-impact-gold text-xs">Address</p>
+                    <p className="text-white text-xs">Address</p>
                     <p className="font-semibold text-white">Flat I, House 8, Wing 2 Federal housing Authority Guzape, Abuja</p>
                     </div>
                 </div>
@@ -215,13 +215,13 @@ export default function MainNav({ hideBackgroundImage = false, title, subtitle, 
                 </button>
                 <div className="absolute left-0 mt-0 w-56 bg-black/95 border border-gray-700 rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-2">
                   <Link
-                    href="#"
+                    href="become-individual-partner"
                     className="block px-4 py-2 text-white hover:text-impact-gold hover:bg-white/5 transition"
                   >
                     INDIVIDUAL
                   </Link>
                   <Link
-                    href="#"
+                    href="become-corporate-partner"
                     className="block px-4 py-2 text-white hover:text-impact-gold hover:bg-white/5 transition"
                   >
                    CORPORATE
@@ -479,14 +479,11 @@ export default function MainNav({ hideBackgroundImage = false, title, subtitle, 
                   </button>
                   {openDropdown === 'mobile-partner' && (
                     <div className="ml-4 mt-2 border-l border-gray-600 pl-3 space-y-2">
-                      <Link href="#" className="block text-white hover:text-impact-gold text-sm">
-                        Partner Opportunities
+                      <Link href="become-individual-partner" className="block text-white hover:text-impact-gold text-sm">
+                        Individual
                       </Link>
-                      <Link href="#" className="block text-white hover:text-impact-gold text-sm">
-                        Requirements
-                      </Link>
-                      <Link href="#" className="block text-white hover:text-impact-gold text-sm">
-                        Apply Now
+                      <Link href="become-corporate-partner" className="block text-white hover:text-impact-gold text-sm">
+                        Corporate
                       </Link>
                     </div>
                   )}
@@ -494,6 +491,12 @@ export default function MainNav({ hideBackgroundImage = false, title, subtitle, 
 
                 <Link href="#" className="hover:text-impact-gold">
                   SPECIAL OFFERS
+                </Link>
+                <Link
+                  href="/contact-us"
+                  className="hover:text-impact-gold transition"
+                >
+                  Contact Us
                 </Link>
                 <Link
                   href="/download-brochure"
