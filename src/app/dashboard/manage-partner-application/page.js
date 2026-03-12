@@ -59,23 +59,23 @@ const DetailModal = ({ application, onClose, onApprove, onReject }) => {
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-2 sm:p-4">
       <div className="bg-white rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto">
-        <div className="sticky top-0 bg-white border-b border-gray-200 p-6 flex justify-between items-center">
-          <h2 className="text-2xl font-bold">Application Details</h2>
+        <div className="sticky top-0 bg-white border-b border-gray-200 p-4 sm:p-6 flex justify-between items-center gap-2">
+          <h2 className="text-xl sm:text-2xl font-bold">Application Details</h2>
           <button
             onClick={onClose}
-            className="text-gray-600 hover:text-gray-900"
+            className="text-gray-600 hover:text-gray-900 flex-shrink-0"
           >
-            <X size={24} />
+            <X size={20} />
           </button>
         </div>
 
-        <div className="p-6 space-y-6">
+        <div className="p-4 sm:p-6 space-y-4 sm:space-y-6">
           {/* Basic Info */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Basic Information</h3>
-            <div className="grid grid-cols-2 gap-4">
+            <h3 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4">Basic Information</h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
               <div>
                 <label className="text-sm text-gray-600">Type</label>
                 <p className="font-medium">
@@ -396,20 +396,20 @@ function ManagePartnerApplications() {
   };
 
   return (
-    <div className="p-8 bg-gray-50 min-h-screen">
-      <h1 className="text-3xl font-bold mb-8">Partner Applications</h1>
+    <div className="p-4 sm:p-6 md:p-8 bg-gray-50 min-h-screen">
+      <h1 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6 md:mb-8">Partner Applications</h1>
 
       {/* Filters */}
-      <div className="bg-white rounded-lg shadow-sm p-6 mb-6">
-        <div className="flex items-center gap-4 flex-wrap">
-          <Filter size={20} className="text-gray-600" />
+      <div className="bg-white rounded-lg shadow-sm p-4 sm:p-6 mb-4 sm:mb-6">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4">
+          <Filter size={18} className="text-gray-600 mt-1 flex-shrink-0" />
 
-          <div>
-            <label className="text-sm font-medium text-gray-700">Type</label>
+          <div className="w-full sm:w-auto">
+            <label className="text-xs sm:text-sm font-medium text-gray-700 block mb-1">Type</label>
             <select
               value={filters.type}
               onChange={(e) => setFilters({ ...filters, type: e.target.value })}
-              className="px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-impact-gold focus:border-transparent"
+              className="w-full sm:w-auto px-3 py-2 border border-gray-300 rounded-lg text-xs sm:text-sm focus:ring-2 focus:ring-impact-gold focus:border-transparent"
             >
               <option value="all">All Types</option>
               <option value="individual">Individual</option>
@@ -417,12 +417,12 @@ function ManagePartnerApplications() {
             </select>
           </div>
 
-          <div>
-            <label className="text-sm font-medium text-gray-700">Status</label>
+          <div className="w-full sm:w-auto">
+            <label className="text-xs sm:text-sm font-medium text-gray-700 block mb-1">Status</label>
             <select
               value={filters.status}
               onChange={(e) => setFilters({ ...filters, status: e.target.value })}
-              className="px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-impact-gold focus:border-transparent"
+              className="w-full sm:w-auto px-3 py-2 border border-gray-300 rounded-lg text-xs sm:text-sm focus:ring-2 focus:ring-impact-gold focus:border-transparent"
             >
               <option value="all">All Statuses</option>
               <option value="pending">Pending</option>
@@ -433,83 +433,131 @@ function ManagePartnerApplications() {
         </div>
       </div>
 
-      {/* Applications Table */}
+      {/* Applications Table / Cards */}
       {loading ? (
-        <div className="bg-white rounded-lg shadow-sm p-12 flex items-center justify-center">
+        <div className="bg-white rounded-lg shadow-sm p-8 sm:p-12 flex items-center justify-center">
           <Loader size={32} className="text-impact-gold animate-spin" />
         </div>
       ) : applications.length === 0 ? (
-        <div className="bg-white rounded-lg shadow-sm p-12 text-center">
-          <p className="text-gray-600 text-lg">No applications found</p>
+        <div className="bg-white rounded-lg shadow-sm p-8 sm:p-12 text-center">
+          <p className="text-sm sm:text-base text-gray-600">No applications found</p>
         </div>
       ) : (
-        <div className="bg-white rounded-lg shadow-sm overflow-hidden">
-          <div className="overflow-x-auto">
-            <table className="w-full">
-              <thead className="bg-gray-100 border-b border-gray-200">
-                <tr>
-                  <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900">
-                    Name / Company
-                  </th>
-                  <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900">
-                    Type
-                  </th>
-                  <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900">
-                    Email
-                  </th>
-                  <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900">
-                    Status
-                  </th>
-                  <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900">
-                    Date
-                  </th>
-                  <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900">
-                    Actions
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-gray-200">
-                {applications.map((app) => (
-                  <tr key={app._id} className="hover:bg-gray-50">
-                    <td className="px-6 py-4 text-sm">
-                      <p className="font-medium text-gray-900">
-                        {app.type === 'individual'
-                          ? `${app.firstName} ${app.lastName}`
-                          : app.companyName}
-                      </p>
-                    </td>
-                    <td className="px-6 py-4 text-sm">
-                      <ApplicationTypeBadge type={app.type} />
-                    </td>
-                    <td className="px-6 py-4 text-sm text-gray-600">
-                      {app.emailAddress}
-                    </td>
-                    <td className="px-6 py-4 text-sm">
-                      <ApplicationStatusBadge status={app.status} />
-                    </td>
-                    <td className="px-6 py-4 text-sm text-gray-600">
-                      {new Date(app.createdAt).toLocaleDateString('en-NG')}
-                    </td>
-                    <td className="px-6 py-4 text-sm flex items-center gap-3">
-                      <button
-                        onClick={() => setSelectedApplication(app)}
-                        className="text-blue-600 hover:text-blue-700 flex items-center gap-1"
-                      >
-                        <Eye size={18} />
-                      </button>
-                      <button
-                        onClick={() => handleDelete(app._id)}
-                        className="text-red-600 hover:text-red-700"
-                      >
-                        <Trash2 size={18} />
-                      </button>
-                    </td>
+        <>
+          {/* Desktop Table */}
+          <div className="hidden lg:block bg-white rounded-lg shadow-sm overflow-hidden">
+            <div className="overflow-x-auto">
+              <table className="w-full">
+                <thead className="bg-gray-100 border-b border-gray-200">
+                  <tr>
+                    <th className="px-4 sm:px-6 py-4 text-left text-xs sm:text-sm font-semibold text-gray-900">
+                      Name / Company
+                    </th>
+                    <th className="hidden md:table-cell px-4 sm:px-6 py-4 text-left text-xs sm:text-sm font-semibold text-gray-900">
+                      Type
+                    </th>
+                    <th className="hidden xl:table-cell px-4 sm:px-6 py-4 text-left text-xs sm:text-sm font-semibold text-gray-900">
+                      Email
+                    </th>
+                    <th className="px-4 sm:px-6 py-4 text-left text-xs sm:text-sm font-semibold text-gray-900">
+                      Status
+                    </th>
+                    <th className="hidden sm:table-cell px-4 sm:px-6 py-4 text-left text-xs sm:text-sm font-semibold text-gray-900">
+                      Date
+                    </th>
+                    <th className="px-4 sm:px-6 py-4 text-left text-xs sm:text-sm font-semibold text-gray-900">
+                      Actions
+                    </th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody className="divide-y divide-gray-200">
+                  {applications.map((app) => (
+                    <tr key={app._id} className="hover:bg-gray-50">
+                      <td className="px-4 sm:px-6 py-4 text-xs sm:text-sm">
+                        <p className="font-medium text-gray-900">
+                          {app.type === 'individual'
+                            ? `${app.firstName} ${app.lastName}`
+                            : app.companyName}
+                        </p>
+                      </td>
+                      <td className="hidden md:table-cell px-4 sm:px-6 py-4 text-xs sm:text-sm">
+                        <ApplicationTypeBadge type={app.type} />
+                      </td>
+                      <td className="hidden xl:table-cell px-4 sm:px-6 py-4 text-xs sm:text-sm text-gray-600">
+                        {app.emailAddress}
+                      </td>
+                      <td className="px-4 sm:px-6 py-4 text-xs sm:text-sm">
+                        <ApplicationStatusBadge status={app.status} />
+                      </td>
+                      <td className="hidden sm:table-cell px-4 sm:px-6 py-4 text-xs sm:text-sm text-gray-600">
+                        {new Date(app.createdAt).toLocaleDateString('en-NG')}
+                      </td>
+                      <td className="px-4 sm:px-6 py-4 text-xs sm:text-sm flex items-center gap-2 sm:gap-3">
+                        <button
+                          onClick={() => setSelectedApplication(app)}
+                          className="text-blue-600 hover:text-blue-700 flex items-center gap-1"
+                        >
+                          <Eye size={16} />
+                        </button>
+                        <button
+                          onClick={() => handleDelete(app._id)}
+                          className="text-red-600 hover:text-red-700"
+                        >
+                          <Trash2 size={16} />
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
-        </div>
+
+          {/* Mobile Card View */}
+          <div className="lg:hidden space-y-4">
+            {applications.map((app) => (
+              <div key={app._id} className="bg-white rounded-lg shadow-sm p-4 sm:p-5">
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-3">
+                  <div className="flex-1">
+                    <p className="font-medium text-sm sm:text-base text-gray-900">
+                      {app.type === 'individual'
+                        ? `${app.firstName} ${app.lastName}`
+                        : app.companyName}
+                    </p>
+                    <p className="text-xs sm:text-sm text-gray-600">
+                      {app.emailAddress}
+                    </p>
+                  </div>
+                  <ApplicationStatusBadge status={app.status} />
+                </div>
+                
+                <div className="flex flex-wrap gap-2 mb-3">
+                  <ApplicationTypeBadge type={app.type} />
+                  <span className="text-xs sm:text-sm text-gray-600">
+                    {new Date(app.createdAt).toLocaleDateString('en-NG')}
+                  </span>
+                </div>
+
+                <div className="flex gap-2 sm:gap-3">
+                  <button
+                    onClick={() => setSelectedApplication(app)}
+                    className="flex-1 flex items-center justify-center gap-2 px-3 py-2 bg-blue-50 text-blue-600 hover:bg-blue-100 rounded-lg text-xs sm:text-sm font-medium"
+                  >
+                    <Eye size={16} />
+                    View
+                  </button>
+                  <button
+                    onClick={() => handleDelete(app._id)}
+                    className="flex-1 flex items-center justify-center gap-2 px-3 py-2 bg-red-50 text-red-600 hover:bg-red-100 rounded-lg text-xs sm:text-sm font-medium"
+                  >
+                    <Trash2 size={16} />
+                    Delete
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </>
       )}
 
       {/* Detail Modal */}

@@ -250,16 +250,16 @@ export default function PropertyCategories() {
   }
 
   return (
-    <div className="max-w-7xl mx-auto p-6">
-      <div className="mb-8">
-        <div className="flex justify-between items-center">
+    <div className="min-h-screen bg-gray-50 p-3 sm:p-4 md:p-6">
+      <div className="mb-6 sm:mb-8">
+        <div className="flex flex-col lg:flex-row lg:justify-between gap-4">
           <div>
-            <h1 className="text-3xl font-bold text-gray-900">Property Categories</h1>
-            <p className="text-gray-600 mt-2">Overview of your property portfolio by category</p>
+            <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">Property Categories</h1>
+            <p className="text-gray-600 mt-2 text-xs sm:text-sm md:text-base">Overview of your property portfolio by category</p>
           </div>
           <button
             onClick={() => setShowAddForm(true)}
-            className="bg-impact-gold text-white px-4 py-2 rounded-lg hover:bg-impact-gold/80 transition-colors"
+            className="w-full sm:w-[20%] bg-impact-gold text-white px-4 py-2 rounded-lg hover:bg-impact-gold/80 transition-colors text-sm font-medium"
           >
             Add Category
           </button>
@@ -332,45 +332,45 @@ export default function PropertyCategories() {
       )}
 
       {/* Summary Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-        <div className="bg-white rounded-lg shadow-sm border p-6">
-          <div className="flex items-center">
-            <div className="p-3 bg-impact-gold/20 rounded-full">
-              <svg className="w-6 h-6 text-impact-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6 mb-6 sm:mb-8">
+        <div className="bg-white rounded-lg shadow-sm border p-3 sm:p-4 md:p-6">
+          <div className="flex items-start gap-2 sm:gap-3 md:gap-4">
+            <div className="p-2 sm:p-2 md:p-3 bg-impact-gold/20 rounded-full flex-shrink-0 mt-1">
+              <svg className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-impact-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
               </svg>
             </div>
-            <div className="ml-4">
-              <p className="text-sm font-medium text-gray-600">Total Categories</p>
-              <p className="text-2xl font-bold text-gray-900">{categories.length}</p>
+            <div className="min-w-0 flex-1">
+              <p className="text-xs sm:text-sm font-medium text-gray-600 mb-1">Total Categories</p>
+              <p className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900">{categories.length}</p>
             </div>
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow-sm border p-6">
-          <div className="flex items-center">
-            <div className="p-3 bg-green-100 rounded-full">
-              <svg className="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div className="bg-white rounded-lg shadow-sm border p-3 sm:p-4 md:p-6">
+          <div className="flex items-start gap-2 sm:gap-3 md:gap-4">
+            <div className="p-2 sm:p-2 md:p-3 bg-green-100 rounded-full flex-shrink-0 mt-1">
+              <svg className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
               </svg>
             </div>
-            <div className="ml-4">
-              <p className="text-sm font-medium text-gray-600">Active Properties</p>
-              <p className="text-2xl font-bold text-gray-900">{stats?.overview?.totalProperties || 0}</p>
+            <div className="min-w-0 flex-1">
+              <p className="text-xs sm:text-sm font-medium text-gray-600 mb-1">Active Properties</p>
+              <p className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900">{stats?.overview?.totalProperties || 0}</p>
             </div>
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow-sm border p-6">
-          <div className="flex items-center">
-            <div className="p-3 bg-yellow-100 rounded-full">
-              <svg className="w-6 h-6 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div className="bg-white rounded-lg shadow-sm border p-3 sm:p-4 md:p-6">
+          <div className="flex items-start gap-2 sm:gap-3 md:gap-4">
+            <div className="p-2 sm:p-2 md:p-3 bg-yellow-100 rounded-full flex-shrink-0 mt-1">
+              <svg className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
               </svg>
             </div>
-            <div className="ml-4">
-              <p className="text-sm font-medium text-gray-600">Most Popular</p>
-              <p className="text-lg font-bold text-gray-900">
+            <div className="min-w-0 flex-1">
+              <p className="text-xs sm:text-sm font-medium text-gray-600 mb-1">Most Popular</p>
+              <p className="text-sm sm:text-base md:text-lg font-bold text-gray-900 truncate">
                 {stats?.propertyTypes?.length > 0
                   ? stats.propertyTypes.reduce((prev, current) =>
                       (prev.count > current.count) ? prev : current
@@ -382,16 +382,16 @@ export default function PropertyCategories() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow-sm border p-6">
-          <div className="flex items-center">
-            <div className="p-3 bg-purple-100 rounded-full">
-              <svg className="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div className="bg-white rounded-lg shadow-sm border p-3 sm:p-4 md:p-6">
+          <div className="flex items-start gap-2 sm:gap-3 md:gap-4">
+            <div className="p-2 sm:p-2 md:p-3 bg-purple-100 rounded-full flex-shrink-0 mt-1">
+              <svg className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1" />
               </svg>
             </div>
-            <div className="ml-4">
-              <p className="text-sm font-medium text-gray-600">Avg Price</p>
-              <p className="text-lg font-bold text-gray-900">
+            <div className="min-w-0 flex-1">
+              <p className="text-xs sm:text-sm font-medium text-gray-600 mb-1">Avg Price</p>
+              <p className="text-sm sm:text-base md:text-lg font-bold text-gray-900 truncate">
                 ${stats?.overview?.averagePrice ? Math.round(stats.overview.averagePrice).toLocaleString() : '0'}
               </p>
             </div>
@@ -400,9 +400,9 @@ export default function PropertyCategories() {
       </div>
 
       {/* Category Details */}
-      <div className="bg-white rounded-lg shadow-sm border">
-        <div className="px-6 py-4 border-b border-gray-200">
-          <h2 className="text-xl font-semibold text-gray-900">Category Breakdown</h2>
+      <div className="bg-white rounded-lg shadow-sm border overflow-hidden">
+        <div className="px-3 sm:px-4 md:px-6 py-3 sm:py-4 border-b border-gray-200">
+          <h2 className="text-base sm:text-lg md:text-xl font-semibold text-gray-900">Category Breakdown</h2>
         </div>
 
         <div className="divide-y divide-gray-200">
@@ -411,10 +411,10 @@ export default function PropertyCategories() {
             const isEditing = editingCategory?.id === category.id;
 
             return (
-              <div key={category.id} className="p-6 hover:bg-gray-50">
+              <div key={category.id} className="p-3 sm:p-4 md:p-6 hover:bg-gray-50">
                 {isEditing ? (
                   <div className="space-y-4">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
                       <div>
                         <label className="block text-sm font-medium text-gray-700 mb-1">Display Name</label>
                         <input
@@ -436,7 +436,7 @@ export default function PropertyCategories() {
                           ))}
                         </select>
                       </div>
-                      <div className="md:col-span-2">
+                      <div className="col-span-full md:col-span-2">
                         <label className="block text-sm font-medium text-gray-700 mb-1">Description</label>
                         <textarea
                           value={editingCategory.description}
@@ -446,7 +446,7 @@ export default function PropertyCategories() {
                         />
                       </div>
                     </div>
-                    <div className="flex space-x-2">
+                    <div className="flex gap-2">
                       <button
                         onClick={handleSaveCategory}
                         className="bg-impact-gold text-white px-4 py-2 rounded-lg hover:bg-impact-gold/80 transition-colors"
@@ -462,25 +462,25 @@ export default function PropertyCategories() {
                     </div>
                   </div>
                 ) : (
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center space-x-4">
-                      <div className={`px-3 py-1 rounded-full text-sm font-medium ${category.color}`}>
+                  <div className="space-y-4">
+                    <div className="flex flex-col gap-2">
+                      <div className={`px-3 py-1 rounded-full text-xs sm:text-sm font-medium w-fit ${category.color}`}>
                         {category.name}
                       </div>
-                      <div>
-                        <h3 className="text-lg font-medium text-gray-900">{category.name}</h3>
-                        <p className="text-sm text-gray-600">{category.description}</p>
+                      <div className="min-w-0">
+                        <h3 className="text-sm sm:text-base md:text-lg font-medium text-gray-900">{category.name}</h3>
+                        <p className="text-xs sm:text-sm text-gray-600 line-clamp-2 mt-1">{category.description}</p>
                       </div>
                     </div>
 
-                    <div className="flex items-center space-x-4">
-                      <div className="text-right">
-                        <div className="text-2xl font-bold text-gray-900">{stats.count}</div>
-                        <div className="text-sm text-gray-600">properties</div>
-                        <div className="text-sm text-gray-500">{stats.percentage}% of total</div>
+                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4">
+                      <div className="text-left flex-shrink-0">
+                        <div className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900">{stats.count}</div>
+                        <div className="text-xs sm:text-sm text-gray-600">properties</div>
+                        <div className="text-xs sm:text-sm text-gray-500">{stats.percentage}% of total</div>
                       </div>
 
-                      <div className="flex space-x-2">
+                      <div className="flex gap-1 sm:gap-2 flex-shrink-0">
                         <button
                           onClick={() => handleEditCategory(category)}
                           className="text-impact-gold hover:text-impact-gold/80 p-2"
@@ -501,12 +501,8 @@ export default function PropertyCategories() {
                         </button>
                       </div>
                     </div>
-                  </div>
-                )}
 
-                {/* Progress Bar */}
-                {!isEditing && (
-                  <div className="mt-4">
+                    {/* Progress Bar */}
                     <div className="w-full bg-gray-200 rounded-full h-2">
                       <div
                         className="bg-impact-gold h-2 rounded-full transition-all duration-300"
@@ -522,11 +518,11 @@ export default function PropertyCategories() {
       </div>
 
       {/* Category Insights */}
-      <div className="mt-8 bg-white rounded-lg shadow-sm border p-6">
-        <h2 className="text-xl font-semibold text-gray-900 mb-4">Category Insights</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="mt-6 sm:mt-8 bg-white rounded-lg shadow-sm border p-3 sm:p-4 md:p-6">
+        <h2 className="text-base sm:text-lg md:text-xl font-semibold text-gray-900 mb-4">Category Insights</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
           <div>
-            <h3 className="text-lg font-medium text-gray-900 mb-2">Top Performing Categories</h3>
+            <h3 className="text-sm sm:text-base md:text-lg font-medium text-gray-900 mb-3">Top Performing Categories</h3>
             <ul className="space-y-2">
               {stats?.propertyTypes
                 ?.sort((a, b) => b.count - a.count)
@@ -543,7 +539,7 @@ export default function PropertyCategories() {
           </div>
 
           <div>
-            <h3 className="text-lg font-medium text-gray-900 mb-2">Growth Opportunities</h3>
+            <h3 className="text-sm sm:text-base md:text-lg font-medium text-gray-900 mb-3">Growth Opportunities</h3>
             <ul className="space-y-2">
               {categories
                 .filter(cat => getCategoryStats(cat.id).count === 0)

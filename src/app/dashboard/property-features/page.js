@@ -216,25 +216,25 @@ export default function PropertyFeatures() {
 
   if (loading) {
     return (
-      <div className="max-w-7xl mx-auto p-6">
+      <div className="max-w-7xl mx-auto p-4 md:p-6">
         <div className="flex justify-center items-center h-64">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-impact-gold"></div>
+          <div className="animate-spin rounded-full h-8 w-8 sm:h-12 sm:w-12 border-b-2 border-impact-gold"></div>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="max-w-7xl mx-auto p-6">
+    <div className="max-w-7xl mx-auto p-4 md:p-6">
       <div className="mb-8">
-        <div className="flex justify-between items-center">
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
           <div>
-            <h1 className="text-3xl font-bold text-gray-900">Property Features</h1>
-            <p className="text-gray-600 mt-2">Manage available property features and amenities</p>
+            <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">Property Features</h1>
+            <p className="text-sm sm:text-base text-gray-600 mt-2">Manage available property features and amenities</p>
           </div>
           <button
             onClick={() => setShowAddForm(true)}
-            className="bg-impact-gold text-white px-4 py-2 rounded-lg hover:bg-impact-gold/80 transition-colors"
+            className="w-full sm:w-auto bg-impact-gold text-white px-4 py-2 rounded-lg hover:bg-impact-gold/80 transition-colors text-sm sm:text-base"
           >
             Add Feature
           </button>
@@ -243,45 +243,45 @@ export default function PropertyFeatures() {
 
       {/* Add Feature Form */}
       {showAddForm && (
-        <div className="mb-8 bg-white rounded-lg shadow-sm border p-6">
-          <h2 className="text-xl font-semibold text-gray-900 mb-4">Add New Feature</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="mb-8 bg-white rounded-lg shadow-sm border p-4 sm:p-6">
+          <h2 className="text-lg sm:text-xl font-semibold text-gray-900 mb-4">Add New Feature</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Feature ID</label>
+              <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1">Feature ID</label>
               <input
                 type="text"
                 value={newFeature.id}
                 onChange={(e) => setNewFeature({ ...newFeature, id: e.target.value.toLowerCase().replace(/\s+/g, '-') })}
-                className="w-full px-3 py-2 border border-impact-gold/70 rounded-md focus:outline-none focus:ring-2 focus:ring-impact-gold"
+                className="w-full px-3 py-2 text-sm border border-impact-gold/70 rounded-md focus:outline-none focus:ring-2 focus:ring-impact-gold"
                 placeholder="e.g., smart-home"
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Display Name</label>
+              <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1">Display Name</label>
               <input
                 type="text"
                 value={newFeature.name}
                 onChange={(e) => setNewFeature({ ...newFeature, name: e.target.value })}
-                className="w-full px-3 py-2 border border-impact-gold/70 rounded-md focus:outline-none focus:ring-2 focus:ring-impact-gold"
+                className="w-full px-3 py-2 text-sm border border-impact-gold/70 rounded-md focus:outline-none focus:ring-2 focus:ring-impact-gold"
                 placeholder="e.g., Smart Home"
               />
             </div>
-            <div className="md:col-span-2">
-              <label className="block text-sm font-medium text-gray-700 mb-1">Description</label>
+            <div className="sm:col-span-2">
+              <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1">Description</label>
               <textarea
                 value={newFeature.description}
                 onChange={(e) => setNewFeature({ ...newFeature, description: e.target.value })}
-                className="w-full px-3 py-2 border border-impact-gold/70 rounded-md focus:outline-none focus:ring-2 focus:ring-impact-gold"
+                className="w-full px-3 py-2 text-sm border border-impact-gold/70 rounded-md focus:outline-none focus:ring-2 focus:ring-impact-gold"
                 rows={3}
                 placeholder="Describe this feature..."
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Category</label>
+              <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1">Category</label>
               <select
                 value={newFeature.category}
                 onChange={(e) => setNewFeature({ ...newFeature, category: e.target.value })}
-                className="w-full px-3 py-2 border border-impact-gold/70 rounded-md focus:outline-none focus:ring-2 focus:ring-impact-gold"
+                className="w-full px-3 py-2 text-sm border border-impact-gold/70 rounded-md focus:outline-none focus:ring-2 focus:ring-impact-gold"
               >
                 {categoryOptions.map(option => (
                   <option key={option.value} value={option.value}>{option.label}</option>
@@ -289,11 +289,11 @@ export default function PropertyFeatures() {
               </select>
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Icon</label>
+              <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1">Icon</label>
               <select
                 value={newFeature.icon}
                 onChange={(e) => setNewFeature({ ...newFeature, icon: e.target.value })}
-                className="w-full px-3 py-2 border border-impact-gold/70 rounded-md focus:outline-none focus:ring-2 focus:ring-impact-gold"
+                className="w-full px-3 py-2 text-sm border border-impact-gold/70 rounded-md focus:outline-none focus:ring-2 focus:ring-impact-gold"
               >
                 {iconOptions.map(option => (
                   <option key={option.value} value={option.value}>{option.label}</option>
@@ -301,16 +301,16 @@ export default function PropertyFeatures() {
               </select>
             </div>
           </div>
-          <div className="mt-4 flex space-x-2">
+          <div className="mt-4 flex flex-col sm:flex-row gap-2 sm:gap-4">
             <button
               onClick={handleAddFeature}
-              className="bg-impact-gold text-white px-4 py-2 rounded-lg hover:bg-impact-gold/80 transition-colors"
+              className="w-full sm:w-auto bg-impact-gold text-white px-4 py-2 rounded-lg hover:bg-impact-gold/80 transition-colors text-sm sm:text-base"
             >
               Add Feature
             </button>
             <button
               onClick={() => setShowAddForm(false)}
-              className="bg-gray-600 text-white px-4 py-2 rounded-lg hover:bg-gray-700 transition-colors"
+              className="w-full sm:w-auto bg-gray-600 text-white px-4 py-2 rounded-lg hover:bg-gray-700 transition-colors text-sm sm:text-base"
             >
               Cancel
             </button>
@@ -319,45 +319,45 @@ export default function PropertyFeatures() {
       )}
 
       {/* Summary Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-        <div className="bg-white rounded-lg shadow-sm border p-6">
-          <div className="flex items-center">
-            <div className="p-3 bg-impact-gold/20 rounded-full">
-              <svg className="w-6 h-6 text-impact-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 mb-8">
+        <div className="bg-white rounded-lg shadow-sm border p-4 sm:p-6">
+          <div className="flex items-center gap-4">
+            <div className="p-2 sm:p-3 bg-impact-gold/20 rounded-full flex-shrink-0">
+              <svg className="w-5 h-5 sm:w-6 sm:h-6 text-impact-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
               </svg>
             </div>
-            <div className="ml-4">
-              <p className="text-sm font-medium text-gray-600">Total Features</p>
-              <p className="text-2xl font-bold text-gray-900">{features.length}</p>
+            <div>
+              <p className="text-xs sm:text-sm font-medium text-gray-600">Total Features</p>
+              <p className="text-xl sm:text-2xl font-bold text-gray-900">{features.length}</p>
             </div>
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow-sm border p-6">
-          <div className="flex items-center">
-            <div className="p-3 bg-green-100 rounded-full">
-              <svg className="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div className="bg-white rounded-lg shadow-sm border p-4 sm:p-6">
+          <div className="flex items-center gap-4">
+            <div className="p-2 sm:p-3 bg-green-100 rounded-full flex-shrink-0">
+              <svg className="w-5 h-5 sm:w-6 sm:h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m7-4a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
             </div>
-            <div className="ml-4">
-              <p className="text-sm font-medium text-gray-600">Default Features</p>
-              <p className="text-2xl font-bold text-gray-900">{features.filter(f => f.isDefault).length}</p>
+            <div>
+              <p className="text-xs sm:text-sm font-medium text-gray-600">Default Features</p>
+              <p className="text-xl sm:text-2xl font-bold text-gray-900">{features.filter(f => f.isDefault).length}</p>
             </div>
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow-sm border p-6">
-          <div className="flex items-center">
-            <div className="p-3 bg-purple-100 rounded-full">
-              <svg className="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div className="bg-white rounded-lg shadow-sm border p-4 sm:p-6">
+          <div className="flex items-center gap-4">
+            <div className="p-2 sm:p-3 bg-purple-100 rounded-full flex-shrink-0">
+              <svg className="w-5 h-5 sm:w-6 sm:h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m0 0h6m-6-6v6m0 0h6m0 0h6" />
               </svg>
             </div>
-            <div className="ml-4">
-              <p className="text-sm font-medium text-gray-600">Custom Features</p>
-              <p className="text-2xl font-bold text-gray-900">{features.filter(f => !f.isDefault).length}</p>
+            <div>
+              <p className="text-xs sm:text-sm font-medium text-gray-600">Custom Features</p>
+              <p className="text-xl sm:text-2xl font-bold text-gray-900">{features.filter(f => !f.isDefault).length}</p>
             </div>
           </div>
         </div>
@@ -365,39 +365,39 @@ export default function PropertyFeatures() {
 
       {/* Features Grid */}
       <div className="bg-white rounded-lg shadow-sm border">
-        <div className="px-6 py-4 border-b border-gray-200">
-          <h2 className="text-xl font-semibold text-gray-900">Feature Catalog</h2>
+        <div className="px-4 sm:px-6 py-4 border-b border-gray-200">
+          <h2 className="text-lg sm:text-xl font-semibold text-gray-900">Feature Catalog</h2>
         </div>
 
         <div className="divide-y divide-gray-200">
           {features.length === 0 ? (
-            <div className="p-6 text-center text-gray-500">
-              <p>No features found. Add a new feature to get started.</p>
+            <div className="p-4 sm:p-6 text-center text-gray-500">
+              <p className="text-sm sm:text-base">No features found. Add a new feature to get started.</p>
             </div>
           ) : (
             features.map((feature) => {
               const isEditing = editingFeature?.id === feature.id;
 
               return (
-                <div key={feature.id} className="p-6 hover:bg-gray-50">
+                <div key={feature.id} className="p-4 sm:p-6 hover:bg-gray-50">
                   {isEditing ? (
                     <div className="space-y-4">
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                         <div>
-                          <label className="block text-sm font-medium text-gray-700 mb-1">Display Name</label>
+                          <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1">Display Name</label>
                           <input
                             type="text"
                             value={editingFeature.name}
                             onChange={(e) => setEditingFeature({ ...editingFeature, name: e.target.value })}
-                            className="w-full px-3 py-2 border border-impact-gold/70 rounded-md focus:outline-none focus:ring-2 focus:ring-impact-gold"
+                            className="w-full px-3 py-2 text-sm border border-impact-gold/70 rounded-md focus:outline-none focus:ring-2 focus:ring-impact-gold"
                           />
                         </div>
                         <div>
-                          <label className="block text-sm font-medium text-gray-700 mb-1">Category</label>
+                          <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1">Category</label>
                           <select
                             value={editingFeature.category}
                             onChange={(e) => setEditingFeature({ ...editingFeature, category: e.target.value })}
-                            className="w-full px-3 py-2 border border-impact-gold/70 rounded-md focus:outline-none focus:ring-2 focus:ring-impact-gold"
+                            className="w-full px-3 py-2 text-sm border border-impact-gold/70 rounded-md focus:outline-none focus:ring-2 focus:ring-impact-gold"
                           >
                             {categoryOptions.map(option => (
                               <option key={option.value} value={option.value}>{option.label}</option>
@@ -405,64 +405,64 @@ export default function PropertyFeatures() {
                           </select>
                         </div>
                         <div>
-                          <label className="block text-sm font-medium text-gray-700 mb-1">Icon</label>
+                          <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1">Icon</label>
                           <select
                             value={editingFeature.icon}
                             onChange={(e) => setEditingFeature({ ...editingFeature, icon: e.target.value })}
-                            className="w-full px-3 py-2 border border-impact-gold/70 rounded-md focus:outline-none focus:ring-2 focus:ring-impact-gold"
+                            className="w-full px-3 py-2 text-sm border border-impact-gold/70 rounded-md focus:outline-none focus:ring-2 focus:ring-impact-gold"
                           >
                             {iconOptions.map(option => (
                               <option key={option.value} value={option.value}>{option.label}</option>
                             ))}
                           </select>
                         </div>
-                        <div className="md:col-span-2">
-                          <label className="block text-sm font-medium text-gray-700 mb-1">Description</label>
+                        <div className="sm:col-span-2">
+                          <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1">Description</label>
                           <textarea
                             value={editingFeature.description}
                             onChange={(e) => setEditingFeature({ ...editingFeature, description: e.target.value })}
-                            className="w-full px-3 py-2 border border-impact-gold/70 rounded-md focus:outline-none focus:ring-2 focus:ring-impact-gold"
+                            className="w-full px-3 py-2 text-sm border border-impact-gold/70 rounded-md focus:outline-none focus:ring-2 focus:ring-impact-gold"
                             rows={3}
                           />
                         </div>
                       </div>
-                      <div className="flex space-x-2">
+                      <div className="flex flex-col sm:flex-row gap-2 sm:gap-4">
                         <button
                           onClick={handleSaveFeature}
-                          className="bg-impact-gold text-white px-4 py-2 rounded-lg hover:bg-impact-gold/80 transition-colors"
+                          className="w-full sm:w-auto bg-impact-gold text-white px-4 py-2 rounded-lg hover:bg-impact-gold/80 transition-colors text-sm sm:text-base"
                         >
                           Save Changes
                         </button>
                         <button
                           onClick={handleCancelEdit}
-                          className="bg-impact-gold/20 text-impact-gold hover:bg-impact-gold/30 px-4 py-2 rounded-lg transition-colors"
+                          className="w-full sm:w-auto bg-impact-gold/20 text-impact-gold hover:bg-impact-gold/30 px-4 py-2 rounded-lg transition-colors text-sm sm:text-base"
                         >
                           Cancel
                         </button>
                       </div>
                     </div>
                   ) : (
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center space-x-4 flex-1">
-                        <div className="text-4xl">{getIconLabel(feature.icon).split(' ')[0]}</div>
-                        <div className="flex-1">
-                          <div className="flex items-center gap-2">
-                            <h3 className="text-lg font-medium text-gray-900">{feature.name}</h3>
+                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                      <div className="flex items-start sm:items-center gap-3 sm:gap-4 flex-1 min-w-0">
+                        <div className="text-2xl sm:text-4xl flex-shrink-0">{getIconLabel(feature.icon).split(' ')[0]}</div>
+                        <div className="flex-1 min-w-0">
+                          <div className="flex flex-col sm:flex-row sm:items-center gap-2 flex-wrap">
+                            <h3 className="text-base sm:text-lg font-medium text-gray-900">{feature.name}</h3>
                             {feature.isDefault && (
-                              <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                              <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800 w-fit">
                                 Default
                               </span>
                             )}
-                            <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-impact-gold/10 text-impact-gold">
+                            <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-impact-gold/10 text-impact-gold w-fit">
                               {getCategoryLabel(feature.category)}
                             </span>
                           </div>
-                          <p className="text-sm text-gray-600">{feature.description}</p>
+                          <p className="text-xs sm:text-sm text-gray-600">{feature.description}</p>
                           <p className="text-xs text-gray-500 mt-1">ID: {feature.id}</p>
                         </div>
                       </div>
 
-                      <div className="flex space-x-2">
+                      <div className="flex gap-2 flex-shrink-0">
                         <button
                           onClick={() => handleEditFeature(feature)}
                           className="text-impact-gold hover:text-impact-gold/80 p-2 transition-colors"
@@ -497,22 +497,22 @@ export default function PropertyFeatures() {
       </div>
 
       {/* Features by Category */}
-      <div className="mt-8 bg-white rounded-lg shadow-sm border p-6">
-        <h2 className="text-xl font-semibold text-gray-900 mb-6">Features by Category</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+      <div className="mt-8 bg-white rounded-lg shadow-sm border p-4 sm:p-6">
+        <h2 className="text-lg sm:text-xl font-semibold text-gray-900 mb-6">Features by Category</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 sm:gap-4">
           {categoryOptions.map((category) => {
             const categoryFeatures = features.filter(f => f.category === category.value);
             return (
-              <div key={category.value} className="border rounded-lg p-4">
-                <h3 className="font-semibold text-gray-900 mb-3">{category.label}</h3>
+              <div key={category.value} className="border rounded-lg p-3 sm:p-4">
+                <h3 className="font-semibold text-gray-900 mb-3 text-sm sm:text-base">{category.label}</h3>
                 <ul className="space-y-2">
                   {categoryFeatures.length === 0 ? (
-                    <li className="text-sm text-gray-500">No features</li>
+                    <li className="text-xs sm:text-sm text-gray-500">No features</li>
                   ) : (
                     categoryFeatures.map((feat) => (
-                      <li key={feat.id} className="text-sm text-gray-600 flex items-center gap-2">
+                      <li key={feat.id} className="text-xs sm:text-sm text-gray-600 flex items-center gap-2">
                         <span>{getIconLabel(feat.icon).split(' ')[0]}</span>
-                        <span>{feat.name}</span>
+                        <span className="truncate">{feat.name}</span>
                       </li>
                     ))
                   )}

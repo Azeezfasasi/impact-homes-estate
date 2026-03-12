@@ -194,16 +194,16 @@ export default function PropertyStatuses() {
   }
 
   return (
-    <div className="max-w-7xl mx-auto p-6">
-      <div className="mb-8">
-        <div className="flex justify-between items-center">
+    <div className="min-h-screen bg-gray-50 p-3 sm:p-4 md:p-6">
+      <div className="mb-6 sm:mb-8">
+        <div className="flex flex-col lg:flex-row lg:justify-between gap-4">
           <div>
-            <h1 className="text-3xl font-bold text-gray-900">Property Statuses</h1>
-            <p className="text-gray-600 mt-2">Manage property status types and values</p>
+            <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">Property Statuses</h1>
+            <p className="text-gray-600 mt-2 text-xs sm:text-sm md:text-base">Manage property status types and values</p>
           </div>
           <button
             onClick={() => setShowAddForm(true)}
-            className="bg-impact-gold text-white px-4 py-2 rounded-lg hover:bg-impact-gold/80 transition-colors"
+            className="w-full sm:w-[20%] bg-impact-gold text-white px-4 py-2 rounded-lg hover:bg-impact-gold/80 transition-colors text-sm font-medium"
           >
             Add Status
           </button>
@@ -282,45 +282,45 @@ export default function PropertyStatuses() {
       )}
 
       {/* Summary Card */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-        <div className="bg-white rounded-lg shadow-sm border p-6">
-          <div className="flex items-center">
-            <div className="p-3 bg-impact-gold/10 rounded-full">
-              <svg className="w-6 h-6 text-impact-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-6 mb-6 sm:mb-8">
+        <div className="bg-white rounded-lg shadow-sm border p-3 sm:p-4 md:p-6">
+          <div className="flex items-start gap-2 sm:gap-3 md:gap-4">
+            <div className="p-2 sm:p-2 md:p-3 bg-impact-gold/10 rounded-full flex-shrink-0 mt-1">
+              <svg className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-impact-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m7-4a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
             </div>
-            <div className="ml-4">
-              <p className="text-sm font-medium text-gray-600">Total Statuses</p>
-              <p className="text-2xl font-bold text-gray-900">{statuses.length}</p>
+            <div className="flex-1">
+              <p className="text-xs sm:text-sm font-medium text-gray-600 mb-1">Total Statuses</p>
+              <p className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900">{statuses.length}</p>
             </div>
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow-sm border p-6">
-          <div className="flex items-center">
-            <div className="p-3 bg-green-100 rounded-full">
-              <svg className="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div className="bg-white rounded-lg shadow-sm border p-3 sm:p-4 md:p-6">
+          <div className="flex items-start gap-2 sm:gap-3 md:gap-4">
+            <div className="p-2 sm:p-2 md:p-3 bg-green-100 rounded-full flex-shrink-0 mt-1">
+              <svg className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
               </svg>
             </div>
-            <div className="ml-4">
-              <p className="text-sm font-medium text-gray-600">Default Statuses</p>
-              <p className="text-2xl font-bold text-gray-900">{statuses.filter(s => s.isDefault).length}</p>
+            <div className="flex-1">
+              <p className="text-xs sm:text-sm font-medium text-gray-600 mb-1">Default Statuses</p>
+              <p className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900">{statuses.filter(s => s.isDefault).length}</p>
             </div>
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow-sm border p-6">
-          <div className="flex items-center">
-            <div className="p-3 bg-purple-100 rounded-full">
-              <svg className="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div className="bg-white rounded-lg shadow-sm border p-3 sm:p-4 md:p-6">
+          <div className="flex items-start gap-2 sm:gap-3 md:gap-4">
+            <div className="p-2 sm:p-2 md:p-3 bg-purple-100 rounded-full flex-shrink-0 mt-1">
+              <svg className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m0 0h6m-6-6v6m0 0h6m0 0h6" />
               </svg>
             </div>
-            <div className="ml-4">
-              <p className="text-sm font-medium text-gray-600">Custom Statuses</p>
-              <p className="text-2xl font-bold text-gray-900">{statuses.filter(s => !s.isDefault).length}</p>
+            <div className="flex-1">
+              <p className="text-xs sm:text-sm font-medium text-gray-600 mb-1">Custom Statuses</p>
+              <p className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900">{statuses.filter(s => !s.isDefault).length}</p>
             </div>
           </div>
         </div>
@@ -328,21 +328,21 @@ export default function PropertyStatuses() {
 
       {/* Status List */}
       <div className="bg-white rounded-lg shadow-sm border">
-        <div className="px-6 py-4 border-b border-gray-200">
-          <h2 className="text-xl font-semibold text-gray-900">Status Details</h2>
+        <div className="px-3 sm:px-4 md:px-6 py-3 sm:py-4 border-b border-gray-200">
+          <h2 className="text-base sm:text-lg md:text-xl font-semibold text-gray-900">Status Details</h2>
         </div>
 
         <div className="divide-y divide-gray-200">
           {statuses.length === 0 ? (
-            <div className="p-6 text-center text-gray-500">
-              <p>No statuses found. Add a new status to get started.</p>
+            <div className="p-4 sm:p-6 text-center text-gray-500">
+              <p className="text-sm sm:text-base">No statuses found. Add a new status to get started.</p>
             </div>
           ) : (
             statuses.map((status) => {
               const isEditing = editingStatus?.id === status.id;
 
               return (
-                <div key={status.id} className="p-6 hover:bg-gray-50">
+                <div key={status.id} className="p-3 sm:p-4 md:p-6 hover:bg-gray-50">
                   {isEditing ? (
                     <div className="space-y-4">
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -372,7 +372,7 @@ export default function PropertyStatuses() {
                             />
                           </div>
                         </div>
-                        <div className="md:col-span-2">
+                        <div className="col-span-full md:col-span-2">
                           <label className="block text-sm font-medium text-gray-700 mb-1">Description</label>
                           <textarea
                             value={editingStatus.description}
@@ -382,7 +382,7 @@ export default function PropertyStatuses() {
                           />
                         </div>
                       </div>
-                      <div className="flex space-x-2">
+                      <div className="flex gap-2">
                         <button
                           onClick={handleSaveStatus}
                           className="bg-impact-gold text-white px-4 py-2 rounded-lg hover:bg-impact-gold/80 transition-colors"
@@ -398,50 +398,50 @@ export default function PropertyStatuses() {
                       </div>
                     </div>
                   ) : (
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center space-x-4 flex-1">
+                    <div className="space-y-3">
+                      <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
                         <div
-                          className="w-12 h-12 rounded-lg border-2"
+                          className="w-12 h-12 rounded-lg border-2 flex-shrink-0"
                           style={{
                             backgroundColor: status.color,
                             borderColor: status.color
                           }}
                         ></div>
-                        <div className="flex-1">
-                          <div className="flex items-center gap-2">
-                            <h3 className="text-lg font-medium text-gray-900">{status.name}</h3>
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-center gap-2 flex-wrap">
+                            <h3 className="text-sm sm:text-base md:text-lg font-medium text-gray-900">{status.name}</h3>
                             {status.isDefault && (
                               <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
                                 Default
                               </span>
                             )}
                           </div>
-                          <p className="text-sm text-gray-600">{status.description}</p>
+                          <p className="text-xs sm:text-sm text-gray-600 mt-1">{status.description}</p>
                           <p className="text-xs text-gray-500 mt-1">ID: {status.id}</p>
                         </div>
                       </div>
 
-                      <div className="flex space-x-2">
+                      <div className="flex gap-1 sm:gap-2 flex-shrink-0">
                         <button
                           onClick={() => handleEditStatus(status)}
-                          className="text-impact-gold hover:text-impact-gold/80 p-2 transition-colors"
+                          className="text-impact-gold hover:text-impact-gold/80 p-2 transition-colors flex-shrink-0"
                           title="Edit status"
                         >
-                          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                           </svg>
                         </button>
                         <button
                           onClick={() => handleDeleteStatus(status.id, status.isDefault)}
                           disabled={status.isDefault}
-                          className={`p-2 transition-colors ${
+                          className={`p-2 transition-colors flex-shrink-0 ${
                             status.isDefault
                               ? 'text-gray-400 cursor-not-allowed'
                               : 'text-red-600 hover:text-red-800'
                           }`}
                           title={status.isDefault ? 'Default statuses cannot be deleted' : 'Delete status'}
                         >
-                          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                           </svg>
                         </button>
@@ -456,11 +456,11 @@ export default function PropertyStatuses() {
       </div>
 
       {/* Status Insights */}
-      <div className="mt-8 bg-white rounded-lg shadow-sm border p-6">
-        <h2 className="text-xl font-semibold text-gray-900 mb-4">Status Information</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="mt-6 sm:mt-8 bg-white rounded-lg shadow-sm border p-3 sm:p-4 md:p-6">
+        <h2 className="text-base sm:text-lg md:text-xl font-semibold text-gray-900 mb-4">Status Information</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
           <div>
-            <h3 className="text-lg font-medium text-gray-900 mb-3">Default Statuses</h3>
+            <h3 className="text-sm sm:text-base md:text-lg font-medium text-gray-900 mb-3">Default Statuses</h3>
             <ul className="space-y-2">
               {statuses
                 .filter(s => s.isDefault)

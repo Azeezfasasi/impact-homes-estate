@@ -246,11 +246,11 @@ export default function DashboardMenu({ collapsed, mobileOpen = false, onClose =
     <div className="fixed inset-0 z-40 md:hidden" role="dialog" aria-modal="true">
       <div className="fixed inset-0 bg-black/40" onClick={onClose} />
 
-      <nav className="relative z-50 h-full w-[80%] bg-blue-900 border-r border-gray-100">
+      <nav className="relative z-50 h-full w-[80%] bg-yellow-800 border-r border-gray-100">
         <div className="h-full overflow-y-auto py-6 px-4">
           <div className="flex items-center justify-between mb-6">
             <Link href="/" className="flex flex-col items-center gap-3">
-              <Image src="/images/logoblack.png" alt="Impact Homes Real Estate" width={170} height={50} className="w-35 block rounded-md" />
+              <Image src="/img/logowhite.png" alt="Impact Homes Real Estate" width={170} height={50} className="w-35 block rounded-md" />
             </Link>
             <button aria-label="Close menu" onClick={onClose} className="p-2 rounded-md text-red-600 hover:bg-gray-100">
               <svg className="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor">
@@ -274,7 +274,7 @@ export default function DashboardMenu({ collapsed, mobileOpen = false, onClose =
                   <li key={i.href}>
                     {hasChildren ? (
                       <div>
-                        <button onClick={() => toggleSub(i.href)} className={`w-full flex items-center justify-between gap-3 px-3 py-2 rounded-md ${active ? 'bg-indigo-50 text-blue-800' : 'text-white hover:bg-blue-900'}`}>
+                        <button onClick={() => toggleSub(i.href)} className={`w-full flex items-center justify-between gap-3 px-3 py-2 rounded-md ${active ? 'bg-impact-gold/10 text-impact-gold' : 'text-white hover:bg-impact-gold'}`}>
                           <span className="flex items-center gap-3">
                             <span className="shrink-0 text-white"> <Icon name={i.icon} /> </span>
                             <span className="text-sm font-medium">{i.label}</span>
@@ -289,7 +289,7 @@ export default function DashboardMenu({ collapsed, mobileOpen = false, onClose =
                           <ul className="mt-1 space-y-1 pl-6">
                             {i.children.map(c => (
                               <li key={c.href}>
-                                <Link href={c.href} onClick={onClose} className={`block px-3 py-2 rounded-md text-sm ${pathname === c.href ? 'bg-indigo-50 text-indigo-600' : 'text-white hover:bg-blue-900'}`}>
+                                <Link href={c.href} onClick={onClose} className={`block px-3 py-2 rounded-md text-sm ${pathname === c.href ? 'bg-indigo-50 text-impact-gold' : 'text-white hover:bg-impact-gold/80'}`}>
                                   {c.label}
                                 </Link>
                               </li>
@@ -298,7 +298,7 @@ export default function DashboardMenu({ collapsed, mobileOpen = false, onClose =
                         )}
                       </div>
                     ) : (
-                      <Link href={i.href} onClick={onClose} className={`flex items-center gap-3 px-3 py-2 rounded-md ${active ? 'bg-indigo-50 text-indigo-600' : 'text-white hover:bg-blue-900'}`}>
+                      <Link href={i.href} onClick={onClose} className={`flex items-center gap-3 px-3 py-2 rounded-md ${active ? 'bg-impact-gold/90 text-white' : 'text-white hover:bg-impact-gold'}`}>
                         <span className="shrink-0 text-white"> <Icon name={i.icon} /> </span>
                         <span className="text-sm font-medium">{i.label}</span>
                       </Link>

@@ -317,7 +317,7 @@ export default function AllProjectsPage() {
                       <span className="font-medium">{project.completion}%</span>
                     </div>
                     <div className="w-full bg-gray-200 rounded-full h-2">
-                      <div className="bg-indigo-600 h-2 rounded-full" style={{ width: `${project.completion}%` }} />
+                      <div className="bg-impact-gold h-2 rounded-full" style={{ width: `${project.completion}%` }} />
                     </div>
                   </div>
                 </div>

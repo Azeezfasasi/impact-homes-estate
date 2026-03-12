@@ -210,16 +210,16 @@ export default function ManageBrochure() {
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4 sm:space-y-6">
       {/* Header */}
-      <div className="flex justify-between items-center">
-        <h1 className="text-3xl font-bold text-gray-900">Manage Brochures</h1>
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+        <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">Manage Brochures</h1>
         {!showForm && (
           <button
             onClick={() => setShowForm(true)}
-            className="bg-impact-gold hover:bg-impact-gold/90 text-white px-4 py-2 rounded flex items-center gap-2 transition"
+            className="w-full sm:w-auto bg-impact-gold hover:bg-impact-gold/90 text-white px-4 py-2 rounded flex items-center justify-center sm:justify-start gap-2 transition text-sm sm:text-base"
           >
-            <Upload size={20} />
+            <Upload size={18} />
             Upload Brochure
           </button>
         )}
@@ -227,21 +227,21 @@ export default function ManageBrochure() {
 
       {/* Upload Form */}
       {showForm && (
-        <div className="bg-white p-6 rounded-lg shadow-md border border-gray-200">
-          <div className="flex justify-between items-center mb-4">
-            <h2 className="text-xl font-semibold">
+        <div className="bg-white p-4 sm:p-6 rounded-lg shadow-md border border-gray-200">
+          <div className="flex justify-between items-start sm:items-center mb-4 gap-2">
+            <h2 className="text-lg sm:text-xl font-semibold">
               {editingId ? 'Edit Brochure' : 'Upload New Brochure'}
             </h2>
-            <button onClick={resetForm} className="text-gray-500 hover:text-gray-700">
-              <X size={24} />
+            <button onClick={resetForm} className="text-gray-500 hover:text-gray-700 flex-shrink-0">
+              <X size={20} />
             </button>
           </div>
 
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <form onSubmit={handleSubmit} className="space-y-3 sm:space-y-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
               {/* Title */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1">
                   Title *
                 </label>
                 <input
@@ -250,21 +250,21 @@ export default function ManageBrochure() {
                   value={formData.title}
                   onChange={handleInputChange}
                   placeholder="Brochure title"
-                  className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-impact-gold"
+                  className="w-full px-3 py-2 text-sm border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-impact-gold"
                   required
                 />
               </div>
 
               {/* Category */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1">
                   Category *
                 </label>
                 <select
                   name="category"
                   value={formData.category}
                   onChange={handleInputChange}
-                  className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-impact-gold"
+                  className="w-full px-3 py-2 text-sm border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-impact-gold"
                 >
                   {categories.map((cat) => (
                     <option key={cat} value={cat}>
@@ -277,7 +277,7 @@ export default function ManageBrochure() {
 
             {/* Description */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1">
                 Description
               </label>
               <textarea
@@ -286,14 +286,14 @@ export default function ManageBrochure() {
                 onChange={handleInputChange}
                 placeholder="Brief description of the brochure"
                 rows="3"
-                className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-impact-gold"
+                className="w-full px-3 py-2 text-sm border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-impact-gold"
               />
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
               {/* Tags */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1">
                   Tags (comma separated)
                 </label>
                 <input
@@ -302,13 +302,13 @@ export default function ManageBrochure() {
                   value={formData.tags}
                   onChange={handleInputChange}
                   placeholder="e.g., residential, investment, new"
-                  className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-impact-gold"
+                  className="w-full px-3 py-2 text-sm border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-impact-gold"
                 />
               </div>
 
               {/* Version */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1">
                   Version
                 </label>
                 <input
@@ -317,22 +317,22 @@ export default function ManageBrochure() {
                   value={formData.version}
                   onChange={handleInputChange}
                   placeholder="e.g., 1.0, 2.0"
-                  className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-impact-gold"
+                  className="w-full px-3 py-2 text-sm border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-impact-gold"
                 />
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
               {/* Status */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1">
                   Status
                 </label>
                 <select
                   name="status"
                   value={formData.status}
                   onChange={handleInputChange}
-                  className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-impact-gold"
+                  className="w-full px-3 py-2 text-sm border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-impact-gold"
                 >
                   <option value="active">Active</option>
                   <option value="inactive">Inactive</option>
@@ -341,7 +341,7 @@ export default function ManageBrochure() {
               </div>
 
               {/* Checkboxes */}
-              <div className="flex items-end gap-4">
+              <div className="flex items-end">
                 <label className="flex items-center gap-2 cursor-pointer">
                   <input
                     type="checkbox"
@@ -350,7 +350,7 @@ export default function ManageBrochure() {
                     onChange={handleInputChange}
                     className="w-4 h-4 text-impact-gold"
                   />
-                  <span className="text-sm font-medium text-gray-700">Featured</span>
+                  <span className="text-xs sm:text-sm font-medium text-gray-700">Featured</span>
                 </label>
               </div>
             </div>
@@ -358,10 +358,10 @@ export default function ManageBrochure() {
             {/* File Upload */}
             {!editingId && (
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1">
                   PDF File *
                 </label>
-                <div className="relative border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-impact-gold transition">
+                <div className="relative border-2 border-dashed border-gray-300 rounded-lg p-4 sm:p-6 text-center hover:border-impact-gold transition">
                   <input
                     type="file"
                     accept=".pdf"
@@ -369,8 +369,8 @@ export default function ManageBrochure() {
                     className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
                   />
                   <div className="flex flex-col items-center gap-2">
-                    <Upload size={32} className="text-gray-400" />
-                    <p className="text-sm text-gray-600">
+                    <Upload size={24} className="text-gray-400" />
+                    <p className="text-xs sm:text-sm text-gray-600">
                       {previewFile ? (
                         <span className="text-green-600 font-medium">{previewFile}</span>
                       ) : (
@@ -388,10 +388,10 @@ export default function ManageBrochure() {
 
             {editingId && (
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1">
                   Replace PDF File (Optional)
                 </label>
-                <div className="relative border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-impact-gold transition">
+                <div className="relative border-2 border-dashed border-gray-300 rounded-lg p-4 sm:p-6 text-center hover:border-impact-gold transition">
                   <input
                     type="file"
                     accept=".pdf"
@@ -399,8 +399,8 @@ export default function ManageBrochure() {
                     className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
                   />
                   <div className="flex flex-col items-center gap-2">
-                    <Upload size={32} className="text-gray-400" />
-                    <p className="text-sm text-gray-600">
+                    <Upload size={24} className="text-gray-400" />
+                    <p className="text-xs sm:text-sm text-gray-600">
                       {previewFile ? (
                         <span className="text-green-600 font-medium">{previewFile}</span>
                       ) : (
@@ -417,18 +417,18 @@ export default function ManageBrochure() {
             )}
 
             {/* Buttons */}
-            <div className="flex gap-3 justify-end">
+            <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 sm:justify-end">
               <button
                 type="button"
                 onClick={resetForm}
-                className="px-4 py-2 border border-gray-300 text-gray-700 rounded hover:bg-gray-50 transition"
+                className="w-full sm:w-auto px-4 py-2 border border-gray-300 text-gray-700 rounded hover:bg-gray-50 transition text-sm sm:text-base"
               >
                 Cancel
               </button>
               <button
                 type="submit"
                 disabled={loading}
-                className="px-4 py-2 bg-impact-gold text-white rounded hover:bg-impact-gold/90 disabled:opacity-50 transition"
+                className="w-full sm:w-auto px-4 py-2 bg-impact-gold text-white rounded hover:bg-impact-gold/90 disabled:opacity-50 transition text-sm sm:text-base"
               >
                 {loading ? 'Processing...' : editingId ? 'Update Brochure' : 'Upload Brochure'}
               </button>
@@ -438,43 +438,44 @@ export default function ManageBrochure() {
       )}
 
       {/* Brochures List */}
-      <div className="bg-white rounded-lg shadow-md overflow-hidden">
-        <div className="overflow-x-auto">
+      <div className="bg-white rounded-lg shadow-md">
+        {/* Desktop Table */}
+        <div className="hidden md:block overflow-x-auto">
           <table className="w-full">
             <thead className="bg-gray-50 border-b">
               <tr>
-                <th className="px-6 py-3 text-left text-sm font-semibold text-gray-900">Title</th>
-                <th className="px-6 py-3 text-left text-sm font-semibold text-gray-900">Category</th>
-                <th className="px-6 py-3 text-left text-sm font-semibold text-gray-900">Status</th>
-                <th className="px-6 py-3 text-left text-sm font-semibold text-gray-900">Downloads</th>
-                <th className="px-6 py-3 text-left text-sm font-semibold text-gray-900">Featured</th>
-                <th className="px-6 py-3 text-left text-sm font-semibold text-gray-900">Actions</th>
+                <th className="px-4 sm:px-6 py-3 text-left text-xs sm:text-sm font-semibold text-gray-900">Title</th>
+                <th className="px-4 sm:px-6 py-3 text-left text-xs sm:text-sm font-semibold text-gray-900">Category</th>
+                <th className="px-4 sm:px-6 py-3 text-left text-xs sm:text-sm font-semibold text-gray-900">Status</th>
+                <th className="px-4 sm:px-6 py-3 text-left text-xs sm:text-sm font-semibold text-gray-900">Downloads</th>
+                <th className="px-4 sm:px-6 py-3 text-left text-xs sm:text-sm font-semibold text-gray-900">Featured</th>
+                <th className="px-4 sm:px-6 py-3 text-left text-xs sm:text-sm font-semibold text-gray-900">Actions</th>
               </tr>
             </thead>
             <tbody className="divide-y">
               {loading && (
                 <tr>
-                  <td colSpan="6" className="px-6 py-4 text-center text-gray-500">
+                  <td colSpan="6" className="px-4 sm:px-6 py-4 text-center text-gray-500">
                     Loading...
                   </td>
                 </tr>
               )}
               {!loading && brochures.length === 0 && (
                 <tr>
-                  <td colSpan="6" className="px-6 py-4 text-center text-gray-500">
+                  <td colSpan="6" className="px-4 sm:px-6 py-4 text-center text-gray-500">
                     No brochures found
                   </td>
                 </tr>
               )}
               {brochures.map((brochure) => (
                 <tr key={brochure._id} className="hover:bg-gray-50">
-                  <td className="px-6 py-4 text-sm text-gray-900">{brochure.title}</td>
-                  <td className="px-6 py-4 text-sm">
+                  <td className="px-4 sm:px-6 py-4 text-xs sm:text-sm text-gray-900">{brochure.title}</td>
+                  <td className="px-4 sm:px-6 py-4 text-xs sm:text-sm">
                     <span className="px-2 py-1 bg-blue-100 text-blue-800 rounded text-xs">
                       {brochure.category}
                     </span>
                   </td>
-                  <td className="px-6 py-4 text-sm">
+                  <td className="px-4 sm:px-6 py-4 text-xs sm:text-sm">
                     <span
                       className={`px-2 py-1 rounded text-xs ${
                         brochure.status === 'active'
@@ -487,15 +488,15 @@ export default function ManageBrochure() {
                       {brochure.status}
                     </span>
                   </td>
-                  <td className="px-6 py-4 text-sm text-gray-600">{brochure.downloadCount}</td>
-                  <td className="px-6 py-4 text-sm">
+                  <td className="px-4 sm:px-6 py-4 text-xs sm:text-sm text-gray-600">{brochure.downloadCount}</td>
+                  <td className="px-4 sm:px-6 py-4 text-xs sm:text-sm">
                     {brochure.featured ? (
                       <span className="text-yellow-600 font-medium">★</span>
                     ) : (
                       <span className="text-gray-300">☆</span>
                     )}
                   </td>
-                  <td className="px-6 py-4 text-sm flex gap-2">
+                  <td className="px-4 sm:px-6 py-4 text-xs sm:text-sm flex gap-2">
                     <a
                       href={brochure.pdfUrl}
                       target="_blank"
@@ -524,6 +525,78 @@ export default function ManageBrochure() {
               ))}
             </tbody>
           </table>
+        </div>
+
+        {/* Mobile Card View */}
+        <div className="md:hidden divide-y">
+          {loading && (
+            <div className="p-4 text-center text-gray-500 text-sm">
+              Loading...
+            </div>
+          )}
+          {!loading && brochures.length === 0 && (
+            <div className="p-4 text-center text-gray-500 text-sm">
+              No brochures found
+            </div>
+          )}
+          {brochures.map((brochure) => (
+            <div key={brochure._id} className="p-4 hover:bg-gray-50 space-y-3">
+              <div className="flex justify-between items-start gap-2">
+                <h3 className="text-sm font-semibold text-gray-900 flex-1">{brochure.title}</h3>
+                <div className="text-xs flex-shrink-0">
+                  {brochure.featured ? (
+                    <span className="text-yellow-600 font-medium text-lg">★</span>
+                  ) : (
+                    <span className="text-gray-300 text-lg">☆</span>
+                  )}
+                </div>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                <span className="px-2 py-1 bg-blue-100 text-blue-800 rounded text-xs">
+                  {brochure.category}
+                </span>
+                <span
+                  className={`px-2 py-1 rounded text-xs ${
+                    brochure.status === 'active'
+                      ? 'bg-green-100 text-green-800'
+                      : brochure.status === 'inactive'
+                      ? 'bg-yellow-100 text-yellow-800'
+                      : 'bg-gray-100 text-gray-800'
+                  }`}
+                >
+                  {brochure.status}
+                </span>
+              </div>
+              <div className="text-xs text-gray-600 space-y-1">
+                <p><span className="font-medium">Downloads:</span> {brochure.downloadCount}</p>
+              </div>
+              <div className="flex gap-2 pt-2 border-t">
+                <a
+                  href={brochure.pdfUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1 text-blue-600 hover:text-blue-800 transition text-xs font-medium text-center py-2 border rounded hover:bg-blue-50"
+                  title="View"
+                >
+                  View
+                </a>
+                <button
+                  onClick={() => handleEdit(brochure)}
+                  className="flex-1 text-green-600 hover:text-green-800 transition text-xs font-medium text-center py-2 border rounded hover:bg-green-50"
+                  title="Edit"
+                >
+                  Edit
+                </button>
+                <button
+                  onClick={() => handleDelete(brochure._id, brochure.publicId)}
+                  className="flex-1 text-red-600 hover:text-red-800 transition text-xs font-medium text-center py-2 border rounded hover:bg-red-50"
+                  title="Delete"
+                >
+                  Delete
+                </button>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </div>
