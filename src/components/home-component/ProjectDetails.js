@@ -73,7 +73,7 @@ export default function ProjectDetails({ projectId }) {
     return colors[category] || 'text-gray-600';
   };
 
-  if (loading) return <div className="py-20 text-center text-gray-500"><Commet color="#155dfc" size="medium" text="Loading" textColor="#155dfc" /></div>;
+  if (loading) return <div className="py-20 text-center text-gray-500"><Commet color="#B59C5B" size="medium" text="Loading" textColor="#B59C5B" /></div>;
   if (!project) return <div className="py-20 text-center text-gray-500 text-lg">Project not found.</div>;
 
   return (

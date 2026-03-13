@@ -54,7 +54,7 @@ export default function ProjectsGalleryModal() {
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
           {loading ? (
             <div className="col-span-full text-center py-10">
-              <p className="text-gray-500"><Commet color="#155dfc" size="medium" text="Loading" textColor="#155dfc" /></p>
+              <p className="text-gray-500"><Commet color="#B59C5B" size="medium" text="Loading" textColor="#B59C5B" /></p>
             </div>
           ) : filteredProjects.length === 0 ? (
             <div className="col-span-full text-center py-10">

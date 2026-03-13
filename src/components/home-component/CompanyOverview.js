@@ -67,7 +67,7 @@ export default function CompanyOverview() {
     return (
       <section className="py-16 md:py-24 bg-white">
         <div className="container mx-auto px-6 lg:px-20 flex items-center justify-center min-h-96">
-          <Loader className="w-8 h-8 animate-spin text-blue-900" />
+          <Loader className="w-8 h-8 animate-spin text-impact-gold" />
         </div>
       </section>
     );
@@ -98,7 +98,7 @@ export default function CompanyOverview() {
               </h2>
               <div className="space-y-4 text-gray-700 leading-relaxed">
                 {data.companyInfo.paragraphs && data.companyInfo.paragraphs.sort((a, b) => (a.order || 0) - (b.order || 0)).map((para, idx) => (
-                  <p key={idx} className={idx === data.companyInfo.paragraphs.length - 1 ? "text-blue-900 font-semibold text-lg pt-2" : ""}>
+                  <p key={idx} className={idx === data.companyInfo.paragraphs.length - 1 ? "text-impact-gold font-semibold text-lg pt-2" : ""}>
                     {para.text}
                   </p>
                 ))}
@@ -113,7 +113,7 @@ export default function CompanyOverview() {
         <div className="container mx-auto px-6 lg:px-20">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8">{data.vision.title}</h2>
-            <div className="bg-white rounded-lg shadow-md p-8 md:p-12 border-l-4 border-blue-900">
+            <div className="bg-white rounded-lg shadow-md p-8 md:p-12 border-l-4 border-impact-gold">
               <p className="text-xl text-gray-700 leading-relaxed">
                 {data.vision.description}
               </p>
@@ -127,7 +127,7 @@ export default function CompanyOverview() {
         <div className="container mx-auto px-6 lg:px-20">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8">{data.mission.title}</h2>
-            <div className="bg-gradient-to-r from-indigo-50 to-blue-50 rounded-lg shadow-md p-8 md:p-12 border-l-4 border-blue-900">
+            <div className="bg-gradient-to-r from-impact-gold/10 to-impact-gold/10 rounded-lg shadow-md p-8 md:p-12 border-l-4 border-impact-gold">
               <p className="text-xl text-gray-700 leading-relaxed">
                 {data.mission.description}
               </p>

@@ -16,6 +16,7 @@ export default function MainNav({ hideBackgroundImage = false, title, subtitle, 
   const userDropdownRef = useRef(null)
   const router = useRouter()
   const [mounted, setMounted] = useState(false)
+  const isButtonClickRef = useRef(false)
   
   // Get auth context using the custom hook
   const auth = useAuth()
@@ -64,13 +65,23 @@ export default function MainNav({ hideBackgroundImage = false, title, subtitle, 
   // Close dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (userDropdownRef.current && !userDropdownRef.current.contains(event.target)) {
-        setUserDropdownOpen(false)
+      // Skip if this was a button click
+      if (isButtonClickRef.current) {
+        isButtonClickRef.current = false
+        return
+      }
+      
+      if (userDropdownRef.current) {
+        const isInside = userDropdownRef.current.contains(event.target)
+        if (!isInside) {
+          setUserDropdownOpen(false)
+        }
       }
     }
 
-    document.addEventListener('mousedown', handleClickOutside)
-    return () => document.removeEventListener('mousedown', handleClickOutside)
+    // Use 'click' instead of 'mousedown' to ensure button handlers execute first
+    document.addEventListener('click', handleClickOutside)
+    return () => document.removeEventListener('click', handleClickOutside)
   }, [])
 
   return (
@@ -188,6 +199,12 @@ export default function MainNav({ hideBackgroundImage = false, title, subtitle, 
                   >
                     Blog
                   </Link>
+                  <Link
+                    href="/schedule-inspection"
+                    className="block px-4 py-2 text-white hover:text-impact-gold hover:bg-white/5 transition"
+                  >
+                    Schedule Inspection
+                  </Link>
                 </div>
               </div>
 
@@ -245,12 +262,16 @@ export default function MainNav({ hideBackgroundImage = false, title, subtitle, 
             </div>
 
             {/* Right Side Icons and Button */}
-            <div className="hidden lg:flex items-center gap-6 z-10 relative">
+            <div className="hidden lg:flex items-center gap-6 z-[9999] relative">
               {mounted && !loading ? (
                 user && userName ? (
                 <div className="relative" ref={userDropdownRef}>
                   <button
-                    onClick={() => setUserDropdownOpen(!userDropdownOpen)}
+                    onClick={(e) => {
+                      e.stopPropagation()
+                      isButtonClickRef.current = true
+                      setUserDropdownOpen(!userDropdownOpen)
+                    }}
                     className="flex items-center gap-2 hover:text-impact-gold transition"
                   >
                     {user.avatar ? (
@@ -273,42 +294,74 @@ export default function MainNav({ hideBackgroundImage = false, title, subtitle, 
                   </button>
 
                   {userDropdownOpen && (
-                    <div className="absolute right-0 mt-2 w-56 bg-black/95 border border-gray-700 rounded-lg shadow-xl py-2 z-50">
+                    <div className="absolute right-0 mt-2 w-56 bg-black/95 border border-gray-700 rounded-lg shadow-xl py-2 z-[99999]">
                       <div className="px-4 py-3 border-b border-gray-700">
                         <p className="font-semibold text-white">{userName}</p>
                         <p className="text-sm text-gray-300">{user.email || 'No email'}</p>
                       </div>
 
-                      <Link
-                        href="/dashboard"
-                        className="flex items-center gap-2 px-4 py-2 text-white hover:text-impact-gold hover:bg-white/5 transition"
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation()
+                          isButtonClickRef.current = true
+                          setUserDropdownOpen(false)
+                          router.push('/dashboard')
+                        }}
+                        className="w-full block text-left px-4 py-2 text-white hover:text-impact-gold hover:bg-white/5 transition"
                       >
-                        <User size={16} />
-                        Dashboard
-                      </Link>
+                        <div className="flex items-center gap-2">
+                          <User size={16} />
+                          Dashboard
+                        </div>
+                      </button>
                       
-                      <Link
-                        href="/dashboard/all-property"
-                        className="flex items-center gap-2 px-4 py-2 text-white hover:text-impact-gold hover:bg-white/5 transition"
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation()
+                          isButtonClickRef.current = true
+                          setUserDropdownOpen(false)
+                          router.push('/dashboard/all-property')
+                        }}
+                        className="w-full block text-left px-4 py-2 text-white hover:text-impact-gold hover:bg-white/5 transition"
                       >
-                        <User size={16} />
-                        Manage Properties
-                      </Link>
-
-                      <Link
-                        href="/dashboard/my-profile"
-                        className="flex items-center gap-2 px-4 py-2 text-white hover:text-impact-gold hover:bg-white/5 transition"
-                      >
-                        <Settings size={16} />
-                        Profile
-                      </Link>
+                        <div className="flex items-center gap-2">
+                          <User size={16} />
+                          Manage Properties
+                        </div>
+                      </button>
 
                       <button
-                        onClick={handleLogout}
-                        className="w-full flex items-center gap-2 px-4 py-2 text-white hover:text-red-400 hover:bg-white/5 transition border-t border-gray-700"
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation()
+                          isButtonClickRef.current = true
+                          setUserDropdownOpen(false)
+                          router.push('/dashboard/my-profile')
+                        }}
+                        className="w-full block text-left px-4 py-2 text-white hover:text-impact-gold hover:bg-white/5 transition"
                       >
-                        <LogOut size={16} />
-                        Logout
+                        <div className="flex items-center gap-2">
+                          <Settings size={16} />
+                          Profile
+                        </div>
+                      </button>
+
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation()
+                          isButtonClickRef.current = true
+                          setUserDropdownOpen(false)
+                          handleLogout()
+                        }}
+                        className="w-full block text-left px-4 py-2 text-white hover:text-red-400 hover:bg-white/5 transition border-t border-gray-700"
+                      >
+                        <div className="flex items-center gap-2">
+                          <LogOut size={16} />
+                          Logout
+                        </div>
                       </button>
                     </div>
                   )}
@@ -348,7 +401,11 @@ export default function MainNav({ hideBackgroundImage = false, title, subtitle, 
                 user ? (
                 <div className="relative" ref={userDropdownRef}>
                   <button
-                    onClick={() => setUserDropdownOpen(!userDropdownOpen)}
+                    onClick={(e) => {
+                      e.stopPropagation()
+                      isButtonClickRef.current = true
+                      setUserDropdownOpen(!userDropdownOpen)
+                    }}
                     className="flex items-center hover:text-impact-gold transition"
                   >
                     {user.profileImage ? (
@@ -367,34 +424,74 @@ export default function MainNav({ hideBackgroundImage = false, title, subtitle, 
                   </button>
 
                   {userDropdownOpen && (
-                    <div className="absolute right-0 mt-2 w-48 bg-black/95 border border-gray-700 rounded-lg shadow-xl py-2">
+                    <div className="absolute right-0 mt-2 w-48 bg-black/95 border border-gray-700 rounded-lg shadow-xl py-2 z-50">
                       <div className="px-4 py-3 border-b border-gray-700">
                         <p className="font-semibold text-white text-sm">{user.name}</p>
                         <p className="text-xs text-gray-300">{user.email}</p>
                       </div>
-
-                      <Link
-                        href="/dashboard/profile"
-                        className="flex items-center gap-2 px-4 py-2 text-white hover:text-impact-gold hover:bg-white/5 transition text-sm"
+                      
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation()
+                          isButtonClickRef.current = true
+                          setUserDropdownOpen(false)
+                          router.push('/dashboard')
+                        }}
+                        className="w-full block text-left px-4 py-2 text-white hover:text-impact-gold hover:bg-white/5 transition"
                       >
-                        <User size={16} />
-                        View Profile
-                      </Link>
-
-                      <Link
-                        href="/dashboard/settings"
-                        className="flex items-center gap-2 px-4 py-2 text-white hover:text-impact-gold hover:bg-white/5 transition text-sm"
+                        <div className="flex items-center gap-2">
+                          <User size={16} />
+                          Dashboard
+                        </div>
+                      </button>
+                      
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation()
+                          isButtonClickRef.current = true
+                          setUserDropdownOpen(false)
+                          router.push('/dashboard/all-property')
+                        }}
+                        className="w-full block text-left px-4 py-2 text-white hover:text-impact-gold hover:bg-white/5 transition"
                       >
-                        <Settings size={16} />
-                        Settings
-                      </Link>
+                        <div className="flex items-center gap-2">
+                          <User size={16} />
+                          Manage Properties
+                        </div>
+                      </button>
 
                       <button
-                        onClick={handleLogout}
-                        className="w-full flex items-center gap-2 px-4 py-2 text-white hover:text-red-400 hover:bg-white/5 transition border-t border-gray-700 text-sm"
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation()
+                          isButtonClickRef.current = true
+                          setUserDropdownOpen(false)
+                          router.push('/dashboard/my-profile')
+                        }}
+                        className="w-full block text-left px-4 py-2 text-white hover:text-impact-gold hover:bg-white/5 transition text-sm"
                       >
-                        <LogOut size={16} />
-                        Logout
+                        <div className="flex items-center gap-2">
+                          <User size={16} />
+                          Profile
+                        </div>
+                      </button>
+
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation()
+                          isButtonClickRef.current = true
+                          setUserDropdownOpen(false)
+                          handleLogout()
+                        }}
+                        className="w-full block text-left px-4 py-2 text-white hover:text-red-400 hover:bg-white/5 transition border-t border-gray-700 text-sm"
+                      >
+                        <div className="flex items-center gap-2">
+                          <LogOut size={16} />
+                          Logout
+                        </div>
                       </button>
                     </div>
                   )}
@@ -446,8 +543,8 @@ export default function MainNav({ hideBackgroundImage = false, title, subtitle, 
                       <Link href="/gallery" className="block text-white hover:text-impact-gold text-sm">
                         Gallery
                       </Link>
-                      <Link href="/services" className="block text-white hover:text-impact-gold text-sm">
-                        Our Services
+                      <Link href="/schedule-inspection" className="block text-white hover:text-impact-gold text-sm">
+                        Schedule Inspection
                       </Link>
                     </div>
                   )}

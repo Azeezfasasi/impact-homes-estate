@@ -14,6 +14,8 @@ export default function PropertyDetail() {
   const [property, setProperty] = useState(null);
   const [loading, setLoading] = useState(true);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+  const [showImageModal, setShowImageModal] = useState(false);
+  const [modalImageIndex, setModalImageIndex] = useState(0);
   const [showContactForm, setShowContactForm] = useState(false);
   const [contactForm, setContactForm] = useState({
     name: '',
@@ -25,6 +27,26 @@ export default function PropertyDetail() {
   useEffect(() => {
     fetchProperty();
   }, [propertyId]);
+
+  // Define images early so it can be used in effects
+  const images = property?.images || [];
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (!showImageModal) return;
+      
+      if (e.key === 'Escape') {
+        setShowImageModal(false);
+      } else if (e.key === 'ArrowLeft') {
+        setModalImageIndex(prev => (prev - 1 + images.length) % images.length);
+      } else if (e.key === 'ArrowRight') {
+        setModalImageIndex(prev => (prev + 1) % images.length);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [showImageModal, images.length]);
 
   const fetchProperty = async () => {
     try {
@@ -70,7 +92,6 @@ export default function PropertyDetail() {
     );
   }
 
-  const images = property.images || [];
   const currentImage = images[selectedImageIndex];
   const featuredImage = images.find(img => img.isMain);
   
@@ -123,12 +144,20 @@ export default function PropertyDetail() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
           {/* Main Image */}
           <div className="lg:col-span-2">
-            <div className="relative bg-gray-900 rounded-xl overflow-hidden h-96 md:h-[500px]">
+            <div 
+              className="relative bg-gray-900 rounded-xl overflow-hidden h-96 md:h-[500px] cursor-pointer group"
+              onClick={() => {
+                if (currentImage || images.length > 0) {
+                  setModalImageIndex(selectedImageIndex);
+                  setShowImageModal(true);
+                }
+              }}
+            >
               {currentImage ? (
                 <img
-                  src={currentImage.url}
+                  src={currentImage.url || currentImage}
                   alt="Property"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                 />
               ) : (
                 <div className="w-full h-full flex items-center justify-center text-gray-600">
@@ -137,6 +166,13 @@ export default function PropertyDetail() {
                   </svg>
                 </div>
               )}
+
+              {/* Zoom Hover Indicator */}
+              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors flex items-center justify-center opacity-0 group-hover:opacity-100">
+                <svg className="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM13 10H7" />
+                </svg>
+              </div>
 
               {/* Navigation Arrows */}
               {images.length > 1 && (
@@ -172,12 +208,16 @@ export default function PropertyDetail() {
                 {images.map((image, index) => (
                   <button
                     key={index}
-                    onClick={() => setSelectedImageIndex(index)}
-                    className={`flex-shrink-0 w-20 h-20 rounded-lg overflow-hidden border-2 transition-all ${
+                    onClick={() => {
+                      setSelectedImageIndex(index);
+                      setModalImageIndex(index);
+                      setShowImageModal(true);
+                    }}
+                    className={`flex-shrink-0 w-20 h-20 rounded-lg overflow-hidden border-2 transition-all cursor-pointer ${
                       index === selectedImageIndex ? 'border-impact-gold' : 'border-gray-300'
                     }`}
                   >
-                    <img src={image.url} alt={`Thumbnail ${index + 1}`} className="w-full h-full object-cover" />
+                    <img src={image.url || image} alt={`Thumbnail ${index + 1}`} className="w-full h-full object-cover" />
                   </button>
                 ))}
               </div>
@@ -236,9 +276,9 @@ export default function PropertyDetail() {
               >
                 Contact Agent
               </button>
-              <button className="w-full px-4 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors font-semibold">
-                Schedule Tour
-              </button>
+              <Link href="/schedule-inspection" className="w-full block text-center px-4 py-3 border border-impact-gold text-impact-gold rounded-lg hover:bg-impact-gold hover:text-white transition-colors font-semibold">
+                Schedule Inspection
+              </Link>
             </div>
 
             {/* Agent Info */}
@@ -267,6 +307,94 @@ export default function PropertyDetail() {
             )}
           </div>
         </div>
+
+        {/* Image Modal */}
+        {showImageModal && (
+          <div 
+            className="fixed inset-0 bg-black/95 flex items-center justify-center z-50 p-4 backdrop-blur-sm"
+            onClick={() => setShowImageModal(false)}
+          >
+            <div 
+              className="relative w-full max-w-6xl max-h-screen flex flex-col animate-in fade-in"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Close Button */}
+              <button
+                onClick={() => setShowImageModal(false)}
+                className="absolute top-4 right-4 z-10 bg-white/20 hover:bg-white/40 backdrop-blur text-white p-2 rounded-full transition-all"
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+
+              {/* Main Image in Modal */}
+              <div className="flex-1 flex items-center justify-center overflow-hidden rounded-lg">
+                <img
+                  src={images[modalImageIndex]?.url || images[modalImageIndex]}
+                  alt="Property"
+                  className="max-w-full max-h-full object-contain animate-in fade-in duration-300"
+                />
+              </div>
+
+              {/* Navigation Controls */}
+              {images.length > 1 && (
+                <>
+                  {/* Left Arrow */}
+                  <button
+                    onClick={() => setModalImageIndex(prev => (prev - 1 + images.length) % images.length)}
+                    className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/20 hover:bg-white/40 backdrop-blur text-white p-1 md:p-3 rounded-full transition-all hover:scale-110"
+                  >
+                    <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                    </svg>
+                  </button>
+
+                  {/* Right Arrow */}
+                  <button
+                    onClick={() => setModalImageIndex(prev => (prev + 1) % images.length)}
+                    className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/20 hover:bg-white/40 backdrop-blur text-white p-1 md:p-3 rounded-full transition-all hover:scale-110"
+                  >
+                    <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </button>
+                </>
+              )}
+
+              {/* Image Counter & Info */}
+              <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-black/60 backdrop-blur text-white px-6 py-3 rounded-full items-center gap-6 hidden sm:flex">
+                <div className="text-center">
+                  <p className="text-sm text-gray-300">Image</p>
+                  <p className="text-xl font-bold">{modalImageIndex + 1} / {images.length}</p>
+                </div>
+                <div className="hidden sm:block text-xs text-gray-400 border-l pl-4">
+                  <p>← → to navigate</p>
+                  <p>ESC to close</p>
+                </div>
+              </div>
+
+              {/* Thumbnail Strip at Bottom */}
+              {images.length > 1 && (
+                <div className="absolute bottom-20 left-0 right-0 justify-center gap-2 px-4 hidden sm:flex">
+                  <div className="flex gap-2 overflow-x-auto bg-black/40 backdrop-blur rounded-lg p-2">
+                    {images.map((image, index) => (
+                      <button
+                        key={index}
+                        onClick={() => setModalImageIndex(index)}
+                        className={`flex-shrink-0 w-12 h-12 rounded-md overflow-hidden border-2 transition-all ${
+                          index === modalImageIndex ? 'border-white scale-105' : 'border-white/30'
+                        }`}
+                      >
+                        <img src={image.url || image} alt={`Thumbnail ${index + 1}`} className="w-full h-full object-cover" />
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        )}
 
         {/* Contact Form Modal */}
         {showContactForm && (
