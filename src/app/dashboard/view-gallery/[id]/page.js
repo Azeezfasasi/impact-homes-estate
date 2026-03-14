@@ -33,7 +33,7 @@ export default function ViewGalleryPage() {
   if (loading) {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <Loader className="h-8 w-8 animate-spin text-blue-600" />
+        <Loader className="h-8 w-8 animate-spin text-impact-gold" />
       </div>
     );
   }
@@ -44,7 +44,7 @@ export default function ViewGalleryPage() {
         <div className="max-w-4xl mx-auto px-3 sm:px-4">
           <button
             onClick={() => router.back()}
-            className="flex items-center gap-2 text-blue-600 hover:text-blue-700 mb-6 sm:mb-8"
+            className="flex items-center gap-2 text-impact-gold hover:text-impact-gold/90 mb-6 sm:mb-8"
           >
             <ArrowLeft className="h-5 w-5" />
             Back
@@ -63,7 +63,7 @@ export default function ViewGalleryPage() {
         {/* Back Button */}
         <button
           onClick={() => router.back()}
-          className="flex items-center gap-2 text-blue-600 hover:text-blue-700 mb-6 sm:mb-8"
+          className="flex items-center gap-2 text-impact-gold hover:text-impact-gold/90 mb-6 sm:mb-8"
         >
           <ArrowLeft className="h-5 w-5" />
           Back
@@ -95,7 +95,7 @@ export default function ViewGalleryPage() {
               </div>
               <button
                 onClick={() => router.push(`/dashboard/edit-gallery/${gallery._id}`)}
-                className="w-full sm:w-auto bg-blue-600 text-white px-4 py-2 text-sm rounded-lg hover:bg-blue-700 transition-colors"
+                className="w-full sm:w-auto bg-impact-gold text-white px-4 py-2 text-sm rounded-lg hover:bg-impact-gold/90 transition-colors"
               >
                 Edit Gallery
               </button>

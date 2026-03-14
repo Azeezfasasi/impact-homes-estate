@@ -33,6 +33,24 @@ const useNotifications = () => {
           c => c.status?.toLowerCase() === 'pending' || !c.status
         );
 
+        // Fetch pending inspection requests
+        const inspectionRes = await axios.get('/api/inspection-requests', {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        const inspections = Array.isArray(inspectionRes.data) ? inspectionRes.data : inspectionRes.data.inspectionRequests || [];
+        const pendingInspections = inspections.filter(i => i.status?.toLowerCase() === 'pending');
+
+        // Fetch pending partner applications
+        const partnerRes = await axios.get('/api/partner-applications', {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        const partners = partnerRes.data.applications || [];
+        const pendingPartners = partners.filter(p => p.status?.toLowerCase() === 'pending');
+
         // Combine notifications
         const combinedNotifications = [
           ...pendingQuotes.map(quote => ({
@@ -52,6 +70,24 @@ const useNotifications = () => {
             time: new Date(contact.createdAt).toLocaleDateString(),
             link: '/dashboard/contact-form-responses',
             icon: '💬',
+          })),
+          ...pendingInspections.map(inspection => ({
+            id: `inspection-${inspection._id}`,
+            type: 'inspection',
+            title: 'Pending Inspection Request',
+            message: `Inspection request from ${inspection.firstName} ${inspection.lastName}`,
+            time: new Date(inspection.createdAt).toLocaleDateString(),
+            link: '/dashboard/inspection-requests',
+            icon: '🔍',
+          })),
+          ...pendingPartners.map(partner => ({
+            id: `partner-${partner._id}`,
+            type: 'partner',
+            title: 'Pending Partner Application',
+            message: `${partner.type === 'corporate' ? partner.companyName : `${partner.firstName} ${partner.lastName}`} partnership application`,
+            time: new Date(partner.createdAt).toLocaleDateString(),
+            link: '/dashboard/manage-partner-application',
+            icon: '🤝',
           })),
         ];
 

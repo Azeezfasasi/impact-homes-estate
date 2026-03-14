@@ -132,7 +132,7 @@ export default function HeroSlider() {
       </div>
 
       {/* Slides Container with padding for fixed nav */}
-      <div className="relative w-full h-screen">
+      <div className="relative w-full h-[700px] md:h-[700px] overflow-hidden">
         {slides.map((slide, index) => (
           <div
             key={slide.id}

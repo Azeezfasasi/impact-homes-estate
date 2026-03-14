@@ -3,7 +3,7 @@
 import React, { useState, useRef, useEffect } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { Search, Menu, X, LogIn, ChevronDown, CircleUserRound, LogOut, User, Settings } from 'lucide-react'
+import { Search, Menu, X, LogIn, ChevronDown, CircleUserRound, LogOut, User, Settings, PhoneCall, Mail, MapPin } from 'lucide-react'
 import Image from 'next/image'
 import toast from 'react-hot-toast'
 import { useAuth } from '@/context/AuthContext'
@@ -113,8 +113,8 @@ export default function MainNav({ hideBackgroundImage = false, title, subtitle, 
             <div className='gap-10 hidden lg:flex'>
                 {/* Phone */}
                 <div className="flex items-center gap-3">
-                    <div className="w-5 h-5 rounded-full border-2 impact-gold flex items-center justify-center">
-                    <span className="text-xs">☎</span>
+                    <div className="w-8 h-8 rounded-full border-2 border-impact-gold flex items-center justify-center">
+                      <PhoneCall size={16} className='text-impact-gold' />
                     </div>
                     <div>
                     <p className="text-white text-xs">Call Us</p>
@@ -124,8 +124,8 @@ export default function MainNav({ hideBackgroundImage = false, title, subtitle, 
 
                 {/* Email */}
                 <div className="flex items-center gap-3">
-                    <div className="w-5 h-5 rounded-full border-2 impact-gold flex items-center justify-center">
-                    <span className="text-xs">✉</span>
+                    <div className="w-8 h-8 rounded-full border-2 border-impact-gold flex items-center justify-center">
+                    <Mail size={16} className='text-impact-gold' />
                     </div>
                     <div>
                     <p className="text-white text-xs">Send us an email</p>
@@ -135,8 +135,8 @@ export default function MainNav({ hideBackgroundImage = false, title, subtitle, 
 
                 {/* Address */}
                 <div className="flex items-center gap-3">
-                    <div className="w-5 h-5 rounded-full border-2 impact-gold flex items-center justify-center">
-                    <span className="text-xs">📍</span>
+                    <div className="w-8 h-8 rounded-full border-2 border-impact-gold flex items-center justify-center">
+                    <MapPin size={16} className='text-impact-gold' />
                     </div>
                     <div>
                     <p className="text-white text-xs">Address</p>
@@ -157,7 +157,7 @@ export default function MainNav({ hideBackgroundImage = false, title, subtitle, 
 
             {/* Logo - Show when scrolled */}
             {isScrolled && (
-              <Link href="/" className="flex items-center gap-2 z-10 relative">
+              <Link href="/" className="flex lg:hidden items-center gap-2 z-10 relative">
                 <Image src="/img/logowhite.png" alt="Impact Homes Logo" width={140} height={40} className="h-10 w-auto" />
               </Link>
             )}
@@ -188,6 +188,12 @@ export default function MainNav({ hideBackgroundImage = false, title, subtitle, 
                     ABOUT US
                   </Link>
                   <Link
+                    href="/all-properties"
+                    className="block px-4 py-2 text-white hover:text-impact-gold hover:bg-white/5 transition"
+                  >
+                    Our Properties
+                  </Link>
+                  <Link
                     href="/gallery"
                     className="block px-4 py-2 text-white hover:text-impact-gold hover:bg-white/5 transition"
                   >
@@ -208,12 +214,6 @@ export default function MainNav({ hideBackgroundImage = false, title, subtitle, 
                 </div>
               </div>
 
-              <Link
-                href="/all-properties"
-                className="text-white font-semibold hover:text-impact-gold transition"
-              >
-                PROPERTIES
-              </Link>
               <Link
                 href="/projects"
                 className="text-white font-semibold hover:text-impact-gold transition"

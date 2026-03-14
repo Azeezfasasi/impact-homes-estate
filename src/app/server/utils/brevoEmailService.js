@@ -61,21 +61,37 @@ export const sendEmailViaBrevo = async (emailData) => {
 
     // If using a template
     if (templateId) {
+      const templatePayload = {
+        templateId,
+        to: formatEmailList(to),
+        params,
+      };
+
+      // Add tags only if they exist and have values
+      if (tags && Array.isArray(tags) && tags.length > 0) {
+        templatePayload.tags = tags;
+      }
+
+      // Add cc/bcc if provided
+      if (cc.length > 0) {
+        templatePayload.cc = formatEmailList(cc);
+      }
+
+      if (bcc.length > 0) {
+        templatePayload.bcc = formatEmailList(bcc);
+      }
+
+      if (replyTo) {
+        templatePayload.replyTo = { email: replyTo };
+      }
+
       const response = await fetch(`${brevoApiUrl}/smtp/email`, {
         method: 'POST',
         headers: {
           'api-key': brevoApiKey,
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          templateId,
-          to: formatEmailList(to),
-          params,
-          tags,
-          cc: cc.length > 0 ? formatEmailList(cc) : undefined,
-          bcc: bcc.length > 0 ? formatEmailList(bcc) : undefined,
-          replyTo: replyTo ? { email: replyTo } : undefined,
-        }),
+        body: JSON.stringify(templatePayload),
       });
 
       return handleBrevoResponse(response);
@@ -91,7 +107,6 @@ export const sendEmailViaBrevo = async (emailData) => {
       subject,
       htmlContent: htmlContent || '',
       textContent: textContent || subject, // ← Fallback to subject if textContent is empty (required by Brevo)
-      tags: tags || [],
     };
 
     // Add optional fields
@@ -105,6 +120,11 @@ export const sendEmailViaBrevo = async (emailData) => {
 
     if (replyTo) {
       emailPayload.replyTo = { email: replyTo };
+    }
+
+    // Add tags only if they exist and have values
+    if (tags && Array.isArray(tags) && tags.length > 0) {
+      emailPayload.tags = tags;
     }
 
     // Add attachment if provided

@@ -4,6 +4,7 @@ import Blog from "@/app/server/models/Blog.js";
 import Contact from "@/app/server/models/Contact.js";
 import Quote from "@/app/server/models/Quote.js";
 import Project from "@/app/server/models/Project.js";
+import Property from "@/app/server/models/Property.js";
 import { connectDB } from "@/app/server/db/connect.js";
 import { NextResponse } from "next/server";
 
@@ -16,12 +17,13 @@ export async function GET(req) {
         await connectDB();
 
         // Fetch counts from all collections in parallel
-        const [usersCount, blogsCount, contactsCount, quotesCount, projectsCount] = await Promise.all([
+        const [usersCount, blogsCount, contactsCount, quotesCount, projectsCount, propertiesCount] = await Promise.all([
           User.countDocuments({ isActive: true }),
           Blog.countDocuments({ status: "published" }),
           Contact.countDocuments(),
           Quote.countDocuments(),
           Project.countDocuments(),
+          Property.countDocuments(),
         ]);
 
         // Count pending/open items
@@ -36,6 +38,7 @@ export async function GET(req) {
           contacts: contactsCount,
           quotes: quotesCount,
           projects: projectsCount,
+          properties: propertiesCount,
           requests: pendingQuotes + pendingContacts, // Combined pending items
           pendingContacts,
           pendingQuotes,

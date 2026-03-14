@@ -81,7 +81,7 @@ const OfferForm = ({ initialData, onSubmit, onCancel, isSubmitting }) => {
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
       <div className="bg-white rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto">
-        <div className="sticky top-0 bg-white border-b border-gray-200 p-6 flex justify-between items-center">
+        <div className="sticky top-0 bg-white border-b border-gray-200 p-6 flex justify-between items-center z-[9999]">
           <h2 className="text-2xl font-bold">
             {initialData ? 'Edit Special Offer' : 'Add Special Offer'}
           </h2>
@@ -396,7 +396,7 @@ function ManageSpecialOffers() {
   };
 
   return (
-    <div className="p-8 bg-gray-50 min-h-screen">
+    <div className="p-0 md:p-8 bg-gray-50 min-h-screen">
       <div className="flex flex-col md:flex-row gap-2 md:gap-0 md:justify-between md:items-center mb-8">
         <h1 className="text-[20px] md:text-3xl font-bold text-center md:text-left">Manage Special Offers</h1>
         <button
@@ -481,7 +481,7 @@ function ManageSpecialOffers() {
                       setEditingOffer(offer);
                       setShowForm(true);
                     }}
-                    className="flex-1 bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg font-medium flex items-center justify-center gap-2"
+                    className="flex-1 bg-impact-gold hover:bg-impact-gold/80 text-white py-2 rounded-lg font-medium flex items-center justify-center gap-2"
                   >
                     <Edit2 size={16} />
                     Edit

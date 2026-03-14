@@ -47,7 +47,7 @@ export default function DashboardHeader({ onToggleSidebar, onToggleMobileMenu })
             <button
               aria-label="Open menu"
               onClick={onToggleMobileMenu}
-              className="inline-flex items-center justify-center p-2 rounded-md text-gray-600 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-900 md:hidden"
+              className="inline-flex items-center justify-center p-2 rounded-md text-gray-600 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-impact-gold md:hidden"
             >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path>
@@ -57,7 +57,7 @@ export default function DashboardHeader({ onToggleSidebar, onToggleMobileMenu })
             <button
               aria-label="Toggle sidebar"
               onClick={onToggleSidebar}
-              className="hidden md:inline-flex items-center justify-center p-2 rounded-md text-gray-600 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-900"
+              className="hidden md:inline-flex items-center justify-center p-2 rounded-md text-gray-600 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-impact-gold"
             >
               <ArrowRightLeft className="w-6 h-6" />
             </button>
@@ -72,7 +72,7 @@ export default function DashboardHeader({ onToggleSidebar, onToggleMobileMenu })
             <button 
               aria-label="Notifications"
               onClick={() => setNotificationOpen(true)}
-              className="p-2 rounded-md text-gray-600 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-900 relative transition-colors duration-200"
+              className="p-2 rounded-md text-gray-600 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-impact-gold relative transition-colors duration-200"
             >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6 6 0 10-12 0v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path>
@@ -94,7 +94,7 @@ export default function DashboardHeader({ onToggleSidebar, onToggleMobileMenu })
 
             <div className="relative" ref={dropdownRef}>
               <button
-                className="flex items-center gap-3 p-1 rounded-md hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-900"
+                className="flex items-center gap-3 p-1 rounded-md hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-impact-gold"
                 onClick={() => setDropdownOpen((open) => !open)}
                 aria-haspopup="true"
                 aria-expanded={dropdownOpen}
@@ -122,6 +122,11 @@ export default function DashboardHeader({ onToggleSidebar, onToggleMobileMenu })
                     {user?.role === 'admin' || user?.role === 'staff-member' ? (
                     <li>
                       <Link href="/dashboard/my-profile" className="block px-4 py-2 text-gray-700 hover:bg-gray-100 transition w-full text-left">Profile</Link>
+                    </li>
+                    ) : null}
+                    {user?.role === 'admin' || user?.role === 'staff-member' ? (
+                    <li>
+                      <Link href="http://mail.zoho.com" className="block px-4 py-2 text-gray-700 hover:bg-gray-100 transition w-full text-left">Access Zoho Email</Link>
                     </li>
                     ) : null}
                     <li>

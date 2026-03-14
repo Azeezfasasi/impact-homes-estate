@@ -69,7 +69,7 @@ export default function UserChart() {
     // Refresh data every 30 seconds
     const interval = setInterval(() => {
       if (token) fetchUserData();
-    }, 30000);
+    }, 120000);
     return () => clearInterval(interval);
   }, [token]);
 
@@ -105,8 +105,8 @@ export default function UserChart() {
   }
 
   return (
-    <div className="bg-white rounded-lg shadow-md p-6 border border-gray-300 w-full lg:w-[48%]">
-      <h2 className="text-2xl font-bold text-gray-800 mb-6">User Roles Distribution</h2>
+    <div className="bg-white rounded-lg shadow-md shadow-impact-gold/70 border border-impact-gold/70 p-6 w-full lg:w-[48%]">
+      <h2 className="text-[20px] md:text-2xl font-bold text-gray-800 mb-6">User Roles Distribution</h2>
       
       <ResponsiveContainer width="100%" height={400}>
         <BarChart
