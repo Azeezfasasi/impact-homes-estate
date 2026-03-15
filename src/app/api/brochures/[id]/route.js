@@ -1,13 +1,15 @@
 import { NextResponse } from 'next/server';
 import { connectDB } from '@/utils/db';
 import Brochure from '@/app/server/models/Brochure';
+import User from '@/app/server/models/User';
 import { deleteFromCloudinary, uploadToCloudinary } from '@/app/server/utils/cloudinaryService';
 
 export async function GET(request, { params }) {
   try {
+    const { id } = await params;
     await connectDB();
 
-    const brochure = await Brochure.findById(params.id).populate('uploadedBy', 'firstName lastName email');
+    const brochure = await Brochure.findById(id).populate('uploadedBy', 'firstName lastName email');
 
     if (!brochure) {
       return NextResponse.json(
@@ -31,9 +33,10 @@ export async function GET(request, { params }) {
 
 export async function PUT(request, { params }) {
   try {
+    const { id } = await params;
     await connectDB();
 
-    const brochure = await Brochure.findById(params.id);
+    const brochure = await Brochure.findById(id);
 
     if (!brochure) {
       return NextResponse.json(
@@ -88,9 +91,10 @@ export async function PUT(request, { params }) {
 
 export async function DELETE(request, { params }) {
   try {
+    const { id } = await params;
     await connectDB();
 
-    const brochure = await Brochure.findById(params.id);
+    const brochure = await Brochure.findById(id);
 
     if (!brochure) {
       return NextResponse.json(
@@ -106,7 +110,7 @@ export async function DELETE(request, { params }) {
       console.error('Error deleting from Cloudinary:', delError);
     }
 
-    await Brochure.deleteOne({ _id: params.id });
+    await Brochure.deleteOne({ _id: id });
 
     return NextResponse.json({
       success: true,

@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { connectDB } from '@/utils/db';
 import Brochure from '@/app/server/models/Brochure';
+import User from '@/app/server/models/User';
 import { uploadToCloudinary, deleteFromCloudinary } from '@/app/server/utils/cloudinaryService';
 
 export async function GET(request) {
@@ -59,6 +60,57 @@ export async function POST(request) {
         { status: 400 }
       );
     }
+
+    // Validate file extension
+    if (!fileName.toLowerCase().endsWith('.pdf')) {
+      return NextResponse.json(
+        { success: false, error: 'Only PDF files are allowed' },
+        { status: 400 }
+      );
+    }
+
+    // Validate file is actually a PDF by checking magic bytes
+    // PDF files start with %PDF signature
+    let fileData;
+    if (file.startsWith('data:')) {
+      // It's a data URL, extract the base64 part
+      const base64 = file.split(',')[1];
+      const buffer = Buffer.from(base64, 'base64');
+      fileData = buffer;
+    } else {
+      // Assume it's base64
+      fileData = Buffer.from(file, 'base64');
+    }
+
+    // Log the magic bytes for debugging
+    console.log(`Validating file: ${fileName}`);
+    console.log(`First 4 bytes: 0x${fileData[0]?.toString(16).toUpperCase()} 0x${fileData[1]?.toString(16).toUpperCase()} 0x${fileData[2]?.toString(16).toUpperCase()} 0x${fileData[3]?.toString(16).toUpperCase()}`);
+
+    // Check PDF magic bytes: %PDF (0x25 0x50 0x44 0x46)
+    const isPDF = fileData[0] === 0x25 && fileData[1] === 0x50 && fileData[2] === 0x44 && fileData[3] === 0x46;
+    
+    if (!isPDF) {
+      console.error(`❌ File validation FAILED for ${fileName}. Magic bytes do not match PDF signature.`);
+      
+      // Show what we detected
+      let detectedType = 'Unknown';
+      if (fileData[0] === 0x89 && fileData[1] === 0x50 && fileData[2] === 0x4E && fileData[3] === 0x47) {
+        detectedType = 'PNG Image';
+      } else if (fileData[0] === 0xFF && fileData[1] === 0xD8 && fileData[2] === 0xFF) {
+        detectedType = 'JPEG Image';
+      } else if (fileData[0] === 0x42 && fileData[1] === 0x4D) {
+        detectedType = 'BMP Image';
+      } else if (fileData[0] === 0x47 && fileData[1] === 0x49 && fileData[2] === 0x46) {
+        detectedType = 'GIF Image';
+      }
+      
+      return NextResponse.json(
+        { success: false, error: `File is not a valid PDF. Detected file type: ${detectedType}. Please upload a real PDF file, not an image or document that's been renamed.` },
+        { status: 400 }
+      );
+    }
+
+    console.log(`✅ File validation PASSED for ${fileName}`);
 
     // Upload to Cloudinary
     const cloudinaryResult = await uploadToCloudinary(file, 'brochures');

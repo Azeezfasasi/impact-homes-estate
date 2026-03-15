@@ -17,12 +17,41 @@ export default function PropertyDetail() {
   const [showImageModal, setShowImageModal] = useState(false);
   const [modalImageIndex, setModalImageIndex] = useState(0);
   const [showContactForm, setShowContactForm] = useState(false);
+  const [successMessage, setSuccessMessage] = useState("");
   const [contactForm, setContactForm] = useState({
     name: '',
     email: '',
-    phone: '',
+    phoneNumber: '',
     message: ''
   });
+
+  const handleChange = (e) => {
+    setContactForm({ ...contactForm, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(contactForm),
+      });
+      const data = await res.json();
+      if (data.success) {
+        setSuccessMessage("Thank you! Your message has been submitted.");
+        setContactForm({ name: "", email: "", phoneNumber: "", message: "" });
+        // Clear success message after 5 seconds
+        setTimeout(() => setSuccessMessage(""), 5000);
+      } else {
+        alert(data.message || "Failed to submit message.");
+      }
+    } catch (error) {
+      alert("Failed to submit message.");
+      console.error("Contact form error:", error);
+    }
+  };
+
 
   useEffect(() => {
     fetchProperty();
@@ -61,14 +90,6 @@ export default function PropertyDetail() {
     } finally {
       setLoading(false);
     }
-  };
-
-  const handleContactSubmit = async (e) => {
-    e.preventDefault();
-    // Add your contact API call here
-    toast.success('Message sent successfully! Agent will contact you soon.');
-    setContactForm({ name: '', email: '', phone: '', message: '' });
-    setShowContactForm(false);
   };
 
   if (loading) {
@@ -401,36 +422,45 @@ export default function PropertyDetail() {
           <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
             <div className="bg-white rounded-lg shadow-xl max-w-md w-full p-6">
               <h2 className="text-2xl font-bold text-gray-900 mb-4">Contact Agent</h2>
-              <form onSubmit={handleContactSubmit} className="space-y-4">
+              {successMessage && (
+                <div className="mb-4 p-4 bg-green-100 border border-green-400 text-green-700 rounded-lg animate-pulse">
+                  ✓ {successMessage}
+                </div>
+              )}
+              <form onSubmit={handleSubmit} className="space-y-4">
                 <input
                   type="text"
+                  name="name"
                   placeholder="Your Name"
                   value={contactForm.name}
-                  onChange={(e) => setContactForm({ ...contactForm, name: e.target.value })}
+                  onChange={handleChange}
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-impact-gold"
                   required
                 />
                 <input
                   type="email"
+                  name="email"
                   placeholder="Your Email"
                   value={contactForm.email}
-                  onChange={(e) => setContactForm({ ...contactForm, email: e.target.value })}
+                  onChange={handleChange}
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-impact-gold"
                   required
                 />
                 <input
                   type="tel"
+                  name="phoneNumber"
                   placeholder="Your Phone"
-                  value={contactForm.phone}
-                  onChange={(e) => setContactForm({ ...contactForm, phone: e.target.value })}
+                  value={contactForm.phoneNumber}
+                  onChange={handleChange}
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-impact-gold"
                   required
                 />
                 <textarea
+                  name="message"
                   placeholder="Your Message..."
                   rows={4}
                   value={contactForm.message}
-                  onChange={(e) => setContactForm({ ...contactForm, message: e.target.value })}
+                  onChange={handleChange}
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-impact-gold"
                 />
                 <div className="flex gap-3">

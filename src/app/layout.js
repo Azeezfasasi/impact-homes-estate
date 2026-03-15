@@ -1,6 +1,7 @@
 import '../globals.css'
 import '../lib/mongodb.js' // Initialize database connection
 import FooterSection from '@/components/home-component/Footerection';
+import WhatsAppChatIcon from '@/components/home-component/WhatsAppChatIcon';
 // import MainNav from '@/components/home-component/MainNav';
 import { AuthProvider } from "@/context/AuthContext";
 import { Toaster } from 'react-hot-toast';
@@ -24,6 +25,7 @@ export default function RootLayout({ children }) {
             {/* <MainNav /> */}
           </div>
           <main>{children}</main>
+          <WhatsAppChatIcon />
           <div className="site-main-header">
             <FooterSection />
           </div>

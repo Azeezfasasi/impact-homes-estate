@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { Loader } from 'lucide-react';
 import MainNav from '@/components/home-component/MainNav';
+import Link from 'next/link';
 
 export default function SpecialOfferPage() {
   const [offers, setOffers] = useState([]);
@@ -62,8 +63,11 @@ export default function SpecialOfferPage() {
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
               {offers.map((offer) => (
-                <div
+                <Link
                   key={offer._id}
+                  href={`https://wa.me/353872482181?text=Hi%20Impact%20Home%20Real%20Estate,%20I'm%20interested%20in%20the%20offer:%20${encodeURIComponent(offer.title)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="group cursor-pointer rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300"
                 >
                   <div className="relative h-80 overflow-hidden bg-gray-200">
@@ -85,9 +89,9 @@ export default function SpecialOfferPage() {
                       {offer.projectLocation}
                     </p>
 
-                    {offer.discountPercentage > 0 && (
+                    {offer.discountPercentage >= 0 && (
                       <div className="inline-block bg-impact-gold text-white px-4 py-2 rounded-lg font-semibold mb-4">
-                        {offer.discountPercentage}% Off
+                        {offer.discountPercentage > 0 ? `${offer.discountPercentage}% Off` : 'Limited Time Offer'}
                       </div>
                     )}
 
@@ -97,12 +101,18 @@ export default function SpecialOfferPage() {
 
                     {offer.endDate && (
                       <p className="text-xs text-gray-500 mt-4">
-                        Offer ends:{' '}
+                        <span className="font-semibold text-[14px]">Offer ends on:</span> {' '}
                         {new Date(offer.endDate).toLocaleDateString('en-NG')}
                       </p>
                     )}
+
+                    {/* add a whatsapp button to get offer details */}
+                    <button className="mt-4 bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded-lg transition-colors duration-300 flex items-center gap-0">
+                      <Image src="/img/whatsappicon.svg" alt="WhatsApp" width={5} height={5} className="w-5 h-5 mr-2" />
+                      Contact via WhatsApp
+                    </button>
                   </div>
-                </div>
+                </Link>
               ))}
             </div>
           )}

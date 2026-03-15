@@ -24,7 +24,7 @@ export default function CallToAction() {
             Schedule an Inspection
           </a>
           <a
-            href="/contact"
+            href="/contact-us"
             className="border-2 border-white text-white font-semibold px-8 py-3 rounded-lg hover:bg-white hover:text-impact-gold transition"
           >
             Contact Us

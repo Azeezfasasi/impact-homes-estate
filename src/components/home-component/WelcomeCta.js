@@ -1,5 +1,6 @@
 'use client'
 
+import Link from 'next/link'
 import React, { useState, useEffect } from 'react'
 
 export default function WelcomeCta() {
@@ -98,10 +99,10 @@ export default function WelcomeCta() {
               {content.description}
             </p>
             
-            <button className="bg-white text-gray-900 font-semibold px-8 py-4 rounded-lg hover:bg-gray-50 transition-all duration-300 transform hover:scale-105 flex items-center gap-2 shadow-lg hover:shadow-xl">
+            <Link href="https://wa.me/353872482181" target="_blank" rel="noopener noreferrer" className="w-full lg:w-[70%] text-center bg-white text-gray-900 font-semibold px-8 py-2 md:py-4 rounded-lg hover:bg-gray-50 transition-all duration-300 transform hover:scale-105 flex items-center gap-2 shadow-lg hover:shadow-xl">
               {content.buttonLabel}
-              <span className="text-xl">📋</span>
-            </button>
+              <span className="text-xl hidden md:block">📋</span>
+            </Link>
           </div>
         </div>
 

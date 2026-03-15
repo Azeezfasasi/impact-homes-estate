@@ -51,7 +51,7 @@ export default function FooterSection() {
               {/* Logo & Business Hours Section */}
               <div className="flex flex-col">
                 <div className="mb-8">
-                  <Image src="/img/logowhite.png" alt="Impact Homes Logo" width={120} height={50} className="ml-2 w-[70%] lg:h-[100px]" />
+                  <Image src="/img/logowhite.png" alt="Impact Homes Logo" width={120} height={70} className="ml-2 w-[70%] lg:h-[100px]" />
                 </div>
 
                 <div>

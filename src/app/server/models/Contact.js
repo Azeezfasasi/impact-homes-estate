@@ -17,8 +17,9 @@ const replySchema = new mongoose.Schema({
 const contactSchema = new mongoose.Schema({
 	name: { type: String, required: true },
 	email: { type: String, required: true },
-	subject: { type: String, required: true },
+	subject: { type: String },
 	message: { type: String, required: true },
+	phoneNumber: String,
 	status: {
 		type: String,
 		enum: ["pending", "replied", "closed"],

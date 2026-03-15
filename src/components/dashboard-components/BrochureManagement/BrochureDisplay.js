@@ -43,18 +43,60 @@ export default function BrochureDisplay() {
         method: 'POST',
       })
 
+      // Download PDF through our backend endpoint
+      const response = await fetch(`/api/brochures/${brochure._id}/download`, {
+        method: 'GET',
+      })
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        console.error('Download error response:', errorData);
+        throw new Error(errorData.error || `Failed to download PDF (${response.status})`)
+      }
+
+      const blob = await response.blob()
+
+      // Check if blob is valid
+      if (blob.size === 0) {
+        throw new Error('Downloaded file is empty')
+      }
+
+      // Verify it's a PDF
+      const arrayBuffer = await blob.slice(0, 4).arrayBuffer();
+      const view = new Uint8Array(arrayBuffer);
+      const isPDF = view[0] === 0x25 && view[1] === 0x50 && view[2] === 0x44 && view[3] === 0x46; // %PDF
+      
+      console.log('Downloaded file magic bytes:', Array.from(view).map(b => '0x' + b.toString(16).toUpperCase()).join(' '));
+      console.log('Is PDF:', isPDF);
+      
+      if (!isPDF) {
+        // For debugging, show what we got
+        const preview = await blob.text();
+        console.error('Downloaded content preview:', preview.substring(0, 500));
+        throw new Error('Downloaded file is not a valid PDF - see console for details')
+      }
+
+      // Create object URL from blob
+      const blobUrl = window.URL.createObjectURL(blob)
+
       // Trigger download
       const link = document.createElement('a')
-      link.href = brochure.pdfUrl
+      link.href = blobUrl
       link.download = brochure.fileName || `${brochure.title}.pdf`
+      link.style.display = 'none'
       document.body.appendChild(link)
       link.click()
       document.body.removeChild(link)
 
+      // Clean up the blob URL after a short delay
+      setTimeout(() => {
+        window.URL.revokeObjectURL(blobUrl)
+      }, 100)
+
       toast.success('Brochure downloaded successfully')
     } catch (error) {
       console.error('Error downloading brochure:', error)
-      toast.error('Failed to download brochure')
+      toast.error(`Failed to download brochure: ${error.message}`)
     }
   }
 

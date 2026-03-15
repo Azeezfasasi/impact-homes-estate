@@ -18,12 +18,24 @@ export const uploadToCloudinary = async (fileData, folderName = 'rayob') => {
       throw new Error('Cloudinary is not configured');
     }
 
-    const result = await cloudinary.uploader.upload(fileData, {
+    // Determine if this is a PDF (for brochures)
+    const isPDF = folderName === 'brochures' || (typeof fileData === 'string' && fileData.includes('data:application/pdf'));
+
+    const uploadOptions = {
       folder: folderName,
-      resource_type: 'auto',
       quality: 'auto',
-      fetch_format: 'auto',
-    });
+    };
+
+    // For PDFs, use 'raw' resource type to preserve original format
+    if (isPDF) {
+      uploadOptions.resource_type = 'raw';
+      console.log('Uploading PDF as raw resource type');
+    } else {
+      uploadOptions.resource_type = 'auto';
+      uploadOptions.fetch_format = 'auto';
+    }
+
+    const result = await cloudinary.uploader.upload(fileData, uploadOptions);
 
     return {
       success: true,
@@ -34,7 +46,7 @@ export const uploadToCloudinary = async (fileData, folderName = 'rayob') => {
     };
   } catch (error) {
     console.error('Cloudinary upload error:', error);
-    throw new Error(`Failed to upload image to Cloudinary: ${error.message}`);
+    throw new Error(`Failed to upload file to Cloudinary: ${error.message}`);
   }
 };
 

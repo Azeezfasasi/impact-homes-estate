@@ -9,6 +9,7 @@ export default function ContactUsMain() {
     subject: "",
     message: "",
   });
+  const [successMessage, setSuccessMessage] = useState("");
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -24,8 +25,10 @@ export default function ContactUsMain() {
       });
       const data = await res.json();
       if (data.success) {
-        alert("Thank you! Your message has been submitted.");
+        setSuccessMessage("Thank you! Your message has been submitted.");
         setFormData({ name: "", email: "", subject: "", message: "" });
+        // Clear success message after 5 seconds
+        setTimeout(() => setSuccessMessage(""), 5000);
       } else {
         alert(data.message || "Failed to submit message.");
       }
@@ -44,6 +47,11 @@ export default function ContactUsMain() {
           <div>
             <form onSubmit={handleSubmit} className="bg-white p-8 rounded-2xl shadow-md">
               <h2 className="text-2xl font-bold mb-6 text-gray-800">Send Us a Message</h2>
+              {successMessage && (
+                <div className="mb-6 p-4 bg-green-100 border border-green-400 text-green-700 rounded-lg animate-pulse">
+                  ✓ {successMessage}
+                </div>
+              )}
               <div className="grid gap-6">
                 <input
                   type="text"
