@@ -13,6 +13,18 @@ import HomeContact from '@/components/home-component/HomeContact'
 import ClientReview from '@/components/home-component/ClientReview'
 import FeaturedProperties from '@/components/home-component/FeaturedProperties'
 
+export const metadata = {
+  title: 'Impact Homes Real Estate - Your Trusted Partner in Property Investment',
+  description: 'Discover exceptional real estate investment opportunities with Impact Homes Real Estate. We provide expert guidance, personalized service, and a wide range of properties to help you achieve your investment goals.',
+  keywords: 'Real Estate, Property Investment, Homes, Houses, Apartments, Land, Abuja',
+  openGraph: {
+    title: 'Impact Homes Real Estate - Your Trusted Partner in Property Investment',
+    description: 'Discover exceptional real estate investment opportunities with Impact Homes Real Estate.',
+    url: 'https://impacthomes.com',
+    type: 'website',
+  },
+}
+
 export default function HomePage() {
   return (
     <>

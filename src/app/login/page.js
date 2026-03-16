@@ -6,7 +6,6 @@ import { useAuth } from "@/context/AuthContext";
 import { Eye, EyeOff } from "lucide-react";
 import MainNav from "@/components/home-component/MainNav";
 
-
 export default function Login() {
   const router = useRouter();
   const { login, user, loading } = useAuth();

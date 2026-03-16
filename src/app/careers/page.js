@@ -2,6 +2,9 @@
 import React from 'react'
 import Image from 'next/image'
 
+// Note: Client components cannot export metadata. For SEO, create a layout.js file in this directory
+// export const metadata = {...}
+
 export default function Careers() {
   const benefits = [
     {
