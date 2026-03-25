@@ -12,6 +12,7 @@ import WelcomeCta from '@/components/home-component/WelcomeCta'
 import HomeContact from '@/components/home-component/HomeContact'
 import ClientReview from '@/components/home-component/ClientReview'
 import FeaturedProperties from '@/components/home-component/FeaturedProperties'
+import VideoIntro from '@/components/home-component/VideoIntro'
 
 export const metadata = {
   title: 'Impact Homes Real Estate - Your Trusted Partner in Property Investment',
@@ -30,6 +31,7 @@ export default function HomePage() {
     <>
       <HeroSlider />
       <WelcomeCta />
+      <VideoIntro />
       <FeaturedProperties />
       <HomeContact />
       <ClientReview />

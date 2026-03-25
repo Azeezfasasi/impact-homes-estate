@@ -29,7 +29,7 @@ export default function AddProperty() {
       city: '',
       state: '',
       zipCode: '',
-      country: 'USA'
+      country: 'Nigeria'
     },
     bedrooms: '',
     bathrooms: '',
@@ -204,7 +204,7 @@ export default function AddProperty() {
 
     try {
       // Validate required fields
-      const requiredFields = ['title', 'description', 'price', 'propertyType', 'status', 'category'];
+      const requiredFields = ['title', 'description', 'propertyType', 'status', 'category'];
       const missingFields = requiredFields.filter(field => !formData[field]);
 
       if (missingFields.length > 0) {
@@ -213,22 +213,22 @@ export default function AddProperty() {
       }
 
       // Validate address
-      const addressFields = ['street', 'city', 'state', 'zipCode'];
-      const missingAddress = addressFields.filter(field => !formData.address[field]);
+      // const addressFields = ['street', 'city', 'state', 'zipCode'];
+      // const missingAddress = addressFields.filter(field => !formData.address[field]);
 
-      if (missingAddress.length > 0) {
-        toast.error(`Please fill in address: ${missingAddress.join(', ')}`);
-        return;
-      }
+      // if (missingAddress.length > 0) {
+      //   toast.error(`Please fill in address: ${missingAddress.join(', ')}`);
+      //   return;
+      // }
 
       // Validate agent info
-      const agentFields = ['name', 'email', 'phone'];
-      const missingAgent = agentFields.filter(field => !formData.agent[field]);
+      // const agentFields = ['name', 'email', 'phone'];
+      // const missingAgent = agentFields.filter(field => !formData.agent[field]);
 
-      if (missingAgent.length > 0) {
-        toast.error(`Please fill in agent info: ${missingAgent.join(', ')}`);
-        return;
-      }
+      // if (missingAgent.length > 0) {
+      //   toast.error(`Please fill in agent info: ${missingAgent.join(', ')}`);
+      //   return;
+      // }
 
       // Convert string numbers to numbers
       const submitData = {
@@ -316,7 +316,7 @@ export default function AddProperty() {
 
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                Price *
+                Price
               </label>
               <div className="flex items-center">
                 <span className="text-gray-500 mr-2 font-bold">₦</span>
@@ -327,9 +327,6 @@ export default function AddProperty() {
                   onChange={handleInputChange}
                   className="w-full px-3 py-2 border border-impact-gold/70 rounded-md focus:outline-none focus:ring-2 focus:ring-impact-gold"
                   placeholder="e.g., 250000"
-                  min="0"
-                  step="0.01"
-                  required
                 />
               </div>
             </div>
@@ -413,7 +410,7 @@ export default function AddProperty() {
 
           <div className="mt-6">
             <label className="block text-sm font-medium text-gray-700 mb-2">
-              Description *
+              Description
             </label>
             <textarea
               name="description"
@@ -422,7 +419,6 @@ export default function AddProperty() {
               rows={4}
               className="w-full px-3 py-2 border border-impact-gold/70 rounded-md focus:outline-none focus:ring-2 focus:ring-impact-gold"
               placeholder="Detailed description of the property..."
-              required
             />
           </div>
         </div>
@@ -433,7 +429,7 @@ export default function AddProperty() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="md:col-span-2">
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                Street Address *
+                Street Address
               </label>
               <input
                 type="text"
@@ -442,13 +438,12 @@ export default function AddProperty() {
                 onChange={handleInputChange}
                 className="w-full px-3 py-2 border border-impact-gold/70 rounded-md focus:outline-none focus:ring-2 focus:ring-impact-gold"
                 placeholder="123 Main Street"
-                required
               />
             </div>
 
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                City *
+                City
               </label>
               <input
                 type="text"
@@ -456,14 +451,13 @@ export default function AddProperty() {
                 value={formData.address.city}
                 onChange={handleInputChange}
                 className="w-full px-3 py-2 border border-impact-gold/70 rounded-md focus:outline-none focus:ring-2 focus:ring-impact-gold"
-                placeholder="New York"
-                required
+                placeholder="Abuja"
               />
             </div>
 
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                State *
+                State
               </label>
               <input
                 type="text"
@@ -471,14 +465,13 @@ export default function AddProperty() {
                 value={formData.address.state}
                 onChange={handleInputChange}
                 className="w-full px-3 py-2 border border-impact-gold/70 rounded-md focus:outline-none focus:ring-2 focus:ring-impact-gold"
-                placeholder="NY"
-                required
+                placeholder="Nigeria"
               />
             </div>
 
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                Zip Code *
+                Zip Code
               </label>
               <input
                 type="text"
@@ -487,7 +480,6 @@ export default function AddProperty() {
                 onChange={handleInputChange}
                 className="w-full px-3 py-2 border border-impact-gold/70 rounded-md focus:outline-none focus:ring-2 focus:ring-impact-gold"
                 placeholder="10001"
-                required
               />
             </div>
 
@@ -501,7 +493,7 @@ export default function AddProperty() {
                 value={formData.address.country}
                 onChange={handleInputChange}
                 className="w-full px-3 py-2 border border-impact-gold/70 rounded-md focus:outline-none focus:ring-2 focus:ring-impact-gold"
-                placeholder="USA"
+                placeholder="Nigeria"
               />
             </div>
           </div>
@@ -522,7 +514,7 @@ export default function AddProperty() {
                 onChange={handleInputChange}
                 className="w-full px-3 py-2 border border-impact-gold/70 rounded-md focus:outline-none focus:ring-2 focus:ring-impact-gold"
                 placeholder="3"
-                min="0"
+                // min="0"
               />
             </div>
 
@@ -537,8 +529,8 @@ export default function AddProperty() {
                 onChange={handleInputChange}
                 className="w-full px-3 py-2 border border-impact-gold/70 rounded-md focus:outline-none focus:ring-2 focus:ring-impact-gold"
                 placeholder="2"
-                min="0"
-                step="0.5"
+                // min="0"
+                // step="0.5"
               />
             </div>
 
@@ -552,8 +544,8 @@ export default function AddProperty() {
                 value={formData.squareFootage}
                 onChange={handleInputChange}
                 className="w-full px-3 py-2 border border-impact-gold/70 rounded-md focus:outline-none focus:ring-2 focus:ring-impact-gold"
-                placeholder="2000"
-                min="0"
+                // placeholder="2000"
+                // min="0"
               />
             </div>
 
@@ -567,8 +559,8 @@ export default function AddProperty() {
                 value={formData.lotSize}
                 onChange={handleInputChange}
                 className="w-full px-3 py-2 border border-impact-gold/70 rounded-md focus:outline-none focus:ring-2 focus:ring-impact-gold"
-                placeholder="5000"
-                min="0"
+                // placeholder="5000"
+                // min="0"
               />
             </div>
 
@@ -645,7 +637,7 @@ export default function AddProperty() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                Agent Name *
+                Agent Name
               </label>
               <input
                 type="text"
@@ -654,13 +646,12 @@ export default function AddProperty() {
                 onChange={handleInputChange}
                 className="w-full px-3 py-2 border border-impact-gold/70 rounded-md focus:outline-none focus:ring-2 focus:ring-impact-gold"
                 placeholder="John Doe"
-                required
               />
             </div>
 
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                Agent Email *
+                Agent Email
               </label>
               <input
                 type="email"
@@ -669,13 +660,12 @@ export default function AddProperty() {
                 onChange={handleInputChange}
                 className="w-full px-3 py-2 border border-impact-gold/70 rounded-md focus:outline-none focus:ring-2 focus:ring-impact-gold"
                 placeholder="john@example.com"
-                required
               />
             </div>
 
             <div className="md:col-span-2">
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                Agent Phone *
+                Agent Phone
               </label>
               <input
                 type="tel"
@@ -684,7 +674,6 @@ export default function AddProperty() {
                 onChange={handleInputChange}
                 className="w-full px-3 py-2 border border-impact-gold/70 rounded-md focus:outline-none focus:ring-2 focus:ring-impact-gold"
                 placeholder="(555) 123-4567"
-                required
               />
             </div>
           </div>

@@ -301,7 +301,7 @@ export default function AllProperty() {
                   </div>
 
                   <p className="text-2xl font-bold text-impact-gold mb-2">
-                    {property.price.toLocaleString('en-NG', { style: 'currency', currency: 'NGN' })}
+                    {property.price ? property.price.toLocaleString('en-NG', { style: 'currency', currency: 'NGN' }) : 'Price on request'}
                   </p>
 
                   <p className="text-gray-600 text-sm mb-4 line-clamp-3">

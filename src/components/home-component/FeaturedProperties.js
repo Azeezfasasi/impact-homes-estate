@@ -86,7 +86,7 @@ export default function FeaturedProperties() {
   const featuredImage = currentProperty.images?.find(img => img.isMain);
 
   return (
-    <div className="w-full relative">
+    <div className="w-[95%] md:w-[70%] relative mx-auto">
       {/* Main Carousel Container */}
       <div className="relative w-full h-96 md:h-[500px] lg:h-[600px] overflow-hidden rounded-2xl shadow-2xl bg-gray-900">
         {/* Slides */}
@@ -170,14 +170,24 @@ export default function FeaturedProperties() {
 
                   {/* Price and Button */}
                   <div className="flex flex-wrap items-center justify-between gap-4 pt-4 md:pt-6">
-                    <div className="flex flex-col">
-                      <span className="text-gray-300 text-xs md:text-sm">Price</span>
-                      <span className="text-3xl md:text-4xl font-bold text-white">
-                        ₦{property.price?.toLocaleString()}
-                      </span>
-                    </div>
+                    {/* show price if available */}
+                    {property.price ? (
+                      <div className="flex flex-col">
+                        <span className="text-gray-300 text-xs md:text-sm">Price</span>
+                        <span className="text-3xl md:text-4xl font-bold text-white">
+                          ₦{property.price.toLocaleString()}
+                        </span>
+                      </div>
+                    ) : (
+                      <div className="flex flex-col">
+                        <span className="text-gray-300 text-xs md:text-sm">Price</span>
+                        <span className="text-3xl md:text-4xl font-bold text-white">
+                          Price on request
+                        </span>
+                      </div>
+                    )}
                     <Link
-                      href={`/property/${property._id}`}
+                      href={`/all-properties/${property._id}`}
                       className="px-6 md:px-8 py-3 md:py-4 bg-impact-gold hover:bg-impact-gold/80 text-white font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 active:scale-95 shadow-lg"
                     >
                       View Details →

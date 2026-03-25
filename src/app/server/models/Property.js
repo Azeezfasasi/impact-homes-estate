@@ -14,8 +14,6 @@ const PropertySchema = new mongoose.Schema({
   },
   price: {
     type: Number,
-    required: [true, 'Property price is required'],
-    min: [0, 'Price cannot be negative']
   },
   propertyType: {
     type: String,
@@ -37,30 +35,24 @@ const PropertySchema = new mongoose.Schema({
   },
   // Location details
   address: {
-    street: { type: String, required: [true, 'Street address is required'] },
-    city: { type: String, required: [true, 'City is required'] },
-    state: { type: String, required: [true, 'State is required'] },
-    zipCode: { type: String, required: [true, 'Zip code is required'] },
-    country: { type: String, default: 'USA' }
+    street: { type: String },
+    city: { type: String },
+    state: { type: String },
+    zipCode: { type: String },
+    country: { type: String, default: 'Nigeria' }
   },
   // Property features
   bedrooms: {
-    type: Number,
-    min: [0, 'Bedrooms cannot be negative'],
-    default: 0
+    type: Number
   },
   bathrooms: {
-    type: Number,
-    min: [0, 'Bathrooms cannot be negative'],
-    default: 0
+    type: Number
   },
   squareFootage: {
-    type: Number,
-    min: [0, 'Square footage cannot be negative']
+    type: Number
   },
   lotSize: {
-    type: Number,
-    min: [0, 'Lot size cannot be negative']
+    type: Number
   },
   yearBuilt: {
     type: Number,
@@ -81,9 +73,9 @@ const PropertySchema = new mongoose.Schema({
   }],
   // Agent/Owner information
   agent: {
-    name: { type: String, required: [true, 'Agent name is required'] },
-    email: { type: String, required: [true, 'Agent email is required'] },
-    phone: { type: String, required: [true, 'Agent phone is required'] }
+    name: { type: String },
+    email: { type: String },
+    phone: { type: String }
   },
   // Metadata
   isFeatured: {

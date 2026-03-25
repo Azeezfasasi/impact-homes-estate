@@ -143,7 +143,7 @@ export async function POST(request) {
     const body = await request.json();
 
     // Validate required fields
-    const requiredFields = ['title', 'description', 'price', 'propertyType', 'status', 'category', 'address'];
+    const requiredFields = ['title', 'description', 'status', 'category'];
     for (const field of requiredFields) {
       if (!body[field]) {
         return NextResponse.json({
@@ -154,23 +154,23 @@ export async function POST(request) {
     }
 
     // Validate address fields
-    const addressFields = ['street', 'city', 'state', 'zipCode'];
-    for (const field of addressFields) {
-      if (!body.address[field]) {
-        return NextResponse.json({
-          success: false,
-          message: `Address ${field} is required`
-        }, { status: 400 });
-      }
-    }
+    // const addressFields = ['street', 'city', 'state', 'zipCode'];
+    // for (const field of addressFields) {
+    //   if (!body.address[field]) {
+    //     return NextResponse.json({
+    //       success: false,
+    //       message: `Address ${field} is required`
+    //     }, { status: 400 });
+    //   }
+    // }
 
     // Validate agent fields
-    if (!body.agent || !body.agent.name || !body.agent.email || !body.agent.phone) {
-      return NextResponse.json({
-        success: false,
-        message: 'Agent information is required'
-      }, { status: 400 });
-    }
+    // if (!body.agent || !body.agent.name || !body.agent.email || !body.agent.phone) {
+    //   return NextResponse.json({
+    //     success: false,
+    //     message: 'Agent information is required'
+    //   }, { status: 400 });
+    // }
 
     const property = new Property(body);
     const savedProperty = await property.save();

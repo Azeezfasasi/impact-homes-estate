@@ -285,9 +285,11 @@ export default function AllPropertiesPage() {
                           </div>
 
                           {/* Price Badge */}
-                          <div className="absolute top-3 right-3 bg-impact-gold text-white px-3 py-1 rounded-full text-sm font-bold">
-                            ₦{(property.price / 1000).toFixed(0)}K
-                          </div>
+                          {property.price && (
+                            <div className="absolute top-3 right-3 bg-impact-gold text-white px-3 py-1 rounded-full text-sm font-bold">
+                              ₦{(property.price / 1000).toFixed(0)}K
+                            </div>
+                          )}
                         </div>
 
                         {/* Content */}
@@ -327,7 +329,7 @@ export default function AllPropertiesPage() {
                           {/* Full Price */}
                           <div className="flex items-center justify-between mt-4 pt-3 border-t">
                             <span className="text-lg font-bold text-gray-900">
-                              ₦{property.price.toLocaleString()}
+                              {property.price ? `₦${property.price.toLocaleString()}` : 'Price on request'}
                             </span>
                             <span className="text-impact-gold text-sm font-semibold group-hover:translate-x-1 transition-transform">
                               View →

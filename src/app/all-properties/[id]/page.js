@@ -249,10 +249,21 @@ export default function PropertyDetail() {
           <div>
             {/* Price Card */}
             <div className="bg-white rounded-lg shadow-sm border p-6 mb-4">
-              <p className="text-gray-600 text-sm mb-1">Price</p>
-              <h2 className="text-4xl font-bold text-gray-900 mb-4">
-                ₦{property.price?.toLocaleString()}
-              </h2>
+              {property.price ? (
+              <>
+                <p className="text-gray-600 text-sm mb-1">Price</p>
+                <h2 className="text-4xl font-bold text-gray-900 mb-4">
+                  ₦{property.price?.toLocaleString()}
+                </h2>
+              </>
+              ) : (
+                <div className="flex flex-col">
+                  <span className="text-gray-800 text-xs md:text-sm">Price</span>
+                  <span className="text-3xl md:text-4xl font-bold text-gray-800">
+                    Price on request
+                  </span>
+                </div>
+              )}
 
               {/* Key Features */}
               <div className="space-y-3 mb-6 py-4 border-t border-b">
@@ -295,7 +306,7 @@ export default function PropertyDetail() {
                 onClick={() => setShowContactForm(!showContactForm)}
                 className="w-full px-4 py-3 bg-impact-gold text-white rounded-lg hover:bg-impact-gold hover:bg-opacity-90 transition-colors font-semibold mb-2"
               >
-                Contact Agent
+                Contact Us
               </button>
               <Link href="/schedule-inspection" className="w-full block text-center px-4 py-3 border border-impact-gold text-impact-gold rounded-lg hover:bg-impact-gold hover:text-white transition-colors font-semibold">
                 Schedule Inspection
